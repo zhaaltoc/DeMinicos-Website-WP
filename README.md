@@ -1,1 +1,2 @@
-# DeMinicos-Website
+# DeMinicos
+Website for DeMinico's Cucina Kitchen
