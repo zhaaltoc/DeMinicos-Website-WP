@@ -1,0 +1,135 @@
+/* Section: HTML {{{1 */
+html, body {
+    height: 110%;
+    /* background-color: transparent; */
+    background-color: rgb(25,25,25);
+    color: rgb(201,201,201);
+}
+
+html {
+    /* background: url(../img/background.jpg) no-repeat center center fixed; */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow-y: auto;
+}
+
+body {
+    position: relative;
+    font-family: "Raleway",Helvetica,Arial,Lucida,sans-serif;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+th {
+    text-align: center;
+}
+
+/* Section: Bootstrap {{{1 */
+.vh {
+    overflow-y: auto;
+    height: 100vh;
+    background-color: transparent;
+}
+
+.jumbotron {
+    background-color: rgba(41, 43, 45, 0.4);
+    margin: 0;
+}
+
+/* Custom page footer */
+/* .footer { */
+/* padding-top: 1.5rem; */
+/* color: #777; */
+/* border-top: .05rem solid #e5e5e5; */
+/* } */
+
+.container {
+    max-width: 100%;
+}
+.container-fluid {
+    max-width: 100%;
+    padding: 0;
+}
+
+.jumbotron {
+    padding: 0;
+}
+.jumbotron .btn {
+    padding: .75rem 1.5rem;
+    font-size: 1.5rem;
+}
+
+.row {
+    width: 100%;
+    margin: 0;
+}
+
+.col, .col-12 {
+    padding: 0;
+    line-height: 0;
+}
+
+.navbar {
+    /*
+    min-height: 75px;
+    max-height: 75px;
+     */
+}
+
+.navbar-favicon {
+    height: 30px;
+    width: 30px;
+}
+
+.bg-inverse {
+    background-color: rgba(41, 43, 45, 0.7) !important;
+}
+
+.navbar-inverse .navbar-nav .nav-link.active {
+    color: rgb(205,92,92);
+}
+
+.navbar-inverse .navbar-nav .nav-link {
+    color: rgb(255,205,205);
+}
+
+/* Section: Google elements{{{1 */
+#googleMap {
+    height: 400px;
+    width: 100%;
+    border: 0;
+}
+
+/* Section: Social Media {{{1 */
+#socialCol {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.socialIcon {
+    padding-right: 10px;
+}
+
+/* Section: Test styles {{{1 */
+.logo {
+    height: relative;
+    width: 40%;
+}
+
+.section-header {
+    padding-top: 15px;
+}
+
+.row-inverse {
+    background-color: black;
+    color: white;
+}
+
+@media(max-width: 48em) {
+    .logo {
+        height: relative;
+        width: 70%;
+    }
+}
