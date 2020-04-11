@@ -123,9 +123,14 @@ function addName($element, $name) {
 function addType($element, $type) {
     $GLOBALS["dom"]->addAttribute($element, "type", $type);
 }
-// }}}
 
-// Default HTML template
+function br($element, $lines) { // {{{2
+  for ($i = 0; $i < $lines; $i++) {
+    element($element, "br");
+  }
+}
+
+// Default HTML template {{{1
 $assets = "assets";
 $css = $assets . "/css";
 $img = $assets . "/img";
