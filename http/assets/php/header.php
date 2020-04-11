@@ -137,7 +137,72 @@ function phone($element, $phoneNumber, $type) { // {{{2
   element($elem, "text", array(), " for pickup or delivery!");
 }
 
-// Default HTML template {{{1
+// Hours {{{1
+function hourRow($tbody, $day, $open, $closed) { // {{{2
+    $tr = element($tbody, "tr");
+    $td = element($tr, "td");
+    $p = element($td, "p", array("style"=>"margin-bottom:5px;"));
+    element($p, "b", array(), $day);
+    $td = element($tr, "td");
+    element($td, "p", array("style"=>"margin-bottom:5px;"), $open);
+    if ($open != "Closed") {
+        $td = element($tr, "td");
+        element($td, "p", array("style"=>"margin-bottom:5px;"), "-");
+        $td = element($tr, "td");
+        element($td, "p", array("style"=>"margin-bottom:5px;"), $closed);
+    }
+}
+
+// Menus {{{1
+// TODO-TJG [180204] - Update menu functions to be one function(array of html ready data, bool is header)
+function menuHead($tbody, $name, $description, $toppings, $price) { // {{{2
+  $tr = element($tbody, "tr");
+  $th = element($tr, "th");
+  $p = element($th, "p", array("style"=>"margin-bottom:5px;"), $name);
+  $th = element($tr, "th");
+  $p = element($th, "p", array("style"=>"margin-bottom:5px;"), $description);
+  $th = element($tr, "th");
+  $p = element($th, "p", array("style"=>"margin-bottom:5px;"), $toppings);
+  $th = element($tr, "th");
+  $p = element($th, "p", array("style"=>"margin-bottom:5px;"), $price);
+}
+
+function menuRow($tbody, $name, $description, $toppings, $price) { // {{{2
+  $tr = element($tbody, "tr");
+  $td = element($tr, "td");
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $name);
+  $td = element($tr, "td");
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $description);
+  $td = element($tr, "td");
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), implode(", ",$toppings));
+  $td = element($tr, "td");
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), "$" . number_format($price, 2));
+}
+
+function submenu($conn, $query, $name, $col) { // {{{2
+  $results = $conn->query($query);
+  if ($results->num_rows > 0) {
+    element($col, "h2", array(), $name);
+    $table = element($col, "table", array("class"=>"table table-hover text-center"));
+    $tbody = element($table, "tbody");
+    menuHead($tbody, "Name", "Description", "Toppings", "Price");
+
+    while($result = $results->fetch_assoc()) {
+      $query = "SELECT * FROM menu_items_toppings JOIN menu_toppings ON menu_toppings.id = menu_items_toppings.menu_topping_id WHERE menu_item_id = " . $result["id"];
+      $results_toppings = $conn->query($query);
+      $toppings = array();
+      while($topping = $results_toppings->fetch_assoc()) {
+        $toppings[] = $topping["name"];
+      }
+
+      menuRow($tbody, $result["name"], $result["description"], $toppings, $result["price"]);
+    } // $result->fetch
+  }
+}
+
+
+// Head {{{1
+// Default HTML template {{{2
 $assets = "assets";
 $css = $assets . "/css";
 $img = $assets . "/img";
@@ -147,41 +212,46 @@ $php = $assets . "/php";
 $companyName = "De Minico's";
 $favicon = $img . "/favicon.png";
 
-// Base structure
+// Phone {{{2
+$phoneNumber = "403-454-6789";
+
+// Social {{{2
+$hrefFacebook = "https://www.facebook.com/DeMinicos/";
+$iconFacebook = $img . "/social/iconFacebook.png";
+$hrefInstagram = "https://www.instagram.com/deminicos/";
+$iconInstagram = $img . "/social/iconInstagram.png";
+$hrefTwitter = "https://twitter.com/DeMinicos";
+$iconTwitter = $img . "/social/iconTwitter.png";
+$imgStore = $img . "/store.jpg";
+
+// Base structure {{{2
 $html = element($dom, "html");
 $head = element($html, "head");
 $body = element($html, "body");
 
-// Phone {{{2
-$phoneNumber = "403-454-6789";
-
-// Head {{{
-
-// Tab title
+// Tab title {{{2
 element($head, "title", array(), $companyName);
 element($head, "link", array("rel"=>"icon", "href"=>$favicon));
 
-// Metadata
+// Metadata {{{2
 addMeta($head, array("charset"=>"UTF-8"));
 addMeta($head, array("name"=>"viewport", "content"=>"width=device-width", "initial-scale"=>"1", "shrink-to-fit"=>"no"));
 
-// Scripts
+// Scripts {{{2
 addScript($head, $js . "/jquery.min.js");
 addScript($head, $js . "/bootstrap.min.js");
 addScript($head, $js . "/script.js");
 
-// Stylesheets
+// Stylesheets {{{2
 addStyle($head, $css . "/font-awesome.css");
 addStyle($head, $css . "/bootstrap.min.css");
 addStyle($head, $css . "/style.css");
 addStyle($head, $css . "/print.css", array("media"=>"print"));
 
-// }}} Head
-
-// Body {{{
-
-// Load navbar
+// Nav {{{2
 require_once "assets/php/navbar.php";
 
-// }}} Body
+// Panel {{{2
+// All content will be on panel
+$panel = element($body, "div", array("class"=>"container-fluid"));
 ?>

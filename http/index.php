@@ -2,45 +2,13 @@
 
 // Name: index.php
 // Authors: Travis Gall
-// Description:
+// Description: Main index
 
 require_once "assets/php/header.php";
-
-function hourRow($tbody, $day, $open, $closed) {
-    $tr = element($tbody, "tr");
-    $td = element($tr, "td");
-    $p = element($td, "p", array("style"=>"margin-bottom:5px;"));
-    element($p, "b", array(), $day);
-    $td = element($tr, "td");
-    element($td, "p", array("style"=>"margin-bottom:5px;"), $open);
-    if ($open != "Closed") {
-        $td = element($tr, "td");
-        element($td, "p", array("style"=>"margin-bottom:5px;"), "-");
-        $td = element($tr, "td");
-        element($td, "p", array("style"=>"margin-bottom:5px;"), $closed);
-    }
-}
-
-$hrefFacebook = "https://www.facebook.com/DeMinicos/";
-$iconFacebook = $img . "/social/iconFacebook.png";
-$hrefInstagram = "https://www.instagram.com/deminicos/";
-$iconInstagram = $img . "/social/iconInstagram.png";
-$hrefTwitter = "https://twitter.com/DeMinicos";
-$iconTwitter = $img . "/social/iconTwitter.png";
-$imgStore = $img . "/store.jpg";
 
 $imgLogo = "assets/img/logo.png";
 //$imgLogoNoStamp = $img . "/logonostamp.jpg";
 $imgLogoNoStamp = $img . "/logostampcolor_reverse.jpg";
-
-// All content will be on panel
-$panel = element($body, "div", array("class"=>"container-fluid"));
-//$panel = element($panel, "div", array("class"=>"jumbotron"));
-
-// Home {{{1
-$row = element($panel, "div", array("class"=>"row"));
-$col = element($row, "div", array("class"=>"col-12"));
-//element($col, "img", array("class"=>"logo", "src"=>$imgLogo));
 
 // About Us {{{1
 $row = element($panel, "div", array("class"=>"row"));
