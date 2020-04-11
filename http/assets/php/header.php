@@ -123,9 +123,21 @@ function addName($element, $name) {
 function addType($element, $type) {
     $GLOBALS["dom"]->addAttribute($element, "type", $type);
 }
-// }}}
 
-// Default HTML template
+function br($element, $lines) { // {{{2
+  for ($i = 0; $i < $lines; $i++) {
+    element($element, "br");
+  }
+}
+
+function phone($element, $phoneNumber, $type) { // {{{2
+  $div = element($element, "div", array("class"=>"text-center"));
+  $elem = element($div, $type, array(), "Call ");
+  element($elem, "a", array("href"=>"tel:".$phoneNumber), $phoneNumber);
+  element($elem, "text", array(), " for pickup or delivery!");
+}
+
+// Default HTML template {{{1
 $assets = "assets";
 $css = $assets . "/css";
 $img = $assets . "/img";
@@ -139,6 +151,9 @@ $favicon = $img . "/favicon.png";
 $html = element($dom, "html");
 $head = element($html, "head");
 $body = element($html, "body");
+
+// Phone {{{2
+$phoneNumber = "403-454-6789";
 
 // Head {{{
 
