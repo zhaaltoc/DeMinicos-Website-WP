@@ -130,11 +130,11 @@ function br($element, $lines) { // {{{2
   }
 }
 
-function phone($element, $phoneNumber) { // {{{2
+function phone($element, $phoneNumber, $type) { // {{{2
   $div = element($element, "div", array("class"=>"text-center"));
-  element($div, "text", array("class"=>"text-center"), "Call ");
-  element($div, "a", array("class"=>"text-center", "href"=>"tel:".$phoneNumber), $phoneNumber);
-  element($div, "text", array("class"=>"text-center"), " for pickup or delivery!");
+  $elem = element($div, $type, array(), "Call ");
+  element($elem, "a", array("href"=>"tel:".$phoneNumber), $phoneNumber);
+  element($elem, "text", array(), " for pickup or delivery!");
 }
 
 // Default HTML template {{{1

@@ -60,7 +60,7 @@ element($col, "br");
 element($col, "p", array("class"=>"text-center"), "Order De Minico’s");
 
 // Phone {{{2
-phone($col, $phoneNumber);
+phone($col, $phoneNumber, "text");
 
 // Social media links
 element($col, "p", array("class"=>"text-center"), "Learn more about us by following us on social media.");

@@ -8,7 +8,7 @@
 // Section: Physical Address 
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12"));
-element($col, "h2", array("class"=>"text-center"), "Call 403-454-6789 for pickup or delivery!");
+phone($col, $phoneNumber, "h2");
 element($col, "h2", array("class"=>"text-center"), "Located at 1319 45Ave NE #5, Calgary, Alberta");
 
 // Google {{{1
