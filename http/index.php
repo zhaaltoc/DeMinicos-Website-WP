@@ -60,10 +60,7 @@ element($col, "br");
 element($col, "p", array("class"=>"text-center"), "Order De Minico’s");
 
 // Phone {{{2
-$div = element($col, "div", array("class"=>"text-center"));
-element($div, "text", array("class"=>"text-center"), "Call ");
-element($div, "a", array("class"=>"text-center", "href"=>"tel:".$phoneNumber), $phoneNumber);
-element($div, "text", array("class"=>"text-center"), " for pickup or delivery!");
+phone($col, $phoneNumber);
 
 // Social media links
 element($col, "p", array("class"=>"text-center"), "Learn more about us by following us on social media.");
