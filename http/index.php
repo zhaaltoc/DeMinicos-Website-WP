@@ -21,8 +21,6 @@ function hourRow($tbody, $day, $open, $closed) {
     }
 }
 
-$phoneNumber = "403-454-6789";
-
 $hrefFacebook = "https://www.facebook.com/DeMinicos/";
 $iconFacebook = $img . "/social/iconFacebook.png";
 $hrefInstagram = "https://www.instagram.com/deminicos/";

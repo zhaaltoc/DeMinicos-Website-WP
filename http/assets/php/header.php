@@ -152,6 +152,9 @@ $html = element($dom, "html");
 $head = element($html, "head");
 $body = element($html, "body");
 
+// Phone {{{2
+$phoneNumber = "403-454-6789";
+
 // Head {{{
 
 // Tab title
