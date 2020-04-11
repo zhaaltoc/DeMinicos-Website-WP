@@ -1,1 +1,7 @@
 *.swp
+
+# Docker
+.env
+docker-compose.yaml
+docker/*
+log/*
