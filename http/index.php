@@ -61,8 +61,7 @@ hourRow($tbody, "Friday", "11 A.M.", "8 P.M.");
 hourRow($tbody, "Saturday", "Closed", "");
 hourRow($tbody, "Sunday", "Closed", "");
 
+// Footer {{{1
 require_once "assets/php/footer.php";
-
 echo $dom->generateHTML();
-
 ?>

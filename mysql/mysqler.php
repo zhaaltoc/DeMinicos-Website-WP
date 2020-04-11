@@ -20,7 +20,4 @@ $conn = mysqli_connect($mysql_serv, $mysql_user, $mysql_pass, $mysql_db, $mysql_
 if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
-
-// echo "Connected successfully";
-//  mysql_select_db($mysql_db,$conn);
 ?>
