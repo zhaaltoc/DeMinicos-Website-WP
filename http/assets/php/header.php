@@ -201,6 +201,24 @@ function submenu($conn, $query, $name, $col) { // {{{2
 }
 
 
+function menus($conn, $panel) { // {{{2
+  $query = "SELECT * FROM menu_categories";
+  $categories = $conn->query($query);
+
+  if ($categories->num_rows > 0) {
+    // output data of each row
+    $row = element($panel, "div", array("class"=>"row"));
+    $colFresh = element($row, "div", array("class"=>"offset-1 col-10 text-center"));
+
+    while($category = $categories->fetch_assoc()) {
+      // Fresh
+      $query = "SELECT * FROM menu_items WHERE category_id=" . $category["id"];
+      $results = $conn->query($query);
+      submenu($conn, $query, $category["name"], $colFresh);
+    }
+  }
+}
+
 // Head {{{1
 // Default HTML template {{{2
 $assets = "assets";
