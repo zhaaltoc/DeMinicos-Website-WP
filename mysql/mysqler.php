@@ -17,7 +17,6 @@ $conn = mysqli_connect($mysql_serv, $mysql_user, $mysql_pass, $mysql_db, $mysql_
 // phpinfo();
 
 // Check connection
-if (!$conn) {
-	die("Connection failed: " . mysqli_connect_error());
-}
+if (!$conn)
+  die("Connection failed: " . mysqli_connect_error());
 ?>
