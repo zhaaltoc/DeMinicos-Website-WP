@@ -219,6 +219,13 @@ function menus($conn, $panel) { // {{{2
   }
 }
 
+// Navbar {{{1
+function navLink($parent, $id, $inner, $href) { // {{{2
+  // Insert navbar link into $parent DOM element
+  $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item"));
+  $a = element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
+}
+
 // Head {{{1
 // Default HTML template {{{2
 $assets = "assets";
@@ -230,8 +237,21 @@ $php = $assets . "/php";
 $companyName = "De Minico's";
 $favicon = $img . "/favicon.png";
 
+// Brand {{{2
+$imgStore = $img . "/store.jpg";
+$imgHome = $img  . "/home.png";
+$imgBrand = $img . "/logonostamp.jpg";
+
 // Phone {{{2
 $phoneNumber = "403-454-6789";
+
+// Service {{{2
+// $imgBrand = $img . "/banner.png";
+$hrefBrand = "/";
+$imgDoordash = $img . "/doordash.png";
+$hrefDoordash = "https://www.doordash.com/store/de-minico-s-calgary-99506/";
+$imgDoordash = $img . "/skipdish.png";
+$hrefSkipDish = "https://www.skipthedishes.com/de-minicos";
 
 // Social {{{2
 $hrefFacebook = "https://www.facebook.com/DeMinicos/";
@@ -240,12 +260,12 @@ $hrefInstagram = "https://www.instagram.com/deminicos/";
 $iconInstagram = $img . "/social/iconInstagram.png";
 $hrefTwitter = "https://twitter.com/DeMinicos";
 $iconTwitter = $img . "/social/iconTwitter.png";
-$imgStore = $img . "/store.jpg";
 
 // Base structure {{{2
 $html = element($dom, "html");
 $head = element($html, "head");
 $body = element($html, "body");
+$body = element($html, "body", array("class"=>"fa"));
 
 // Tab title {{{2
 element($head, "title", array(), $companyName);
@@ -261,7 +281,7 @@ addScript($head, $js . "/bootstrap.min.js");
 addScript($head, $js . "/script.js");
 
 // Stylesheets {{{2
-addStyle($head, $css . "/font-awesome.css");
+addStyle($head, 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 addStyle($head, $css . "/bootstrap.min.css");
 addStyle($head, $css . "/style.css");
 addStyle($head, $css . "/print.css", array("media"=>"print"));

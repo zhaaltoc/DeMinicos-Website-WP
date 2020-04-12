@@ -3,22 +3,6 @@
 // Name: php/navbar.php
 // Description:
 
-$imgHome = $img  . "/home.png";
-// $imgBrand = $img . "/banner.png";
-$imgBrand = $img . "/logonostamp.jpg";
-
-$hrefBrand = "/";
-$imgDoordash = $img . "/doordash.png";
-$hrefDoordash = "https://www.doordash.com/store/de-minico-s-calgary-99506/";
-$imgDoordash = $img . "/skipdish.png";
-$hrefSkipDish = "https://www.skipthedishes.com/de-minicos";
-
-// Insert navbar link into $parent DOM element
-function navLink($parent, $id, $inner, $href) {
-    $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item"));
-    $a = element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
-}
-
 $nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse"));
 $navToggler = element($nav, "button", array(
     "class"=>"navbar-toggler navbar-toggler-right",
@@ -32,7 +16,6 @@ $navToggler = element($nav, "button", array(
 element($navToggler, "span", array("class"=>"navbar-toggler-icon"));
 
 $navBrand = element($nav, "a", array("class"=>"navbar-brand", "href"=>$hrefBrand));
-//$navBrand = element($nav, "div", array("class"=>"navbar-brand", "href"=>"#"));
 element($navBrand, "img", array("class"=>"navbar", "src"=>$imgBrand, "alt"=>"", "style"=>"padding:0; height: 32px; border-radius:50%"));
 $navBar = element($nav, "div", array("id"=>"navbarSupportedContent", "class"=>"collapse navbar-collapse"));
 $navLinks = element($navBar, "ul", array("class"=>"navbar-nav ml-auto"));
