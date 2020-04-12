@@ -9,8 +9,8 @@ $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12"));
 
 phone($col, "h2");
-element($col, "p");
-address($col, "h2");
+element($col, "div");
+address($col, "h3");
 
 // Google Maps {{{2
 $row = element($panel, "div", array("id"=>"section-location", "class"=>"row"));

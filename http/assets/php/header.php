@@ -157,14 +157,11 @@ function phone($element, $type) { // {{{2
 function address($element, $type) { // {{{2
   $mapsLink = "https://www.google.com/maps/place/De+Minico's/@51.0946308,-114.0457049,14.25z/data=!4m12!1m6!3m5!1s0x53716500c531255d:0xf2d24169e7a44e1b!2sDe+Minico's!8m2!3d51.093125!4d-114.032371!3m4!1s0x53716500c531255d:0xf2d24169e7a44e1b!8m2!3d51.093125!4d-114.032371?hl=en-US";
   $mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
+  $iconMapPointer = 'fas fa-map-marker';
 
-  $a = element($element, 'a', array("href"=>$mapsLink));
-  element(
-    $a,
-    $type,
-    array("class"=>"text-center"),
-    $mapsAddress
-  );
+  $div = element($element, "div", array("class"=>"text-center"));
+  $elem = element($div, $type, array());
+  $a = element($elem, 'a', array("class"=>$iconMapPointer, "href"=>$mapsLink), ' ' . $mapsAddress);
 }
 
 // Hours {{{1
@@ -192,37 +189,31 @@ function menu($conn, $query, $category, $col, $allowHeader=true) { // {{{2
     $tbody = element($table, "tbody");
 
     // Header
-    if ($allowHeader) {
-      $tr = element($tbody, "tr");
-      $th = element($tr, "th");
-      $p = element($th, "p", array("style"=>"margin-bottom:5px;"), "Name");
-      $th = element($tr, "th");
-      $p = element($th, "p", array("style"=>"margin-bottom:5px;"), "Description");
-      $th = element($tr, "th");
-      $p = element($th, "p", array("style"=>"margin-bottom:5px;"), "Toppings");
-      $th = element($tr, "th");
-      $p = element($th, "p", array("style"=>"margin-bottom:5px;"), "Price");
-    }
+    if ($allowHeader)
+      menuTR($tbody, 'th', "Name", "Description", "Toppings", "Price");
 
+    // Body
     while($result = $results->fetch_assoc()) {
       $query = "SELECT * FROM menu_items_toppings JOIN menu_toppings ON menu_toppings.id = menu_items_toppings.menu_topping_id WHERE menu_item_id = " . $result["id"];
       $results_toppings = $conn->query($query);
       $toppings = array();
       while($topping = $results_toppings->fetch_assoc())
         $toppings[] = $topping["name"];
-    
-      // Body
-      $tr = element($tbody, "tr");
-      $td = element($tr, "td");
-      $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $result["name"]);
-      $td = element($tr, "td");
-      $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $result["description"]);
-      $td = element($tr, "td");
-      $p = element($td, "p", array("style"=>"margin-bottom:5px;"), implode(", ",$toppings));
-      $td = element($tr, "td");
-      $p = element($td, "p", array("style"=>"margin-bottom:5px;"), "$" . number_format($result["price"], 2));
+      menuTR($tbody, 'td', $result['name'], $result['description'], implode(", ", $toppings), "$" . number_format($result['price'], 2));
     }
   }
+}
+
+function menuTR($tbody, $type, $name, $description, $toppings, $price) { // {{{2
+  $tr = element($tbody, 'tr');
+  $td = element($tr, $type);
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $name);
+  $td = element($tr, $type);
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $description);
+  $td = element($tr, $type);
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $toppings);
+  $td = element($tr, $type);
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $price);
 }
 
 function menus($conn, $panel) { // {{{2
