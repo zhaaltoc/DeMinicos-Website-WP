@@ -28,8 +28,10 @@ element($col, "p", array("class"=>"text-center"), "Order De Minico’s");
 // Phone {{{2
 phone($col, $phoneNumber, "text");
 
-// Social media links
+// Social Media {{{2
 element($col, "p", array("class"=>"text-center"), "Learn more about us by following us on social media.");
+socialLinks($col);
+
 $div = element($col, "div", array("class"=>"text-center"));
 $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefFacebook));
 element($a, "i", array("class"=>$iconFacebook));

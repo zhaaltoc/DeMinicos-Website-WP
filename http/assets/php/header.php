@@ -123,6 +123,26 @@ function addName($element, $name) {
 function addType($element, $type) {
     $GLOBALS["dom"]->addAttribute($element, "type", $type);
 }
+// Social {{{1
+function socialLinks($element) { // {{{2
+  $hrefFacebook = "https://www.facebook.com/DeMinicos/";
+  $iconFacebook = 'fab fa-facebook';
+  $hrefInstagram = "https://www.instagram.com/deminicos/";
+  $iconInstagram = 'fab fa-instagram';
+  $hrefTwitter = "https://twitter.com/DeMinicos";
+  $iconTwitter = 'fab fa-twitter-square';
+
+  $row = element($element, "div", array("class"=>"text-center"));
+  $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-12 text-center"));
+  $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefFacebook));
+  element($a, "i", array("class"=>$iconFacebook));
+  $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefInstagram));
+  element($a, "i", array("class"=>$iconInstagram));
+  $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefTwitter));
+  element($a, "i", array("class"=>$iconTwitter));
+}
+
+
 
 function br($element, $lines) { // {{{2
   for ($i = 0; $i < $lines; $i++) {
@@ -252,14 +272,6 @@ $imgDoordash = $img . "/doordash.png";
 $hrefDoordash = "https://www.doordash.com/store/de-minico-s-calgary-99506/";
 $imgDoordash = $img . "/skipdish.png";
 $hrefSkipDish = "https://www.skipthedishes.com/de-minicos";
-
-// Social {{{2
-$hrefFacebook = "https://www.facebook.com/DeMinicos/";
-$iconFacebook = 'fab fa-facebook';
-$hrefInstagram = "https://www.instagram.com/deminicos/";
-$iconInstagram = 'fab fa-instagram';
-$hrefTwitter = "https://twitter.com/DeMinicos";
-$iconTwitter = 'fab fa-twitter-square';
 
 // Base structure {{{2
 $html = element($dom, "html");
