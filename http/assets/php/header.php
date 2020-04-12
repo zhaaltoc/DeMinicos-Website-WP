@@ -6,19 +6,19 @@
 # htmlDOM {{{
 class htmlDOM extends DOMDocument {
     // Default constructor
-    function __construct() {
+    function __construct() { // {{{2
         parent::__construct();
     }
 
     // Generate HTML as a string from the current DOM document
-    function generateHTML() {
+    function generateHTML() { // {{{2
         $html = "<!DOCTYPE html>";
         $html .= parent::saveHTML();
         return $html;
     }
 
     // Create a DOM element and APPEND to the given parent element
-    function addElement($parent, $element, $attributes = array(), $innerHTML = "") {
+    function addElement($parent, $element, $attributes = array(), $innerHTML = "") { // {{{2
         $child = parent::createElement($element, $innerHTML);
         foreach ($attributes as $name => $value)
             $this->setAttribute($child, $name, $value);
@@ -27,7 +27,7 @@ class htmlDOM extends DOMDocument {
     }
 
     // Create a DOM attribute and APPEND to the given element's attribute
-    function addAttribute($element, $name, $value = "") {
+    function addAttribute($element, $name, $value = "") { // {{{2
         // TODO [171022] - Append new class to existing classes or create class attribute if none exists
         $attribute = parent::createAttribute($name);
         $attribute->value = $value;
@@ -35,31 +35,31 @@ class htmlDOM extends DOMDocument {
     }
 
     // Create a DOM attribute and OVERWRITE the given element's attribute
-    function setAttribute($element, $name, $value = "") {
+    function setAttribute($element, $name, $value = "") { // {{{2
         $attribute = parent::createAttribute($name);
         $attribute->value = $value;
         $element->appendChild($attribute);
     }
 
     // OVERWRITE the innerHTML of a DOM element to given value
-    function setInner($element, $innerHTML) {
+    function setInner($element, $innerHTML) { // {{{2
         $element->nodeValue = $innerHTML;
     }
 
-    function addInner($element, $innerHTML) {
+    function addInner($element, $innerHTML) { // {{{2
         $element->nodeValue = $element->nodeValue . " " . $innerHTML;
     }
 
 }
 
-// GLOBALS
+// GLOBALS {{{1
 $dom = new htmlDOM();
 
-function element($parent, $element, $attributes = array(), $innerHTML = "") {
+function element($parent, $element, $attributes = array(), $innerHTML = "") { // {{{2
     return $GLOBALS["dom"]->addElement($parent, $element, $attributes, $innerHTML);
 }
 
-function elements($elementArray) {
+function elements($elementArray) { // {{{2
     $parent = $elementArray[0][0];
 
     $i = 0;
@@ -82,45 +82,45 @@ function elements($elementArray) {
 }
 
 // Add a script to the DOM with the given src
-function addScript($parent, $src, $attributes = array()) {
+function addScript($parent, $src, $attributes = array()) { // {{{2
     return $GLOBALS["dom"]->addElement($parent, "script", array_merge($attributes, array("src"=>$src)));
 }
 
 // Add a stylesheet link with the given href
-function addStyle($parent, $href, $attributes = array()) {
+function addStyle($parent, $href, $attributes = array()) { // {{{2
     return $GLOBALS["dom"]->addElement($parent, "link", array_merge($attributes, array("rel"=>"stylesheet", "href"=>$href)));
 }
 
-function addMeta($parent, $attributes = array()) {
+function addMeta($parent, $attributes = array()) { // {{{2
     return $GLOBALS["dom"]->addElement($parent, "meta", $attributes);
 }
 
-function addImage($parent, $src, $attributes = array()) {
+function addImage($parent, $src, $attributes = array()) { // {{{2
     return $GLOBALS["dom"]->addElement($parent, "img", array_merge($attributes, array("src"=>$src)));
 }
 
 
-function addInner($element, $class) {
+function addInner($element, $class) { // {{{2
     $GLOBALS["dom"]->addInner($element, $class);
 }
 
 // Add a class to an existing element
-function addClass($element, $class) {
+function addClass($element, $class) { // {{{2
     $GLOBALS["dom"]->addAttribute($element, "class", $class);
 }
 
 // Add a class to an existing element
-function addID($element, $id) {
+function addID($element, $id) { // {{{2
     $GLOBALS["dom"]->addAttribute($element, "id", $id);
 }
 
 // Add a class to an existing element
-function addName($element, $name) {
+function addName($element, $name) { // {{{2
     $GLOBALS["dom"]->addAttribute($element, "name", $name);
 }
 
 // Add a class to an existing element
-function addType($element, $type) {
+function addType($element, $type) { // {{{2
     $GLOBALS["dom"]->addAttribute($element, "type", $type);
 }
 // Social {{{1
@@ -134,12 +134,19 @@ function socialLinks($element) { // {{{2
 
   $row = element($element, "div", array("class"=>"text-center"));
   $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-12 text-center"));
-  $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefFacebook));
-  element($a, "i", array("class"=>$iconFacebook));
+
+  // Facebook
+  $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#3b5998", "href"=>$hrefFacebook));
+  element($a, "span", array("class"=>$iconFacebook));
+
+  // Instagram
   $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefInstagram));
-  element($a, "i", array("class"=>$iconInstagram));
-  $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefTwitter));
-  element($a, "i", array("class"=>$iconTwitter));
+  $span = element($a, "span", array("class"=>"instagram"));
+  element($span, "span", array("class"=>$iconInstagram));
+
+  // Twitter
+  $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#00acee", "href"=>$hrefTwitter));
+  element($a, "span", array("class"=>$iconTwitter));
 }
 
 

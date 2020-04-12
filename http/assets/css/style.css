@@ -104,14 +104,29 @@ th {
 
 /* Section: Social Media {{{1 */
 #socialCol {
-    padding-top: 40px;
-    padding-bottom: 20px;
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
 
 .socialIcon {
-    font-size: 3rem;
-    padding-right: 20px;
-    padding-left: 20px;
+  padding-top: 0;
+  font-size: 3rem;
+  width: 3rem;
+  background-size: 3rem;
+}
+
+.instagram {
+  border-radius: 10px;
+  /* display: inline-block; */
+  color: #fff;
+  height: 3rem;
+  width: 4rem;
+  padding-right: 5px;  
+  padding-left: 5px;  
+  vertical-align: top;
+  background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  box-shadow: 0px 3px 10px rgba(0,0,0,.25);
 }
 
 /* Section: Test styles {{{1 */
