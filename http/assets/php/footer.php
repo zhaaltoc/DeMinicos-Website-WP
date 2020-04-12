@@ -7,8 +7,10 @@
 // Address {{{2
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12"));
-phone($col, $phoneNumber, "h2");
-element($col, "h2", array("class"=>"text-center"), "Located at 1319 45Ave NE #5, Calgary, Alberta");
+
+phone($col, "h2");
+element($col, "p");
+address($col, "h2");
 
 // Google Maps {{{2
 $row = element($panel, "div", array("id"=>"section-location", "class"=>"row"));

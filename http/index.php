@@ -26,7 +26,7 @@ element($col, "br");
 element($col, "p", array("class"=>"text-center"), "Order De Minico’s");
 
 // Phone {{{2
-phone($col, $phoneNumber, "text");
+phone($col, "text");
 
 // Social Media {{{2
 element($col, "p", array("class"=>"text-center"), "Learn more about us by following us on social media.");

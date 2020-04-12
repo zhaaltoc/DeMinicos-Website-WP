@@ -144,14 +144,27 @@ function socialLinks($element) { // {{{2
   element($span, "span", array("class"=>$iconTwitter));
 }
 
-function phone($element, $phoneNumber, $type) { // {{{2
+function phone($element, $type) { // {{{2
+  $phoneNumber = "403-454-6789";
   $iconPhone = 'fas fa-mobile';
 
   $div = element($element, "div", array("class"=>"text-center"));
   $elem = element($div, $type, array(), "Pick Up and Delivery! ");
   br($elem, 1);
   $a = element($elem, "a", array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
-  // element($a, "span", array("class"=>$iconPhone));
+}
+
+function address($element, $type) { // {{{2
+  $mapsLink = "https://www.google.com/maps/place/De+Minico's/@51.0946308,-114.0457049,14.25z/data=!4m12!1m6!3m5!1s0x53716500c531255d:0xf2d24169e7a44e1b!2sDe+Minico's!8m2!3d51.093125!4d-114.032371!3m4!1s0x53716500c531255d:0xf2d24169e7a44e1b!8m2!3d51.093125!4d-114.032371?hl=en-US";
+  $mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
+
+  $a = element($element, 'a', array("href"=>$mapsLink));
+  element(
+    $a,
+    $type,
+    array("class"=>"text-center"),
+    $mapsAddress
+  );
 }
 
 // Hours {{{1
@@ -256,9 +269,6 @@ $favicon = $img . "/favicon.png";
 $imgStore = $img . "/store.jpg";
 $imgHome = $img  . "/home.png";
 $imgBrand = $img . "/logonostamp.jpg";
-
-// Phone {{{2
-$phoneNumber = "403-454-6789";
 
 // Service {{{2
 // $imgBrand = $img . "/banner.png";
