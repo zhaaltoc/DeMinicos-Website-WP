@@ -26,11 +26,11 @@ element($col, "iframe", array(
 $row = element($panel, "div", array("id"=>"footer", "class"=>"row"));
 $col = element($row, "div", array("id"=>"socialCol", "class"=>"col-12 text-center"));
 $a = element ($col, "a", array("class"=>"socialIcon", "href"=>$hrefFacebook));
-element($a, "img", array("src"=>$iconFacebook));
+element($a, "i", array("class"=>$iconFacebook));
 $a = element ($col, "a", array("class"=>"socialIcon", "href"=>$hrefInstagram));
-element($a, "img", array("src"=>$iconInstagram));
+element($a, "i", array("class"=>$iconInstagram));
 $a = element ($col, "a", array("class"=>"socialIcon", "href"=>$hrefTwitter));
-element($a, "img", array("src"=>$iconTwitter));
+element($a, "i", array("class"=>$iconTwitter));
 
 // }}} FOOTER
 ?>

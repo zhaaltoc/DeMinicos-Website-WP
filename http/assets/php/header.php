@@ -255,16 +255,15 @@ $hrefSkipDish = "https://www.skipthedishes.com/de-minicos";
 
 // Social {{{2
 $hrefFacebook = "https://www.facebook.com/DeMinicos/";
-$iconFacebook = $img . "/social/iconFacebook.png";
+$iconFacebook = 'fab fa-facebook';
 $hrefInstagram = "https://www.instagram.com/deminicos/";
-$iconInstagram = $img . "/social/iconInstagram.png";
+$iconInstagram = 'fab fa-instagram';
 $hrefTwitter = "https://twitter.com/DeMinicos";
-$iconTwitter = $img . "/social/iconTwitter.png";
+$iconTwitter = 'fab fa-twitter-square';
 
 // Base structure {{{2
 $html = element($dom, "html");
 $head = element($html, "head");
-$body = element($html, "body");
 $body = element($html, "body", array("class"=>"fa"));
 
 // Tab title {{{2

@@ -104,12 +104,14 @@ th {
 
 /* Section: Social Media {{{1 */
 #socialCol {
-    padding-top: 10px;
+    padding-top: 40px;
     padding-bottom: 20px;
 }
 
 .socialIcon {
-    padding-right: 10px;
+    font-size: 3rem;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 /* Section: Test styles {{{1 */

@@ -32,11 +32,11 @@ phone($col, $phoneNumber, "text");
 element($col, "p", array("class"=>"text-center"), "Learn more about us by following us on social media.");
 $div = element($col, "div", array("class"=>"text-center"));
 $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefFacebook));
-element($a, "img", array("src"=>$iconFacebook));
+element($a, "i", array("class"=>$iconFacebook));
 $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefInstagram));
-element($a, "img", array("src"=>$iconInstagram));
+element($a, "i", array("class"=>$iconInstagram));
 $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefTwitter));
-element($a, "img", array("src"=>$iconTwitter));
+element($a, "i", array("class"=>$iconTwitter));
 
 $col = element($row, "div", array("class"=>"col-md-4"));
 //element($col, "img", array("src"=>$imgStore, "style"=>"width: 100%;"));
