@@ -3,125 +3,112 @@
 // Name: php/header.php
 // Description: Build HTML document using only DOM elements to generate a valid string
 
-# htmlDOM {{{
+// DOM {{{1
 class htmlDOM extends DOMDocument {
+  function __construct() { // {{{2
     // Default constructor
-    function __construct() { // {{{2
-        parent::__construct();
-    }
+    parent::__construct();
+  }
 
+  function generateHTML() { // {{{2
     // Generate HTML as a string from the current DOM document
-    function generateHTML() { // {{{2
-        $html = "<!DOCTYPE html>";
-        $html .= parent::saveHTML();
-        return $html;
-    }
+    $html = "<!DOCTYPE html>";
+    $html .= parent::saveHTML();
+    return $html;
+  }
 
+  function addElement($parent, $element, $attributes = array(), $innerHTML = "") { // {{{2
     // Create a DOM element and APPEND to the given parent element
-    function addElement($parent, $element, $attributes = array(), $innerHTML = "") { // {{{2
-        $child = parent::createElement($element, $innerHTML);
-        foreach ($attributes as $name => $value)
-            $this->setAttribute($child, $name, $value);
-        $parent->appendChild($child);
-        return $child;
-    }
+    $child = parent::createElement($element, $innerHTML);
+    foreach ($attributes as $name => $value)
+      $this->setAttribute($child, $name, $value);
+    $parent->appendChild($child);
+    return $child;
+  }
 
+  function addAttribute($element, $name, $value = "") { // {{{2
     // Create a DOM attribute and APPEND to the given element's attribute
-    function addAttribute($element, $name, $value = "") { // {{{2
-        // TODO [171022] - Append new class to existing classes or create class attribute if none exists
-        $attribute = parent::createAttribute($name);
-        $attribute->value = $value;
-        $element->appendChild($attribute);
-    }
+    // TODO [171022] - Append new class to existing classes or create class attribute if none exists
+    $attribute = parent::createAttribute($name);
+    $attribute->value = $value;
+    $element->appendChild($attribute);
+  }
 
+  function setAttribute($element, $name, $value = "") { // {{{2
     // Create a DOM attribute and OVERWRITE the given element's attribute
-    function setAttribute($element, $name, $value = "") { // {{{2
-        $attribute = parent::createAttribute($name);
-        $attribute->value = $value;
-        $element->appendChild($attribute);
-    }
+    $attribute = parent::createAttribute($name);
+    $attribute->value = $value;
+    $element->appendChild($attribute);
+  }
 
+  function setInner($element, $innerHTML) { // {{{2
     // OVERWRITE the innerHTML of a DOM element to given value
-    function setInner($element, $innerHTML) { // {{{2
-        $element->nodeValue = $innerHTML;
-    }
+    $element->nodeValue = $innerHTML;
+  }
 
-    function addInner($element, $innerHTML) { // {{{2
-        $element->nodeValue = $element->nodeValue . " " . $innerHTML;
-    }
-
+  function addInner($element, $innerHTML) { // {{{2
+    $element->nodeValue = $element->nodeValue . " " . $innerHTML;
+  }
 }
 
 // GLOBALS {{{1
 $dom = new htmlDOM();
 
 function element($parent, $element, $attributes = array(), $innerHTML = "") { // {{{2
-    return $GLOBALS["dom"]->addElement($parent, $element, $attributes, $innerHTML);
+  return $GLOBALS["dom"]->addElement($parent, $element, $attributes, $innerHTML);
 }
 
 function elements($elementArray) { // {{{2
-    $parent = $elementArray[0][0];
+  $parent = $elementArray[0][0];
 
-    $i = 0;
-    foreach ($elementArray as $elements) {
-        $count = count($elements);
-        $parent = element($elements[0], $elements[1], $elements[2]);
-        /*
-        if ($i = 0) {
-            $parent = element($elements[0], $elements[1], $elements[2]);
-        }
-        else {
-            $parent = element($parent, $elements[0], $elements[1]);
-        }
-         */
+  foreach ($elementArray as $elements) {
+    $count = count($elements);
+    $parent = element($elements[0], $elements[1], $elements[2]);
+  }
 
-        $i++;
-    }
-
-    return $parent;
+  return $parent;
 }
 
-// Add a script to the DOM with the given src
 function addScript($parent, $src, $attributes = array()) { // {{{2
-    return $GLOBALS["dom"]->addElement($parent, "script", array_merge($attributes, array("src"=>$src)));
+  // Add a script to the DOM with the given src
+  return $GLOBALS["dom"]->addElement($parent, "script", array_merge($attributes, array("src"=>$src)));
 }
 
-// Add a stylesheet link with the given href
 function addStyle($parent, $href, $attributes = array()) { // {{{2
-    return $GLOBALS["dom"]->addElement($parent, "link", array_merge($attributes, array("rel"=>"stylesheet", "href"=>$href)));
+  // Add a stylesheet link with the given href
+  return $GLOBALS["dom"]->addElement($parent, "link", array_merge($attributes, array("rel"=>"stylesheet", "href"=>$href)));
 }
 
 function addMeta($parent, $attributes = array()) { // {{{2
-    return $GLOBALS["dom"]->addElement($parent, "meta", $attributes);
+  return $GLOBALS["dom"]->addElement($parent, "meta", $attributes);
 }
 
 function addImage($parent, $src, $attributes = array()) { // {{{2
-    return $GLOBALS["dom"]->addElement($parent, "img", array_merge($attributes, array("src"=>$src)));
+  return $GLOBALS["dom"]->addElement($parent, "img", array_merge($attributes, array("src"=>$src)));
 }
-
 
 function addInner($element, $class) { // {{{2
-    $GLOBALS["dom"]->addInner($element, $class);
+  $GLOBALS["dom"]->addInner($element, $class);
 }
 
-// Add a class to an existing element
 function addClass($element, $class) { // {{{2
-    $GLOBALS["dom"]->addAttribute($element, "class", $class);
+  // Add a class to an existing element
+  $GLOBALS["dom"]->addAttribute($element, "class", $class);
 }
 
-// Add a class to an existing element
 function addID($element, $id) { // {{{2
-    $GLOBALS["dom"]->addAttribute($element, "id", $id);
+  // Add a class to an existing element
+  $GLOBALS["dom"]->addAttribute($element, "id", $id);
 }
 
-// Add a class to an existing element
 function addName($element, $name) { // {{{2
-    $GLOBALS["dom"]->addAttribute($element, "name", $name);
+  // Add a class to an existing element
+  $GLOBALS["dom"]->addAttribute($element, "name", $name);
 }
 
-// Add a class to an existing element
 function addType($element, $type) { // {{{2
-    $GLOBALS["dom"]->addAttribute($element, "type", $type);
+  // Add a class to an existing element
+  $GLOBALS["dom"]->addAttribute($element, "type", $type);
 }
 // Social {{{1
 function socialLinks($element) { // {{{2
@@ -137,7 +124,8 @@ function socialLinks($element) { // {{{2
 
   // Facebook
   $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#3b5998", "href"=>$hrefFacebook));
-  element($a, "span", array("class"=>$iconFacebook));
+  $span = element($a, "span", array("class"=>"socialIcon"));
+  element($span, "span", array("class"=>$iconFacebook));
 
   // Instagram
   $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefInstagram));
@@ -146,15 +134,13 @@ function socialLinks($element) { // {{{2
 
   // Twitter
   $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#00acee", "href"=>$hrefTwitter));
-  element($a, "span", array("class"=>$iconTwitter));
+  $span = element($a, "span", array("class"=>"socialIcon"));
+  element($span, "span", array("class"=>$iconTwitter));
 }
 
-
-
 function br($element, $lines) { // {{{2
-  for ($i = 0; $i < $lines; $i++) {
+  for ($i = 0; $i < $lines; $i++)
     element($element, "br");
-  }
 }
 
 function phone($element, $phoneNumber, $type) { // {{{2
@@ -166,18 +152,18 @@ function phone($element, $phoneNumber, $type) { // {{{2
 
 // Hours {{{1
 function hourRow($tbody, $day, $open, $closed) { // {{{2
-    $tr = element($tbody, "tr");
+  $tr = element($tbody, "tr");
+  $td = element($tr, "td");
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;"));
+  element($p, "b", array(), $day);
+  $td = element($tr, "td");
+  element($td, "p", array("style"=>"margin-bottom:5px;"), $open);
+  if ($open != "Closed") {
     $td = element($tr, "td");
-    $p = element($td, "p", array("style"=>"margin-bottom:5px;"));
-    element($p, "b", array(), $day);
+    element($td, "p", array("style"=>"margin-bottom:5px;"), "-");
     $td = element($tr, "td");
-    element($td, "p", array("style"=>"margin-bottom:5px;"), $open);
-    if ($open != "Closed") {
-        $td = element($tr, "td");
-        element($td, "p", array("style"=>"margin-bottom:5px;"), "-");
-        $td = element($tr, "td");
-        element($td, "p", array("style"=>"margin-bottom:5px;"), $closed);
-    }
+    element($td, "p", array("style"=>"margin-bottom:5px;"), $closed);
+  }
 }
 
 // Menus {{{1
@@ -218,15 +204,13 @@ function submenu($conn, $query, $name, $col) { // {{{2
       $query = "SELECT * FROM menu_items_toppings JOIN menu_toppings ON menu_toppings.id = menu_items_toppings.menu_topping_id WHERE menu_item_id = " . $result["id"];
       $results_toppings = $conn->query($query);
       $toppings = array();
-      while($topping = $results_toppings->fetch_assoc()) {
+      while($topping = $results_toppings->fetch_assoc())
         $toppings[] = $topping["name"];
-      }
 
       menuRow($tbody, $result["name"], $result["description"], $toppings, $result["price"]);
     } // $result->fetch
   }
 }
-
 
 function menus($conn, $panel) { // {{{2
   $query = "SELECT * FROM menu_categories";
