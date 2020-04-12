@@ -110,6 +110,12 @@ function addType($element, $type) { // {{{2
   // Add a class to an existing element
   $GLOBALS["dom"]->addAttribute($element, "type", $type);
 }
+// Layout {{{1
+function br($element, $lines) { // {{{2
+  for ($i = 0; $i < $lines; $i++)
+    element($element, "br");
+}
+
 // Social {{{1
 function socialLinks($element) { // {{{2
   $hrefFacebook = "https://www.facebook.com/DeMinicos/";
@@ -117,7 +123,7 @@ function socialLinks($element) { // {{{2
   $hrefInstagram = "https://www.instagram.com/deminicos/";
   $iconInstagram = 'fab fa-instagram';
   $hrefTwitter = "https://twitter.com/DeMinicos";
-  $iconTwitter = 'fab fa-twitter-square';
+  $iconTwitter = 'fab fa-twitter';
 
   $row = element($element, "div", array("class"=>"text-center"));
   $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-12 text-center"));
@@ -138,16 +144,14 @@ function socialLinks($element) { // {{{2
   element($span, "span", array("class"=>$iconTwitter));
 }
 
-function br($element, $lines) { // {{{2
-  for ($i = 0; $i < $lines; $i++)
-    element($element, "br");
-}
-
 function phone($element, $phoneNumber, $type) { // {{{2
+  $iconPhone = 'fas fa-mobile';
+
   $div = element($element, "div", array("class"=>"text-center"));
-  $elem = element($div, $type, array(), "Call ");
-  element($elem, "a", array("href"=>"tel:".$phoneNumber), $phoneNumber);
-  element($elem, "text", array(), " for pickup or delivery!");
+  $elem = element($div, $type, array(), "Pick Up and Delivery! ");
+  br($elem, 1);
+  $a = element($elem, "a", array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
+  // element($a, "span", array("class"=>$iconPhone));
 }
 
 // Hours {{{1
