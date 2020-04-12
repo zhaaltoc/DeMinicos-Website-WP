@@ -184,38 +184,25 @@ function hourRow($tbody, $day, $open, $closed) { // {{{2
 }
 
 // Menus {{{1
-// TODO-TJG [180204] - Update menu functions to be one function(array of html ready data, bool is header)
-function menuHead($tbody, $name, $description, $toppings, $price) { // {{{2
-  $tr = element($tbody, "tr");
-  $th = element($tr, "th");
-  $p = element($th, "p", array("style"=>"margin-bottom:5px;"), $name);
-  $th = element($tr, "th");
-  $p = element($th, "p", array("style"=>"margin-bottom:5px;"), $description);
-  $th = element($tr, "th");
-  $p = element($th, "p", array("style"=>"margin-bottom:5px;"), $toppings);
-  $th = element($tr, "th");
-  $p = element($th, "p", array("style"=>"margin-bottom:5px;"), $price);
-}
-
-function menuRow($tbody, $name, $description, $toppings, $price) { // {{{2
-  $tr = element($tbody, "tr");
-  $td = element($tr, "td");
-  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $name);
-  $td = element($tr, "td");
-  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $description);
-  $td = element($tr, "td");
-  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), implode(", ",$toppings));
-  $td = element($tr, "td");
-  $p = element($td, "p", array("style"=>"margin-bottom:5px;"), "$" . number_format($price, 2));
-}
-
-function submenu($conn, $query, $name, $col) { // {{{2
+function menu($conn, $query, $category, $col, $allowHeader=true) { // {{{2
   $results = $conn->query($query);
   if ($results->num_rows > 0) {
-    element($col, "h2", array(), $name);
+    element($col, "h2", array(), $category);
     $table = element($col, "table", array("class"=>"table table-hover text-center"));
     $tbody = element($table, "tbody");
-    menuHead($tbody, "Name", "Description", "Toppings", "Price");
+
+    // Header
+    if ($allowHeader) {
+      $tr = element($tbody, "tr");
+      $th = element($tr, "th");
+      $p = element($th, "p", array("style"=>"margin-bottom:5px;"), "Name");
+      $th = element($tr, "th");
+      $p = element($th, "p", array("style"=>"margin-bottom:5px;"), "Description");
+      $th = element($tr, "th");
+      $p = element($th, "p", array("style"=>"margin-bottom:5px;"), "Toppings");
+      $th = element($tr, "th");
+      $p = element($th, "p", array("style"=>"margin-bottom:5px;"), "Price");
+    }
 
     while($result = $results->fetch_assoc()) {
       $query = "SELECT * FROM menu_items_toppings JOIN menu_toppings ON menu_toppings.id = menu_items_toppings.menu_topping_id WHERE menu_item_id = " . $result["id"];
@@ -223,9 +210,18 @@ function submenu($conn, $query, $name, $col) { // {{{2
       $toppings = array();
       while($topping = $results_toppings->fetch_assoc())
         $toppings[] = $topping["name"];
-
-      menuRow($tbody, $result["name"], $result["description"], $toppings, $result["price"]);
-    } // $result->fetch
+    
+      // Body
+      $tr = element($tbody, "tr");
+      $td = element($tr, "td");
+      $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $result["name"]);
+      $td = element($tr, "td");
+      $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $result["description"]);
+      $td = element($tr, "td");
+      $p = element($td, "p", array("style"=>"margin-bottom:5px;"), implode(", ",$toppings));
+      $td = element($tr, "td");
+      $p = element($td, "p", array("style"=>"margin-bottom:5px;"), "$" . number_format($result["price"], 2));
+    }
   }
 }
 
@@ -242,7 +238,7 @@ function menus($conn, $panel) { // {{{2
       // Fresh
       $query = "SELECT * FROM menu_items WHERE category_id=" . $category["id"];
       $results = $conn->query($query);
-      submenu($conn, $query, $category["name"], $colFresh);
+      menu($conn, $query, $category["name"], $colFresh);
     }
   }
 }
