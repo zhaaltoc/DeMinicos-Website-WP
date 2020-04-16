@@ -65,5 +65,4 @@ hourRow($tbody, "Sunday", "Closed", "");
 
 // Footer {{{1
 require_once "assets/php/footer.php";
-echo $dom->generateHTML();
 ?>
