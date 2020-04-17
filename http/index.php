@@ -1,5 +1,4 @@
 <?php
-
 // Name: index.php
 // Authors: Travis Gall
 // Description: Main index

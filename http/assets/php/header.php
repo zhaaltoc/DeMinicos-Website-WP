@@ -250,7 +250,7 @@ $js = $assets . "/js";
 $php = $assets . "/php";
 
 $companyName = "De Minico's";
-$favicon = $img . "/home.png";
+$favicon = $img . "/favicon.png";
 
 // Brand {{{2
 $imgStore = $img . "/store.jpg";
@@ -289,6 +289,7 @@ addScript($head, $js . "/script.js");
 addStyle($head, 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 addStyle($head, $css . "/bootstrap.min.css");
 addStyle($head, $css . "/style.css?rnd=" . rand());
+// addStyle($head, $css . "/table.css?rnd=" . rand());
 addStyle($head, $css . "/print.css", array("media"=>"print"));
 
 // Nav {{{2
