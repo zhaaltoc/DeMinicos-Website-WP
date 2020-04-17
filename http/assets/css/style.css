@@ -3,6 +3,7 @@ html, body { /* {{{2 */
   height: 110%;
   /* background-color: transparent; */
   background-color: rgb(25,25,25);
+  /* background-color: rgb(200,200,200); */
   color: rgb(201,201,201);
 }
 
@@ -20,6 +21,11 @@ body { /* {{{2 */
   font-family: "Raleway",Helvetica,Arial,Lucida,sans-serif;
   padding-top: 5rem;
   padding-bottom: 5rem;
+}
+
+div {
+  /* background-color: rgb(200,200,200); */
+  /* color: rgb(201,201,201); */
 }
 
 th { /* {{{2 */

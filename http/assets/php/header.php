@@ -270,6 +270,7 @@ $html = element($dom, "html");
 $head = element($html, "head");
 $body = element($html, "body", array("class"=>"fa"));
 
+// Header {{{1
 // Tab title {{{2
 element($head, "title", array(), $companyName);
 element($head, "link", array("rel"=>"icon", "href"=>$favicon));
@@ -277,6 +278,7 @@ element($head, "link", array("rel"=>"icon", "href"=>$favicon));
 // Metadata {{{2
 addMeta($head, array("charset"=>"UTF-8"));
 addMeta($head, array("name"=>"viewport", "content"=>"width=device-width", "initial-scale"=>"1", "shrink-to-fit"=>"no"));
+// addMeta($head, array("expires"=>"Tue, 01 Jan 2000 00:00:00 GMT"));
 
 // Scripts {{{2
 addScript($head, $js . "/jquery.min.js");
@@ -286,7 +288,8 @@ addScript($head, $js . "/script.js");
 // Stylesheets {{{2
 addStyle($head, 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 addStyle($head, $css . "/bootstrap.min.css");
-addStyle($head, $css . "/style.css");
+addStyle($head, $css . "/style.css?rnd=" . rand());
+// addStyle($head, $css . "/table.css?rnd=" . rand());
 addStyle($head, $css . "/print.css", array("media"=>"print"));
 
 // Nav {{{2

@@ -1,5 +1,4 @@
 <?php
-
 // Name: index.php
 // Authors: Travis Gall
 // Description: Main index
@@ -65,5 +64,4 @@ hourRow($tbody, "Sunday", "Closed", "");
 
 // Footer {{{1
 require_once "assets/php/footer.php";
-echo $dom->generateHTML();
 ?>

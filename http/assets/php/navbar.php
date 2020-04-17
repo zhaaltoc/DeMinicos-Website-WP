@@ -16,13 +16,13 @@ $navToggler = element($nav, "button", array(
 element($navToggler, "span", array("class"=>"navbar-toggler-icon"));
 
 $navBrand = element($nav, "a", array("class"=>"navbar-brand", "href"=>$hrefBrand));
-element($navBrand, "img", array("class"=>"navbar", "src"=>$imgBrand, "alt"=>"", "style"=>"padding:0; height: 32px; border-radius:50%"));
+element($navBrand, "img", array("class"=>"navbar", "src"=>$imgBrand, "alt"=>"", "style"=>"padding:0; height: 32px; border-radius:10%"));
 $navBar = element($nav, "div", array("id"=>"navbarSupportedContent", "class"=>"collapse navbar-collapse"));
 $navLinks = element($navBar, "ul", array("class"=>"navbar-nav ml-auto"));
 navLink($navLinks, "home", "Home", "/");
 
 navLink($navLinks, "instoremenu", "In Store Menu", "menu.php");
-navLink($navLinks, "freezermenu", "Freezer Menu", "freezer.php");
+navLink($navLinks, "freezermenu", "Heat and Eat", "freezer.php");
 navLink($navLinks, "catering", "Catering", "catering.php");
 navLink($navLinks, "photogallery", "Photo Gallery", "photogallery.php");
 
