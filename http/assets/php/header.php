@@ -234,6 +234,19 @@ function menus($conn, $panel) { // {{{2
   }
 }
 
+function menuItem($menu, $element) { // {{{2
+  $col = element($element, "div", array("class"=>"col-md-4 text-center", "style"=>"padding:0"));
+  $ul = element($col, "ul", array("class"=>"pricingTable-firstTable", "style"=>"padding:0"));
+  $li = element($ul, "li", array("class"=>"pricingTable-firstTable_table", "style"=>"width:100%; padding:25px"));
+  element($li, "h1", array("class"=>"pricingTable-firstTable_table_header"), "Cheese Pizza");
+  $p = element($li, "p", array("class"=>"pricingTable-firstTable_table_pricing"));
+  element($p, "span", array(), "$");
+  element($p, "span", array(), "15.00");
+  element($p, "span", array(), " / Slice");
+  $toppings = element($li, "ul", array("class"=>"pricingTable-firstTable_table_options"));
+  element($toppings, "li", array(), "Cheese");
+}
+
 // Navbar {{{1
 function navLink($parent, $id, $inner, $href) { // {{{2
   // Insert navbar link into $parent DOM element
@@ -289,13 +302,13 @@ addScript($head, $js . "/script.js");
 addStyle($head, 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 addStyle($head, $css . "/bootstrap.min.css");
 addStyle($head, $css . "/style.css?rnd=" . rand());
-// addStyle($head, $css . "/table.css?rnd=" . rand());
-addStyle($head, $css . "/print.css", array("media"=>"print"));
+addStyle($head, $css . "/table.css?rnd=" . rand());
+// addStyle($head, $css . "/print.css", array("media"=>"print"));
 
 // Nav {{{2
 require_once "assets/php/navbar.php";
 
 // Panel {{{2
 // All content will be on panel
-$panel = element($body, "div", array("class"=>"container-fluid"));
+$panel = element($body, "div", array("class"=>"container-fluid", "style"=>"width:100%"));
 ?>
