@@ -181,14 +181,14 @@ function hourRow($tbody, $day, $open, $closed) { // {{{2
 }
 
 // Menus {{{1
-function menu($conn, $query, $category, $col, $allowHeader=true) { // {{{2
+function menu($conn, $query, $category, $description, $col, $allowHeader=true) { // {{{2
   $results = $conn->query($query);
   if ($results->num_rows > 0) {
-    element($col, "h2", array(), $category);
+    // element($col, "h2", array(), $category);
     
     $pricingTable = element($col, "div", array("class"=>"pricingTable"));
-    element($pricingTable, "h2", array("class"=>"pricingTable-title"), "Pizza");
-    element($pricingTable, "h3", array("class"=>"pricingTable-subtitle"), "Look at our Pizza");
+    element($pricingTable, "h2", array("class"=>"pricingTable-title"), $category);
+    element($pricingTable, "h3", array("class"=>"pricingTable-subtitle"), $description);
     $row = element($pricingTable, "div", array("class"=>"row"));
 
     // Body
@@ -221,8 +221,9 @@ function menuTR($tbody, $type, $name, $description, $toppings, $price) { // {{{2
   $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $price);
 }
 
-function menus($conn, $panel) { // {{{2
-  $query = "SELECT * FROM menu_categories";
+function menus($conn, $panel, $menu) { // {{{2
+  // $query = "SELECT * FROM menu_categories";
+  $query = 'SELECT * FROM `menu_categories` WHERE name = "' . $menu . '"';
   $categories = $conn->query($query);
 
   if ($categories->num_rows > 0) {
@@ -234,7 +235,7 @@ function menus($conn, $panel) { // {{{2
       // Fresh
       $query = "SELECT * FROM menu_items WHERE category_id=" . $category["id"];
       $results = $conn->query($query);
-      menu($conn, $query, $category["name"], $colFresh);
+      menu($conn, $query, $category["name"], $category["description"], $colFresh);
     }
   }
 }
