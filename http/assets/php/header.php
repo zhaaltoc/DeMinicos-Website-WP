@@ -144,14 +144,11 @@ function socialLinks($element) { // {{{2
   element($span, "span", array("class"=>$iconTwitter));
 }
 
-function phone($element, $type) { // {{{2
-  $phoneNumber = "403-454-6789";
+function phone($element, $type, $class, $style, $phoneNumber) { // {{{2
   $iconPhone = 'fas fa-mobile';
 
-  $div = element($element, "div", array("class"=>"text-center"));
-  $elem = element($div, $type, array(), "Pick Up and Delivery! ");
-  br($elem, 1);
-  $a = element($elem, "a", array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
+  $a = element($element, $type, array("class"=>$class));
+  return element($a, 'a', array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
 }
 
 function address($element, $type) { // {{{2
@@ -326,6 +323,9 @@ addStyle($head, $css . "/table.css?rnd=" . rand());
 
 // Nav {{{2
 require_once "assets/php/navbar.php";
+
+// Variables {{{2
+$phoneNumber = "403-454-6789";
 
 // Panel {{{2
 // All content will be on panel

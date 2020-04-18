@@ -17,14 +17,16 @@ $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top: 15px;"));
 
 // Description {{{2
-element($col, "p", array("class"=>"text-center"), "De Minico’s offers delicious pizza and paninis. Delight in authentic Italian flavours and try the Margherita or Artista pizza. Add a little kick to your day and spice things up with the Volta panini.");
-element($col, "p", array("class"=>"text-center"), "Order De Minico’s");
+element($col, "p", array("class"=>"text-center", "style"=>$fontP), "De Minico’s offers delicious pizza and paninis. Delight in authentic Italian flavours and try the Margherita or Artista pizza. Add a little kick to your day and spice things up with the Volta panini.");
+element($col, "p", array("class"=>"text-center", "style"=>$fontP), "Order De Minico’s");
 
 // Phone {{{2
-phone($col, "text");
+$stylePhone = "";
+$classPhone = "text-center";
+phone($col, "p", $classPhone, $styleFontP, $phoneNumber);
 
 // Social Media {{{2
-element($col, "p", array("class"=>"text-center"), "Learn more about us by following us on social media.");
+element($col, "p", array("class"=>"text-center", "style"=>$fontP), "Learn more about us by following us on social media.");
 socialLinks($col);
 
 // Navigation {{{2

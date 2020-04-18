@@ -4,11 +4,14 @@
 // Description: Page standard footer
 
 // Footer {{{1
-// Address {{{2
+// Contact and Location {{{2
+$stylePhone = "";
+$classPhone = "text-center";
+
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12"));
 
-phone($col, "h2");
+phone($col, "h2", $classPhone, $styleFontP, $phoneNumber);
 element($col, "div");
 address($col, "h3");
 
