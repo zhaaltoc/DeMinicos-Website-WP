@@ -262,14 +262,14 @@ function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
 function navLink($parent, $id, $inner, $href) { // {{{2
   // Insert navbar link into $parent DOM element
   $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item"));
-  $a = element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
+  return element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
 }
 
 function navLink2($element, $type, $link, $name) {
   $row = element($element, 'div', array("class"=>"row"));
   $col = element($row, 'div', array("class"=>"col-12", "style"=>"text-align:center"));
-  $typeCol = element($col, $type, array("style"=>"text-allign:center;"));
-  element($typeCol, "a", array("href"=>$link), $name);
+  $typeCol = element($col, $type, array("style"=>"padding-bottom:15px; text-allign:center;"));
+  return element($typeCol, "a", array("href"=>$link), $name);
 }
 
 // Head {{{1
