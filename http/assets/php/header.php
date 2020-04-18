@@ -181,25 +181,30 @@ function hourRow($tbody, $day, $open, $closed) { // {{{2
 }
 
 // Menus {{{1
-function menu($conn, $query, $category, $col, $allowHeader=true) { // {{{2
+function menu($conn, $query, $category, $description, $col, $allowHeader=true) { // {{{2
   $results = $conn->query($query);
   if ($results->num_rows > 0) {
-    element($col, "h2", array(), $category);
-    $table = element($col, "table", array("class"=>"table table-hover text-center"));
-    $tbody = element($table, "tbody");
-
-    // Header
-    if ($allowHeader)
-      menuTR($tbody, 'th', "Name", "Description", "Toppings", "Price");
+    // element($col, "h2", array(), $category);
+    
+    $pricingTable = element($col, "div", array("class"=>"pricingTable"));
+    element($pricingTable, "h2", array("class"=>"pricingTable-title"), $category);
+    element($pricingTable, "h3", array("class"=>"pricingTable-subtitle"), $description);
+    $row = element($pricingTable, "div", array("class"=>"row"));
 
     // Body
+    $i = 0;
     while($result = $results->fetch_assoc()) {
       $query = "SELECT * FROM menu_items_toppings JOIN menu_toppings ON menu_toppings.id = menu_items_toppings.menu_topping_id WHERE menu_item_id = " . $result["id"];
       $results_toppings = $conn->query($query);
       $toppings = array();
       while($topping = $results_toppings->fetch_assoc())
         $toppings[] = $topping["name"];
-      menuTR($tbody, 'td', $result['name'], $result['description'], implode(", ", $toppings), "$" . number_format($result['price'], 2));
+      if ($i % 2 == 0) {
+        $row = element($pricingTable, "div", array("class"=>"row"));
+        element($row, "div", array("class"=>"col-1"));
+      }
+      menuItem($pricingTable, $row, $result['name'], number_format($result['price'], 2), $toppings);
+      $i++;
     }
   }
 }
@@ -216,22 +221,44 @@ function menuTR($tbody, $type, $name, $description, $toppings, $price) { // {{{2
   $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $price);
 }
 
-function menus($conn, $panel) { // {{{2
-  $query = "SELECT * FROM menu_categories";
+function menus($conn, $panel, $menu) { // {{{2
+  // $query = "SELECT * FROM menu_categories";
+  $query = 'SELECT * FROM `menu_categories` WHERE name = "' . $menu . '"';
   $categories = $conn->query($query);
 
   if ($categories->num_rows > 0) {
     // output data of each row
     $row = element($panel, "div", array("class"=>"row"));
-    $colFresh = element($row, "div", array("class"=>"offset-1 col-10 text-center"));
+    $colFresh = element($row, "div", array("class"=>"col-12 text-center"));
 
     while($category = $categories->fetch_assoc()) {
       // Fresh
       $query = "SELECT * FROM menu_items WHERE category_id=" . $category["id"];
       $results = $conn->query($query);
-      menu($conn, $query, $category["name"], $colFresh);
+      menu($conn, $query, $category["name"], $category["description"], $colFresh);
     }
   }
+}
+
+function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
+  $rowCol = element($element, "div", array("class"=>"col-md-5 text-center"));
+  $row = element($rowCol, "div", array("class"=>"row pricingTable-firstTable"));
+
+  $content = element($row, "div", array("class"=>"col-md-12 pricingTable-firstTable_table", "style"=>"padding:25px"));
+  $row = element($content, "div", array("class"=>"row"));
+
+  $col = element($row, "div", array("class"=>"col-md-12"));
+  element($col, "h1", array("class"=>"pricingTable-firstTable_table__header", "style"=>"width:100%;text-align:center"), $name);
+  
+  $row = element($content, "div", array("class"=>"row"));
+  $col = element($row, "div", array("class"=>"col-md-2 text-center"));
+  $p = element($col, "p", array("class"=>"pricingTable-firstTable_table__pricing"));
+  element($p, 'span', array(), "$");
+  element($p, 'span', array(), $price);
+  element($p, 'span', array(), "");
+  $col = element($row, "div", array("class"=>"col-md-10"));
+  $toppingsList = element($col, "div", array("class"=>"pricingTable-firstTable_table__options"));
+  $p = element($toppingsList, "p", array("style"=>""), implode(', ', $toppings));
 }
 
 // Navbar {{{1
@@ -258,7 +285,6 @@ $imgHome = $img  . "/home.png";
 $imgBrand = $img . "/logonostamp.jpg";
 
 // Service {{{2
-// $imgBrand = $img . "/banner.png";
 $hrefBrand = "/";
 $imgDoordash = $img . "/doordash.png";
 $hrefDoordash = "https://www.doordash.com/store/de-minico-s-calgary-99506/";
@@ -278,7 +304,6 @@ element($head, "link", array("rel"=>"icon", "href"=>$favicon));
 // Metadata {{{2
 addMeta($head, array("charset"=>"UTF-8"));
 addMeta($head, array("name"=>"viewport", "content"=>"width=device-width", "initial-scale"=>"1", "shrink-to-fit"=>"no"));
-// addMeta($head, array("expires"=>"Tue, 01 Jan 2000 00:00:00 GMT"));
 
 // Scripts {{{2
 addScript($head, $js . "/jquery.min.js");
@@ -289,13 +314,13 @@ addScript($head, $js . "/script.js");
 addStyle($head, 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 addStyle($head, $css . "/bootstrap.min.css");
 addStyle($head, $css . "/style.css?rnd=" . rand());
-// addStyle($head, $css . "/table.css?rnd=" . rand());
-addStyle($head, $css . "/print.css", array("media"=>"print"));
+addStyle($head, $css . "/table.css?rnd=" . rand());
+// addStyle($head, $css . "/print.css", array("media"=>"print"));
 
 // Nav {{{2
 require_once "assets/php/navbar.php";
 
 // Panel {{{2
 // All content will be on panel
-$panel = element($body, "div", array("class"=>"container-fluid"));
+$panel = element($body, "div", array("class"=>"container-fluid", "style"=>"width:100%"));
 ?>

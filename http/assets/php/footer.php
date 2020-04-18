@@ -13,7 +13,7 @@ element($col, "div");
 address($col, "h3");
 
 // Google Maps {{{2
-$row = element($panel, "div", array("id"=>"section-location", "class"=>"row"));
+$row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12 text-center"));
 element($col, "iframe", array(
   "id"=>"googleMap",
@@ -23,7 +23,9 @@ element($col, "iframe", array(
 ));
 
 // Social Media {{{2
-socialLinks($panel);
+$row = element($panel, "div", array("class"=>"row"));
+$col = element($row, "div", array("class"=>"col-12"));
+socialLinks($col);
 
 // Build {{{1
 header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
