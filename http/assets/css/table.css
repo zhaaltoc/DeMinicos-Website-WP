@@ -80,8 +80,9 @@
   }
 }
 
+/*
 .pricingTable-firstTable_table:before {
-  content: "Most Popular";
+  content: "table banner";
   position: absolute;
   color: white;
   display: block;
@@ -97,8 +98,9 @@
   padding-top: 22px;
   text-transform: uppercase;
   letter-spacing: 0.13em;
-  transition: all 0.5s ease;
+  transition: all 1.5s ease;
 }
+*/
 @media screen and (max-width: 988px) {
   .pricingTable-firstTable_table:before {
     font-size: 0.6em;
