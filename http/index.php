@@ -6,29 +6,35 @@
 require_once "assets/php/header.php";
 
 $imgLogo = "assets/img/logo.png";
-//$imgLogoNoStamp = $img . "/logonostamp.jpg";
-$imgLogoNoStamp = $img . "/logostampcolor_reverse.jpg";
+$imgLogoNoStamp = $img . "/logonostamp.jpg";
+// $imgLogoNoStamp = $img . "/logostampcolor_reverse.jpg";
 
 // About Us {{{1
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12 text-center"));
 element($col, "img", array("src"=>$imgLogoNoStamp, "style"=>"width: 50%; border-radius: 5%"));
+
 $row = element($panel, "div", array("class"=>"row"));
-$col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top: 15px;"));
+$col = element($row, "div", array("class"=>"col-md-12", "style"=>"padding-bottom: 50px;"));
 
 // Description {{{2
-element($col, "p", array("class"=>"text-center"), "De Minico’s offers delicious pizza and paninis. Delight in authentic Italian flavours and try the Margherita or Artista pizza. Add a little kick to your day and spice things up with the Volta panini.");
-element($col, "p", array("class"=>"text-center"), "Order De Minico’s");
+$row = element($panel, "div", array("class"=>"row"));
+$col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top: 15px;"));
+element($col, "p", array("class"=>"text-center", "style"=>$fontP), "De Minico’s offers delicious pizza and paninis. Delight in authentic Italian flavours and try the Margherita or Artista pizza. Add a little kick to your day and spice things up with the Volta panini.");
+element($col, "p", array("class"=>"text-center", "style"=>$fontP), "Order De Minico’s");
 
 // Phone {{{2
-phone($col, "text");
+$stylePhone = "";
+$classPhone = "text-center";
+phone($col, "p", $phoneNumber, $classPhone, $stylePhone);
+// phone($col, "h2", $phoneNumber, $styleFontP);
 
 // Social Media {{{2
-element($col, "p", array("class"=>"text-center"), "Learn more about us by following us on social media.");
+element($col, "p", array("class"=>"text-center", "style"=>$fontP), "Learn more about us by following us on social media.");
 socialLinks($col);
 
 // Navigation {{{2
-$col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top:15px; text-align:center;"));
+$col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top:30px; text-align:center;"));
 navLink2($col, 'h5', 'menu.php', 'In Store Menu');
 navLink2($col, 'h5', 'freezer.php', 'Heat and Eat');
 navLink2($col, 'h5', 'catering.php', 'Catering');

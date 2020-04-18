@@ -144,24 +144,28 @@ function socialLinks($element) { // {{{2
   element($span, "span", array("class"=>$iconTwitter));
 }
 
-function phone($element, $type) { // {{{2
-  $phoneNumber = "403-454-6789";
+function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
   $iconPhone = 'fas fa-mobile';
 
-  $div = element($element, "div", array("class"=>"text-center"));
-  $elem = element($div, $type, array(), "Pick Up and Delivery! ");
-  br($elem, 1);
-  $a = element($elem, "a", array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
+  $a = element($element, $type, array("class"=>$class));
+  return element($a, 'a', array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
 }
 
-function address($element, $type) { // {{{2
-  $mapsLink = "https://www.google.com/maps/place/De+Minico's/@51.0946308,-114.0457049,14.25z/data=!4m12!1m6!3m5!1s0x53716500c531255d:0xf2d24169e7a44e1b!2sDe+Minico's!8m2!3d51.093125!4d-114.032371!3m4!1s0x53716500c531255d:0xf2d24169e7a44e1b!8m2!3d51.093125!4d-114.032371?hl=en-US";
-  $mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
+function address($element, $type, $mapsLink, $mapsAddress, $class, $style) { // {{{2
   $iconMapPointer = 'fas fa-map-marker';
 
-  $div = element($element, "div", array("class"=>"text-center"));
-  $elem = element($div, $type, array());
-  $a = element($elem, 'a', array("class"=>$iconMapPointer, "href"=>$mapsLink), ' ' . $mapsAddress);
+  $a = element($element, $type, array("class"=>$class));
+  return element($a, 'a', array("class"=>$iconMapPointer, "href"=>$mapsLink), ' ' . $mapsAddress);
+}
+
+function googleMaps($element, $src, $class, $style) { // {{{2
+  return element($element, "iframe", array(
+    "id"=>"googleMap",
+    "class"=>$class,
+    "style"=>$style,
+    "frameborder"=>"0",
+    "src"=>$src
+  ));
 }
 
 // Hours {{{1
@@ -265,14 +269,14 @@ function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
 function navLink($parent, $id, $inner, $href) { // {{{2
   // Insert navbar link into $parent DOM element
   $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item"));
-  $a = element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
+  return element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
 }
 
 function navLink2($element, $type, $link, $name) {
   $row = element($element, 'div', array("class"=>"row"));
   $col = element($row, 'div', array("class"=>"col-12", "style"=>"text-align:center"));
-  $typeCol = element($col, $type, array("style"=>"text-allign:center;"));
-  element($typeCol, "a", array("href"=>$link), $name);
+  $typeCol = element($col, $type, array("style"=>"padding-bottom:15px; text-allign:center;"));
+  return element($typeCol, "a", array("href"=>$link), $name);
 }
 
 // Head {{{1
@@ -326,6 +330,27 @@ addStyle($head, $css . "/table.css?rnd=" . rand());
 
 // Nav {{{2
 require_once "assets/php/navbar.php";
+
+// Variables {{{2
+// Information {{{3
+$phoneNumber = "403-454-6789";
+$mapsLink = "https://www.google.com/maps/place/De+Minico's/@51.0946308,-114.0457049,14.25z/data=!4m12!1m6!3m5!1s0x53716500c531255d:0xf2d24169e7a44e1b!2sDe+Minico's!8m2!3d51.093125!4d-114.032371!3m4!1s0x53716500c531255d:0xf2d24169e7a44e1b!8m2!3d51.093125!4d-114.032371?hl=en-US";
+$mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
+$mapsIfram = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.831072976366!2d-114.032371!3d51.093125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716500c531255d%3A0xf2d24169e7a44e1b!2sDe+Minico&#39;s!5e0!3m2!1sen!2sca!4v1509148157628";
+
+// Styles {{{3
+// Address
+$styleAddress = "";
+$classAddress = "text-center";
+
+// Phone
+$stylePhone = "";
+$classPhone = "text-center";
+
+// Maps
+$styleMaps = "padding-top:15px;";
+$styleMaps .= "padding-bottom:15px;";
+$classMaps = "";
 
 // Panel {{{2
 // All content will be on panel
