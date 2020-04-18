@@ -185,22 +185,34 @@ function menu($conn, $query, $category, $col, $allowHeader=true) { // {{{2
   $results = $conn->query($query);
   if ($results->num_rows > 0) {
     element($col, "h2", array(), $category);
-    $table = element($col, "table", array("class"=>"table table-hover text-center"));
-    $tbody = element($table, "tbody");
+    // $table = element($col, "table", array("class"=>"table table-hover text-center"));
+    // $tbody = element($table, "tbody");
+    $pricingTable = element($col, "div", array("class"=>"pricingTable"));
+    element($pricingTable, "h2", array("class"=>"pricingTable-title"), "Pizza");
+    element($pricingTable, "h3", array("class"=>"pricingTable-subtitle"), "Look at our Pizza");
+    $row = element($pricingTable, "div", array("class"=>"row"));
 
     // Header
-    if ($allowHeader)
-      menuTR($tbody, 'th', "Name", "Description", "Toppings", "Price");
+    // if ($allowHeader)
+      // menuTR($tbody, 'th', "Name", "Description", "Toppings", "Price");
 
     // Body
+    $i = 0;
     while($result = $results->fetch_assoc()) {
       $query = "SELECT * FROM menu_items_toppings JOIN menu_toppings ON menu_toppings.id = menu_items_toppings.menu_topping_id WHERE menu_item_id = " . $result["id"];
       $results_toppings = $conn->query($query);
       $toppings = array();
       while($topping = $results_toppings->fetch_assoc())
         $toppings[] = $topping["name"];
-      menuTR($tbody, 'td', $result['name'], $result['description'], implode(", ", $toppings), "$" . number_format($result['price'], 2));
+    // menuTR($tbody, 'td', $result['name'], $result['description'], implode(", ", $toppings), "$" . number_format($result['price'], 2));
+      if ($i % 2 == 0) {
+        $row = element($pricingTable, "div", array("class"=>"row"));
+        element($row, "div", array("class"=>"col-1"));
+      }
+      menuItem($pricingTable, $row, $result['name'], number_format($result['price'], 2), $toppings);
+      $i++;
     }
+    // element($pricingTable, "div", array("class"=>"pricingTable-firstTable_table__getstart"), "Place Your Order Here");
   }
 }
 
@@ -223,7 +235,7 @@ function menus($conn, $panel) { // {{{2
   if ($categories->num_rows > 0) {
     // output data of each row
     $row = element($panel, "div", array("class"=>"row"));
-    $colFresh = element($row, "div", array("class"=>"offset-1 col-10 text-center"));
+    $colFresh = element($row, "div", array("class"=>"col-12 text-center"));
 
     while($category = $categories->fetch_assoc()) {
       // Fresh
@@ -234,17 +246,56 @@ function menus($conn, $panel) { // {{{2
   }
 }
 
-function menuItem($menu, $element) { // {{{2
-  $col = element($element, "div", array("class"=>"col-md-4 text-center", "style"=>"padding:0"));
+function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
+  $rowCol = element($element, "div", array("class"=>"col-md-5 text-center"));
+  $row = element($rowCol, "div", array("class"=>"row pricingTable-firstTable"));
+  // $col = element($element, "div", array("class"=>"col-12 text-center", "style"=>"padding:0"));
+  // $col = element($row, "div", array("class"=>"col-md-4"));
+
+
+  $content = element($row, "div", array("class"=>"col-md-12 pricingTable-firstTable_table", "style"=>"padding:25px"));
+  $row = element($content, "div", array("class"=>"row"));
+
+  $col = element($row, "div", array("class"=>"col-md-12"));
+  element($col, "h1", array("class"=>"pricingTable-firstTable_table__header", "style"=>"width:100%;text-align:center"), $name);
+  
+  $row = element($content, "div", array("class"=>"row"));
+  $col = element($row, "div", array("class"=>"col-md-2 text-center"));
+  $p = element($col, "p", array("class"=>"pricingTable-firstTable_table__pricing"));
+  element($p, 'span', array(), "$");
+  element($p, 'span', array(), $price);
+  element($p, 'span', array(), "");
+  $col = element($row, "div", array("class"=>"col-md-10"));
+  $toppingsList = element($col, "div", array("class"=>"pricingTable-firstTable_table__options"));
+  $toppingsString = implode(', ', $toppings);
+  /*
+  $tops = '';
+  foreach ($toppings as $topping) {
+    // element($toppingsList, "li", array("class"=>"pricingTable-firstTable_table__options"), $topping);
+     $tops .= implode(", ",$)$topping . ' ';
+    // element($p, 'text', array(), $topping . " ");
+  }
+   */
+  // $p = element($col, "p", array("class"=>""), $tops);
+  $p = element($toppingsList, "p", array("style"=>""), $toppingsString);
+  // foreach ($toppings as $topping)
+    // element($headr, "li", array("class"=>"pricingTable-firstTable_table__options"), $topping);
+  // $col = element($row, "div", array("class"=>"col-md-5 text-center", "style"=>"padding:0"));
+  /*
   $ul = element($col, "ul", array("class"=>"pricingTable-firstTable", "style"=>"padding:0"));
-  $li = element($ul, "li", array("class"=>"pricingTable-firstTable_table", "style"=>"width:100%; padding:25px"));
-  element($li, "h1", array("class"=>"pricingTable-firstTable_table_header"), "Cheese Pizza");
-  $p = element($li, "p", array("class"=>"pricingTable-firstTable_table_pricing"));
-  element($p, "span", array(), "$");
-  element($p, "span", array(), "15.00");
-  element($p, "span", array(), " / Slice");
-  $toppings = element($li, "ul", array("class"=>"pricingTable-firstTable_table_options"));
-  element($toppings, "li", array(), "Cheese");
+  $row = element($col, "div", array("class"=>"row"));
+  $col = element($row, "div", array("class"=>"col-md-4 text-center", "style"=>"padding:0"));
+  $li = element($ul, "li", array("class"=>"pricingTable-firstTable_table", "style"=>"padding:25px"));
+  element($li, "h1", array("class"=>"pricingTable-firstTable_table__header"), $name);
+  $p = element($li, "p", array("class"=>"pricingTable-firstTable_table__pricing"));
+  element($p, 'span', array(), "$");
+  element($p, 'span', array(), $price);
+  element($p, 'span', array(), "");
+  $col = element($row, "div", array("class"=>"col-md-5 text-center", "style"=>"padding:0"));
+  $toppingsList = element($col, "ul", array("class"=>"pricingTable-firstTable_table__options"));
+  foreach ($toppings as $topping)
+    element($toppingsList, "li", array("class"=>"pricingTable-firstTable_table__options"), $topping);
+   */
 }
 
 // Navbar {{{1

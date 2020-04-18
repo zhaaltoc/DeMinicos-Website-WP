@@ -13,6 +13,8 @@ $col = element($row, "div", array("class"=>"col-12 text-center"));
 element($col, "h1", array(), "In Store Menu");
 br($col, 2);
 
+menus($conn, $panel);
+
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12 text-center"));
 $pricingTable = element($col, "div", array("class"=>"pricingTable"));
@@ -29,27 +31,26 @@ $row = element($pricingTable, "div", array("class"=>"row"));
 // element($p, "span", array(), "$");
 // element($p, "span", array(), "15.00");
 // element($p, "span", array(), " / Slice");
-menuItem($pricingTable, $row);
-menuItem($pricingTable, $row);
-menuItem($pricingTable, $row);
-menuItem($pricingTable, $row);
-$col = element($row, "div", array("class"=>"col-md-4 text-center"));
-element($col,"p",array(),"");
-menuItem($pricingTable, $row);
-menuItem($pricingTable, $row);
-menuItem($pricingTable, $row);
-menuItem($pricingTable, $row);
-$col = element($row, "div", array("class"=>"col-md-4 text-center"));
-element($col,"p",array(),"");
-menuItem($pricingTable, $row);
-menuItem($pricingTable, $row);
-$col = element($row, "div", array("class"=>"col-md-4 text-center"));
-element($col,"p",array(),"");
-menuItem($pricingTable, $row);
+// menuItem($pricingTable, $row);
+// menuItem($pricingTable, $row);
+// menuItem($pricingTable, $row);
+// menuItem($pricingTable, $row);
+// $col = element($row, "div", array("class"=>"col-4 text-center"));
+// element($col,"p",array(),"");
+// menuItem($pricingTable, $row);
+// menuItem($pricingTable, $row);
+// menuItem($pricingTable, $row);
+// menuItem($pricingTable, $row);
+// $col = element($row, "div", array("class"=>"col-4 text-center"));
+// element($col,"p",array(),"");
+// menuItem($pricingTable, $row);
+// menuItem($pricingTable, $row);
+// $col = element($row, "div", array("class"=>"col-4 text-center"));
+// element($col,"p",array(),"");
+// menuItem($pricingTable, $row);
 
-element($pricingTable, "div", array("class"=>"pricingTable-firstTable_table__getstart"), "Get Started Now");
 
-menus($conn, $panel);
+// menus($conn, $panel);
 
 // Footer {{{1
 require_once "assets/php/footer.php";
