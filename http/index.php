@@ -13,15 +13,11 @@ $imgLogoNoStamp = $img . "/logostampcolor_reverse.jpg";
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12 text-center"));
 element($col, "img", array("src"=>$imgLogoNoStamp, "style"=>"width: 50%; border-radius: 5%"));
-//element($col, "h1", array(), "De Minico's");
 $row = element($panel, "div", array("class"=>"row"));
-$col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-bottom: 10px;"));
-
-br($col, 2);
+$col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top: 15px;"));
 
 // Description {{{2
 element($col, "p", array("class"=>"text-center"), "De Minico’s offers delicious pizza and paninis. Delight in authentic Italian flavours and try the Margherita or Artista pizza. Add a little kick to your day and spice things up with the Volta panini.");
-element($col, "br");
 element($col, "p", array("class"=>"text-center"), "Order De Minico’s");
 
 // Phone {{{2
@@ -31,19 +27,14 @@ phone($col, "text");
 element($col, "p", array("class"=>"text-center"), "Learn more about us by following us on social media.");
 socialLinks($col);
 
-$div = element($col, "div", array("class"=>"text-center"));
-$a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefFacebook));
-element($a, "i", array("class"=>$iconFacebook));
-$a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefInstagram));
-element($a, "i", array("class"=>$iconInstagram));
-$a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefTwitter));
-element($a, "i", array("class"=>$iconTwitter));
+// Navigation {{{2
+$col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top:15px; text-align:center;"));
+navLink2($col, 'h5', 'menu.php', 'In Store Menu');
+navLink2($col, 'h5', 'freezer.php', 'Heat and Eat');
+navLink2($col, 'h5', 'catering.php', 'Catering');
+navLink2($col, 'h5', 'photogallery.php', 'Photo Gallery');
 
-$col = element($row, "div", array("class"=>"col-md-4"));
-//element($col, "img", array("src"=>$imgStore, "style"=>"width: 100%;"));
-//element($col, "img", array("src"=>$imgLogoNoStamp, "style"=>"width: 100%;"));
-
-// Hours {{{1
+// Hours {{{2
 $col = element($row, "div", array("class"=>"col-md-4"));
 $row = element($col, "div", array("class"=>"row"));
 

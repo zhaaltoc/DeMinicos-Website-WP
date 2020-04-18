@@ -251,12 +251,12 @@ function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
   element($col, "h1", array("class"=>"pricingTable-firstTable_table__header", "style"=>"width:100%;text-align:center"), $name);
   
   $row = element($content, "div", array("class"=>"row"));
-  $col = element($row, "div", array("class"=>"col-md-2 text-center"));
+  $col = element($row, "div", array("class"=>"col-md-3 text-center"));
   $p = element($col, "p", array("class"=>"pricingTable-firstTable_table__pricing"));
   element($p, 'span', array(), "$");
   element($p, 'span', array(), $price);
   element($p, 'span', array(), "");
-  $col = element($row, "div", array("class"=>"col-md-10"));
+  $col = element($row, "div", array("class"=>"col-md-9"));
   $toppingsList = element($col, "div", array("class"=>"pricingTable-firstTable_table__options"));
   $p = element($toppingsList, "p", array("style"=>""), implode(', ', $toppings));
 }
@@ -266,6 +266,13 @@ function navLink($parent, $id, $inner, $href) { // {{{2
   // Insert navbar link into $parent DOM element
   $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item"));
   $a = element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
+}
+
+function navLink2($element, $type, $link, $name) {
+  $row = element($element, 'div', array("class"=>"row"));
+  $col = element($row, 'div', array("class"=>"col-12", "style"=>"text-align:center"));
+  $typeCol = element($col, $type, array("style"=>"text-allign:center;"));
+  element($typeCol, "a", array("href"=>$link), $name);
 }
 
 // Head {{{1
