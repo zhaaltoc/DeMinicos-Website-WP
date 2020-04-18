@@ -6,13 +6,17 @@
 require_once "assets/php/header.php";
 
 $imgLogo = "assets/img/logo.png";
-//$imgLogoNoStamp = $img . "/logonostamp.jpg";
-$imgLogoNoStamp = $img . "/logostampcolor_reverse.jpg";
+$imgLogoNoStamp = $img . "/logonostamp.jpg";
+// $imgLogoNoStamp = $img . "/logostampcolor_reverse.jpg";
 
 // About Us {{{1
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12 text-center"));
 element($col, "img", array("src"=>$imgLogoNoStamp, "style"=>"width: 50%; border-radius: 5%"));
+
+$row = element($panel, "div", array("class"=>"row"));
+$col = element($row, "div", array("class"=>"col-md-12", "style"=>"padding-bottom: 30px;"));
+
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top: 15px;"));
 
