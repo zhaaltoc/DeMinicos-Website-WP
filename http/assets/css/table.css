@@ -38,7 +38,9 @@
   width: 90%;
   /* max-width: 320px; */
   transition: all 0.3s ease;
-  border-radius: 5px;
+  border-color: #000000;
+  border-style: solid;
+  border-radius: 20px;
   margin-bottom: 20px;
 }
 @media screen and (max-width: 767px) {
