@@ -3,7 +3,7 @@
 // Name: php/navbar.php
 // Description: Site navigation
 
-$nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top", "style"=>"background-color:#ffffff"));// navbar-inverse bg-inverse"));
+$nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top navbar-light bg-light", "style"=>"background-color:#ffffff"));// navbar-inverse bg-inverse"));
 $navToggler = element($nav, "button", array(
     "class"=>"navbar-toggler navbar-toggler-right",
     "type"=>"button",
@@ -19,8 +19,8 @@ $navBrand = element($nav, "a", array("class"=>"navbar-brand", "href"=>$hrefBrand
 element($navBrand, "img", array("class"=>"navbar", "src"=>$imgBrand, "alt"=>"", "style"=>"padding:0; height: 32px; border-radius:10%"));
 $navBar = element($nav, "div", array("id"=>"navbarSupportedContent", "class"=>"collapse navbar-collapse"));
 $navLinks = element($navBar, "ul", array("class"=>"navbar-nav ml-auto"));
+navLink($navLinks, "home", "", "/");
 navLink($navLinks, "home", "Home", "/");
-
 navLink($navLinks, "instoremenu", "In Store Menu", "menu.php");
 navLink($navLinks, "freezermenu", "Heat and Eat", "freezer.php");
 navLink($navLinks, "catering", "Catering", "catering.php");

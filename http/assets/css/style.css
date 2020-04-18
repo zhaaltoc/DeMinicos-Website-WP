@@ -98,6 +98,14 @@ th { /* {{{2 */
    */
 }
 
+/* .navbar-toggler-icon { */
+  /* background-color: rgb(205,205,205); */
+/* } */
+
+/* .navbar-light .navbar-toggler-icon { */
+  /* background-image: url("data:image/svg+xml;.."); */
+/* } */
+
 .navbar-favicon { /* {{{2 */
   height: 30px;
   width: 30px;
