@@ -268,6 +268,13 @@ function navLink($parent, $id, $inner, $href) { // {{{2
   $a = element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
 }
 
+function navLink2($element, $type, $link, $name) {
+  $row = element($element, 'div', array("class"=>"row"));
+  $col = element($row, 'div', array("class"=>"col-12", "style"=>"text-align:center"));
+  $typeCol = element($col, $type, array("style"=>"text-allign:center;"));
+  element($typeCol, "a", array("href"=>$link), $name);
+}
+
 // Head {{{1
 // Default HTML template {{{2
 $assets = "assets";
