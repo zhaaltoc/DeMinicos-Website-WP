@@ -185,16 +185,11 @@ function menu($conn, $query, $category, $col, $allowHeader=true) { // {{{2
   $results = $conn->query($query);
   if ($results->num_rows > 0) {
     element($col, "h2", array(), $category);
-    // $table = element($col, "table", array("class"=>"table table-hover text-center"));
-    // $tbody = element($table, "tbody");
+    
     $pricingTable = element($col, "div", array("class"=>"pricingTable"));
     element($pricingTable, "h2", array("class"=>"pricingTable-title"), "Pizza");
     element($pricingTable, "h3", array("class"=>"pricingTable-subtitle"), "Look at our Pizza");
     $row = element($pricingTable, "div", array("class"=>"row"));
-
-    // Header
-    // if ($allowHeader)
-      // menuTR($tbody, 'th', "Name", "Description", "Toppings", "Price");
 
     // Body
     $i = 0;
@@ -204,7 +199,6 @@ function menu($conn, $query, $category, $col, $allowHeader=true) { // {{{2
       $toppings = array();
       while($topping = $results_toppings->fetch_assoc())
         $toppings[] = $topping["name"];
-    // menuTR($tbody, 'td', $result['name'], $result['description'], implode(", ", $toppings), "$" . number_format($result['price'], 2));
       if ($i % 2 == 0) {
         $row = element($pricingTable, "div", array("class"=>"row"));
         element($row, "div", array("class"=>"col-1"));
@@ -212,7 +206,6 @@ function menu($conn, $query, $category, $col, $allowHeader=true) { // {{{2
       menuItem($pricingTable, $row, $result['name'], number_format($result['price'], 2), $toppings);
       $i++;
     }
-    // element($pricingTable, "div", array("class"=>"pricingTable-firstTable_table__getstart"), "Place Your Order Here");
   }
 }
 
@@ -249,9 +242,6 @@ function menus($conn, $panel) { // {{{2
 function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
   $rowCol = element($element, "div", array("class"=>"col-md-5 text-center"));
   $row = element($rowCol, "div", array("class"=>"row pricingTable-firstTable"));
-  // $col = element($element, "div", array("class"=>"col-12 text-center", "style"=>"padding:0"));
-  // $col = element($row, "div", array("class"=>"col-md-4"));
-
 
   $content = element($row, "div", array("class"=>"col-md-12 pricingTable-firstTable_table", "style"=>"padding:25px"));
   $row = element($content, "div", array("class"=>"row"));
@@ -267,35 +257,7 @@ function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
   element($p, 'span', array(), "");
   $col = element($row, "div", array("class"=>"col-md-10"));
   $toppingsList = element($col, "div", array("class"=>"pricingTable-firstTable_table__options"));
-  $toppingsString = implode(', ', $toppings);
-  /*
-  $tops = '';
-  foreach ($toppings as $topping) {
-    // element($toppingsList, "li", array("class"=>"pricingTable-firstTable_table__options"), $topping);
-     $tops .= implode(", ",$)$topping . ' ';
-    // element($p, 'text', array(), $topping . " ");
-  }
-   */
-  // $p = element($col, "p", array("class"=>""), $tops);
-  $p = element($toppingsList, "p", array("style"=>""), $toppingsString);
-  // foreach ($toppings as $topping)
-    // element($headr, "li", array("class"=>"pricingTable-firstTable_table__options"), $topping);
-  // $col = element($row, "div", array("class"=>"col-md-5 text-center", "style"=>"padding:0"));
-  /*
-  $ul = element($col, "ul", array("class"=>"pricingTable-firstTable", "style"=>"padding:0"));
-  $row = element($col, "div", array("class"=>"row"));
-  $col = element($row, "div", array("class"=>"col-md-4 text-center", "style"=>"padding:0"));
-  $li = element($ul, "li", array("class"=>"pricingTable-firstTable_table", "style"=>"padding:25px"));
-  element($li, "h1", array("class"=>"pricingTable-firstTable_table__header"), $name);
-  $p = element($li, "p", array("class"=>"pricingTable-firstTable_table__pricing"));
-  element($p, 'span', array(), "$");
-  element($p, 'span', array(), $price);
-  element($p, 'span', array(), "");
-  $col = element($row, "div", array("class"=>"col-md-5 text-center", "style"=>"padding:0"));
-  $toppingsList = element($col, "ul", array("class"=>"pricingTable-firstTable_table__options"));
-  foreach ($toppings as $topping)
-    element($toppingsList, "li", array("class"=>"pricingTable-firstTable_table__options"), $topping);
-   */
+  $p = element($toppingsList, "p", array("style"=>""), implode(', ', $toppings));
 }
 
 // Navbar {{{1
@@ -322,7 +284,6 @@ $imgHome = $img  . "/home.png";
 $imgBrand = $img . "/logonostamp.jpg";
 
 // Service {{{2
-// $imgBrand = $img . "/banner.png";
 $hrefBrand = "/";
 $imgDoordash = $img . "/doordash.png";
 $hrefDoordash = "https://www.doordash.com/store/de-minico-s-calgary-99506/";
@@ -342,7 +303,6 @@ element($head, "link", array("rel"=>"icon", "href"=>$favicon));
 // Metadata {{{2
 addMeta($head, array("charset"=>"UTF-8"));
 addMeta($head, array("name"=>"viewport", "content"=>"width=device-width", "initial-scale"=>"1", "shrink-to-fit"=>"no"));
-// addMeta($head, array("expires"=>"Tue, 01 Jan 2000 00:00:00 GMT"));
 
 // Scripts {{{2
 addScript($head, $js . "/jquery.min.js");
