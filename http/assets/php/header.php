@@ -168,6 +168,11 @@ function googleMaps($element, $src, $class, $style) { // {{{2
   ));
 }
 
+function navMenu($element, $navs, $class, $style) { // {{{2
+  $row = element($element, "div", array('class'=>$class, 'style'=>$style));
+  return element($row, 'a');
+}
+
 // Hours {{{1
 function hourRow($tbody, $day, $open, $closed) { // {{{2
   $tr = element($tbody, "tr");
@@ -350,7 +355,19 @@ $classPhone = "text-center";
 // Maps
 $styleMaps = "padding-top:15px;";
 $styleMaps .= "padding-bottom:15px;";
+// $styleMaps .= "position:fixed;";
+// $styleMaps .= "right:0;";
+// $styleMaps .= "top:0;";
 $classMaps = "";
+
+// Menu
+$styleNavMenu = "position:fixed;";
+// $styleNavMenu .= "top:100;";
+$styleNavMenu .= "left:0;";
+$styleNavMenu .= "width:100px;";
+$styleNavMenu .= "height:200px;";
+$styleNavMenu .= "background-color:#000000;";
+$classNavMenu .= "";
 
 // Panel {{{2
 // All content will be on panel
