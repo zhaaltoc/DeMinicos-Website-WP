@@ -26,7 +26,8 @@ element($col, "p", array("class"=>"text-center", "style"=>$fontP), "Order De Min
 // Phone {{{2
 $stylePhone = "";
 $classPhone = "text-center";
-phone($col, "p", $classPhone, $styleFontP, $phoneNumber);
+phone($col, "p", $phoneNumber, $classPhone, $stylePhone);
+// phone($col, "h2", $phoneNumber, $styleFontP);
 
 // Social Media {{{2
 element($col, "p", array("class"=>"text-center", "style"=>$fontP), "Learn more about us by following us on social media.");
