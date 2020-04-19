@@ -169,8 +169,14 @@ function googleMaps($element, $src, $class, $style) { // {{{2
 }
 
 function navMenu($element, $navs, $class, $style) { // {{{2
-  $row = element($element, "div", array('class'=>$class, 'style'=>$style));
-  return element($row, 'a');
+  $box = element($element, "div", array('class'=>$class, 'style'=>$style));
+  foreach($navs as $nav) {
+    $row = element($box, 'div', array('class'=>'row'));
+    $col = element($row, 'div', array('class'=>'col-12'));
+    $p = element($col, 'h5');
+    element($p, 'a', array('href'=>'#' . $nav), $nav);
+  }
+  return $box;
 }
 
 // Hours {{{1
@@ -196,7 +202,7 @@ function menu($conn, $query, $category, $description, $col, $allowHeader=true) {
     // element($col, "h2", array(), $category);
     
     $pricingTable = element($col, "div", array("class"=>"pricingTable"));
-    element($pricingTable, "h2", array("class"=>"pricingTable-title"), $category);
+    element($pricingTable, "h2", array('id'=>$category, "class"=>"pricingTable-title"), $category);
     element($pricingTable, "h3", array("class"=>"pricingTable-subtitle"), $description);
     $row = element($pricingTable, "div", array("class"=>"row"));
 
@@ -362,9 +368,9 @@ $classMaps = "";
 
 // Menu
 $styleNavMenu = "position:fixed;";
-// $styleNavMenu .= "top:100;";
+$styleNavMenu .= "top:100px;";
 $styleNavMenu .= "left:0;";
-$styleNavMenu .= "width:100px;";
+$styleNavMenu .= "width:50px;";
 $styleNavMenu .= "height:200px;";
 $styleNavMenu .= "background-color:#000000;";
 $classNavMenu .= "";
