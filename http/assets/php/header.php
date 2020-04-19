@@ -172,7 +172,7 @@ function navMenu($element, $navs, $class, $style) { // {{{2
   $box = element($element, "div", array('class'=>$class, 'style'=>$style));
   foreach($navs as $nav) {
     $row = element($box, 'div', array('class'=>'row'));
-    $col = element($row, 'div', array('class'=>'col-12'));
+    $col = element($row, 'div', array('class'=>'col-12', 'style'=>'padding-bottom:25px;'));
     $p = element($col, 'h5');
     element($p, 'a', array('href'=>'#' . $nav), $nav);
   }
@@ -200,7 +200,10 @@ function menu($conn, $query, $category, $description, $col, $allowHeader=true) {
   $results = $conn->query($query);
   if ($results->num_rows > 0) {
     // element($col, "h2", array(), $category);
-    
+
+    $row = element($col, 'div', array('class'=>'row'));
+    element($row, 'div', array('class'=>'col-1'));
+    $col = element($row, 'div', array('class'=>'col-11'));
     $pricingTable = element($col, "div", array("class"=>"pricingTable"));
     element($pricingTable, "h2", array('id'=>$category, "class"=>"pricingTable-title"), $category);
     element($pricingTable, "h3", array("class"=>"pricingTable-subtitle"), $description);
@@ -259,7 +262,8 @@ function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
   $rowCol = element($element, "div", array("class"=>"col-md-5 text-center"));
   $row = element($rowCol, "div", array("class"=>"row pricingTable-firstTable"));
 
-  $content = element($row, "div", array("class"=>"col-md-12 pricingTable-firstTable_table", "style"=>"padding:25px"));
+  // $content = element($row, "div", array("class"=>"col-2", "style"=>"padding:25px"));
+  $content = element($row, "div", array("class"=>"col-12 pricingTable-firstTable_table", "style"=>"padding:25px"));
   $row = element($content, "div", array("class"=>"row"));
 
   $col = element($row, "div", array("class"=>"col-md-12"));
@@ -372,7 +376,7 @@ $styleNavMenu .= "top:100px;";
 $styleNavMenu .= "left:0;";
 $styleNavMenu .= "width:50px;";
 $styleNavMenu .= "height:200px;";
-$styleNavMenu .= "background-color:#000000;";
+// $styleNavMenu .= "background-color:#000000;";
 $classNavMenu .= "";
 
 // Panel {{{2
