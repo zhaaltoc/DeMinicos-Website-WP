@@ -304,6 +304,8 @@ $php = $assets . "/php";
 
 $companyName = "De Minico's";
 $favicon = $img . "/favicon.png";
+$background = $img . "/background.jpg";
+$background = $img . "/chalkboard.jpg";
 
 // Brand {{{2
 $imgStore = $img . "/store.jpg";
@@ -379,7 +381,20 @@ $styleNavMenu .= "height:200px;";
 // $styleNavMenu .= "background-color:#000000;";
 $classNavMenu .= "";
 
+$styleBody = "width:100%;";
+$classBody = "container-fluid ";
+
+$styleBackground = "position:fixed;";
+$styleBackground .= "top:0%;";
+$styleBackground .= "width:100%;";
+$styleBackground .= "height:100%;";
+$styleBackground .= "background-image:url('" . $background . "');";
+$styleBackground .= "background-size: cover;";
+$classBackground = "";
+
 // Panel {{{2
 // All content will be on panel
-$panel = element($body, "div", array("class"=>"container-fluid", "style"=>"width:100%"));
+$background = element($body, "div", array("style"=>$styleBackground));
+$panel = element($body, "div", array("class"=>$classBody, "style"=>$styleBody));
+
 ?>

@@ -3,7 +3,8 @@
 // Name: php/navbar.php
 // Description: Site navigation
 
-$nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top navbar-light bg-light", "style"=>"background-color:#ffffff"));// navbar-inverse bg-inverse"));
+// $nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top navbar-light bg-light", "style"=>"background-color:#ffffff"));// navbar-inverse bg-inverse"));
+$nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top navbar-light bg-light", "style"=>"background-color:transparent"));// navbar-inverse bg-inverse"));
 $navToggler = element($nav, "button", array(
     "class"=>"navbar-toggler navbar-toggler-right",
     "type"=>"button",

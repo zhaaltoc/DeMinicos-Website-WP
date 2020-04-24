@@ -5,7 +5,7 @@
 
 require_once "assets/php/header.php";
 
-$imgLogo = "assets/img/logo.png";
+$imgLogo = $img . "/logo.png";
 $imgLogoNoStamp = $img . "/logonostamp.jpg";
 // $imgLogoNoStamp = $img . "/logostampcolor_reverse.jpg";
 
