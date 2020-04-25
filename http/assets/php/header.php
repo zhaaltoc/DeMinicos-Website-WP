@@ -180,18 +180,18 @@ function navMenu($element, $navs, $class, $style) { // {{{2
 }
 
 // Hours {{{1
-function hourRow($tbody, $day, $open, $closed) { // {{{2
+function hourRow($tbody, $day, $open, $closed, $style) { // {{{2
   $tr = element($tbody, "tr");
   $td = element($tr, "td");
-  $p = element($td, "p", array("style"=>"margin-bottom:5px;"));
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;" . $style));
   element($p, "b", array(), $day);
   $td = element($tr, "td");
-  element($td, "p", array("style"=>"margin-bottom:5px;"), $open);
+  element($td, "p", array("style"=>"margin-bottom:5px;" . $style), $open);
   if ($open != "Closed") {
     $td = element($tr, "td");
-    element($td, "p", array("style"=>"margin-bottom:5px;"), "-");
+    element($td, "p", array("style"=>"margin-bottom:5px;" . $style), "-");
     $td = element($tr, "td");
-    element($td, "p", array("style"=>"margin-bottom:5px;"), $closed);
+    element($td, "p", array("style"=>"margin-bottom:5px;" . $style), $closed);
   }
 }
 
@@ -267,17 +267,17 @@ function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
   $row = element($content, "div", array("class"=>"row"));
 
   $col = element($row, "div", array("class"=>"col-md-12"));
-  element($col, "h1", array("class"=>"pricingTable-firstTable_table__header", "style"=>"width:100%;text-align:center"), $name);
+  element($col, "h1", array("class"=>"pricingTable-firstTable_table__header", "style"=>"font-weight:bold;width:100%;text-align:center"), $name);
   
   $row = element($content, "div", array("class"=>"row"));
   $col = element($row, "div", array("class"=>"col-md-3 text-center"));
-  $p = element($col, "p", array("class"=>"pricingTable-firstTable_table__pricing"));
+  $p = element($col, "p", array("class"=>"pricingTable-firstTable_table__pricing", "style"=>"font-weight:bold;"));
   element($p, 'span', array(), "$");
   element($p, 'span', array(), $price);
   element($p, 'span', array(), "");
   $col = element($row, "div", array("class"=>"col-md-9"));
   $toppingsList = element($col, "div", array("class"=>"pricingTable-firstTable_table__options"));
-  $p = element($toppingsList, "p", array("style"=>""), implode(', ', $toppings));
+  $p = element($toppingsList, "p", array("style"=>"font-weight:bold;"), implode(', ', $toppings));
 }
 
 // Navbar {{{1
@@ -361,13 +361,26 @@ $mapsIfram = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.8310729
 
 // Styles {{{3
 // Common
-$stylePaddingBottom = "padding-bottom:15px;";
-$stylePaddingTop = "padding-top:15px;";
+$stylePaddingBottom = "padding-bottom:25px;";
+$stylePaddingTop = "padding-top:25px;";
+$styleFontWeight = "font-weight:bold;";
+$styleFontP = $styleFontWeight;
+$styleFontP .= "font-size:20px;";
 
 // Address
 // $styleAddress = $stylePaddingTop;
 $styleAddress = $stylePaddingBottom;
 $classAddress = "text-center";
+
+// Background
+$styleBackground = "position:fixed;";
+$styleBackground .= "left:-100px;";
+$styleBackground .= "top:0;";
+$styleBackground .= "height:110%;";
+// $styleBackground .= "width:100%;";
+$styleBackground .= "width:2500px;";
+$styleBackground .= "background-image:url('" . $background . "');";
+$styleBackground .= "background-size: cover;";
 
 // Phone
 $stylePhone = $stylePaddingTop;
@@ -376,7 +389,8 @@ $classPhone = "text-center";
 
 // Maps
 // $styleMaps = $stylePaddingTop;
-$styleMaps .= $stylePaddingBottom;
+$styleMaps = $stylePaddingBottom;
+$styleMaps .= 'width:75%;';
 $classMaps = "";
 
 // Menu
@@ -398,11 +412,5 @@ $classPanel = "container-fluid ";
 $panel = element($body, "div", array("class"=>$classPanel, "style"=>$stylePanel));
 
 // Common Background {{{2
-$styleBackground = "position:fixed;";
-$styleBackground .= "top:0;";
-$styleBackground .= "height:110%;";
-$styleBackground .= "width:100%;";
-$styleBackground .= "background-image:url('" . $background . "');";
-$styleBackground .= "background-size: cover;";
 $background = element($panel, "div", array("style"=>$styleBackground));
 ?>
