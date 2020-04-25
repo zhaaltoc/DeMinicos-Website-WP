@@ -147,14 +147,14 @@ function socialLinks($element) { // {{{2
 function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
   $iconPhone = 'fas fa-mobile';
 
-  $a = element($element, $type, array("class"=>$class));
+  $a = element($element, $type, array("class"=>$class, "style"=>$style));
   return element($a, 'a', array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
 }
 
 function address($element, $type, $mapsLink, $mapsAddress, $class, $style) { // {{{2
   $iconMapPointer = 'fas fa-map-marker';
 
-  $a = element($element, $type, array("class"=>$class));
+  $a = element($element, $type, array("class"=>$class, "style"=>$style));
   return element($a, 'a', array("class"=>$iconMapPointer, "href"=>$mapsLink), ' ' . $mapsAddress);
 }
 
@@ -283,8 +283,8 @@ function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
 // Navbar {{{1
 function navLink($parent, $id, $inner, $href) { // {{{2
   // Insert navbar link into $parent DOM element
-  $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item"));
-  return element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
+  $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item", "style"=>"background-color:#232323"));
+  return element($li, "a", array("class"=>"nav-link", "style"=>"color:#ffffff", "href"=>$href), $inner);
 }
 
 function navLink2($element, $type, $link, $name) {
@@ -298,6 +298,7 @@ function navLink2($element, $type, $link, $name) {
 // Default HTML template {{{2
 $assets = "assets";
 $css = $assets . "/css";
+$fonts = $assets . "/fonts";
 $img = $assets . "/img";
 $js = $assets . "/js";
 $php = $assets . "/php";
@@ -322,7 +323,10 @@ $hrefSkipDish = "https://www.skipthedishes.com/de-minicos";
 // Base structure {{{2
 $html = element($dom, "html");
 $head = element($html, "head");
-$body = element($html, "body", array("class"=>"fa"));
+
+$styleBody = 'width:100%;';
+$classBody = 'fa';
+$body = element($html, "body", array("class"=>$classBody, "style"=>$styleBody));
 
 // Header {{{1
 // Tab title {{{2
@@ -356,20 +360,23 @@ $mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
 $mapsIfram = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.831072976366!2d-114.032371!3d51.093125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716500c531255d%3A0xf2d24169e7a44e1b!2sDe+Minico&#39;s!5e0!3m2!1sen!2sca!4v1509148157628";
 
 // Styles {{{3
+// Common
+$stylePaddingBottom = "padding-bottom:15px;";
+$stylePaddingTop = "padding-top:15px;";
+
 // Address
-$styleAddress = "";
+// $styleAddress = $stylePaddingTop;
+$styleAddress = $stylePaddingBottom;
 $classAddress = "text-center";
 
 // Phone
-$stylePhone = "";
+$stylePhone = $stylePaddingTop;
+$stylePhone .= $stylePaddingBottom;
 $classPhone = "text-center";
 
 // Maps
-$styleMaps = "padding-top:15px;";
-$styleMaps .= "padding-bottom:15px;";
-// $styleMaps .= "position:fixed;";
-// $styleMaps .= "right:0;";
-// $styleMaps .= "top:0;";
+// $styleMaps = $stylePaddingTop;
+$styleMaps .= $stylePaddingBottom;
 $classMaps = "";
 
 // Menu
@@ -378,23 +385,24 @@ $styleNavMenu .= "top:100px;";
 $styleNavMenu .= "left:0;";
 $styleNavMenu .= "width:50px;";
 $styleNavMenu .= "height:200px;";
-// $styleNavMenu .= "background-color:#000000;";
-$classNavMenu .= "";
+$classNavMenu = "";
 
-$styleBody = "width:100%;";
-$classBody = "container-fluid ";
-
-$styleBackground = "position:fixed;";
-$styleBackground .= "top:0%;";
-$styleBackground .= "width:100%;";
-$styleBackground .= "height:100%;";
-$styleBackground .= "background-image:url('" . $background . "');";
-$styleBackground .= "background-size: cover;";
-$classBackground = "";
+// Order Form
+$styleOrderForm = "width:95%;";
+$styleOrderForm .= "border-radius:2%;";
+$styleOrderForm .= $stylePaddingBottom;
 
 // Panel {{{2
-// All content will be on panel
-$background = element($body, "div", array("style"=>$styleBackground));
-$panel = element($body, "div", array("class"=>$classBody, "style"=>$styleBody));
+$stylePanel = "width:100%;";
+$classPanel = "container-fluid ";
+$panel = element($body, "div", array("class"=>$classPanel, "style"=>$stylePanel));
 
+// Common Background {{{2
+$styleBackground = "position:fixed;";
+$styleBackground .= "top:0;";
+$styleBackground .= "height:110%;";
+$styleBackground .= "width:100%;";
+$styleBackground .= "background-image:url('" . $background . "');";
+$styleBackground .= "background-size: cover;";
+$background = element($panel, "div", array("style"=>$styleBackground));
 ?>
