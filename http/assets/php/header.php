@@ -144,85 +144,81 @@ function socialLinks($element) { // {{{2
   element($span, "span", array("class"=>$iconTwitter));
 }
 
-function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
+function phone($element, $type) { // {{{2
+  $phoneNumber = "403-454-6789";
   $iconPhone = 'fas fa-mobile';
 
-  $a = element($element, $type, array("class"=>$class, "style"=>$style));
-  return element($a, 'a', array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
+  $div = element($element, "div", array("class"=>"text-center"));
+  $elem = element($div, $type, array(), "Pick Up and Delivery! ");
+  br($elem, 1);
+  $a = element($elem, "a", array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
 }
 
-function address($element, $type, $mapsLink, $mapsAddress, $class, $style) { // {{{2
+function linkfile($element, $type, $infilepath, $infile, $intext) { // {{{2
+   
+  $div = element($element, "div", array("class"=>"text-center"));
+  $elem = element($div, $type, array(), " ");
+  br($elem, 1);
+  $a = element($elem, "a", array("href"=>"".$infilepath.$infile), ' ' .$intext);
+
+// <a href="link/to/your/download/file" download="filename">Download link</a>
+}
+
+function emailaddress($element, $type) { // {{{2
+  $emailaddress = "orders@deminicos.ca";
+  
+  $div = element($element, "div", array("class"=>"text-center"));
+  $elem = element($div, $type, array(), " ");
+  br($elem, 1);
+  $a = element($elem, "a", array("href"=>"mailto:".$emailaddress), ' ' . $emailaddress);
+}
+
+function address($element, $type) { // {{{2
+  $mapsLink = "https://www.google.com/maps/place/De+Minico's/@51.0946308,-114.0457049,14.25z/data=!4m12!1m6!3m5!1s0x53716500c531255d:0xf2d24169e7a44e1b!2sDe+Minico's!8m2!3d51.093125!4d-114.032371!3m4!1s0x53716500c531255d:0xf2d24169e7a44e1b!8m2!3d51.093125!4d-114.032371?hl=en-US";
+  $mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
   $iconMapPointer = 'fas fa-map-marker';
 
-  $a = element($element, $type, array("class"=>$class, "style"=>$style));
-  return element($a, 'a', array("class"=>$iconMapPointer, "href"=>$mapsLink), ' ' . $mapsAddress);
-}
-
-function googleMaps($element, $src, $class, $style) { // {{{2
-  return element($element, "iframe", array(
-    "id"=>"googleMap",
-    "class"=>$class,
-    "style"=>$style,
-    "frameborder"=>"0",
-    "src"=>$src
-  ));
-}
-
-function navMenu($element, $navs, $class, $style) { // {{{2
-  $box = element($element, "div", array('class'=>$class, 'style'=>$style));
-  foreach($navs as $nav) {
-    $row = element($box, 'div', array('class'=>'row'));
-    $col = element($row, 'div', array('class'=>'col-12', 'style'=>'padding-bottom:25px;'));
-    $p = element($col, 'h5');
-    element($p, 'a', array('href'=>'#' . $nav), $nav);
-  }
-  return $box;
+  $div = element($element, "div", array("class"=>"text-center"));
+  $elem = element($div, $type, array());
+  $a = element($elem, 'a', array("class"=>$iconMapPointer, "href"=>$mapsLink), ' ' . $mapsAddress);
 }
 
 // Hours {{{1
-function hourRow($tbody, $day, $open, $closed, $style) { // {{{2
+function hourRow($tbody, $day, $open, $closed) { // {{{2
   $tr = element($tbody, "tr");
   $td = element($tr, "td");
-  $p = element($td, "p", array("style"=>"margin-bottom:5px;" . $style));
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;"));
   element($p, "b", array(), $day);
   $td = element($tr, "td");
-  element($td, "p", array("style"=>"margin-bottom:5px;" . $style), $open);
+  element($td, "p", array("style"=>"margin-bottom:5px;"), $open);
   if ($open != "Closed") {
     $td = element($tr, "td");
-    element($td, "p", array("style"=>"margin-bottom:5px;" . $style), "-");
+    element($td, "p", array("style"=>"margin-bottom:5px;"), "-");
     $td = element($tr, "td");
-    element($td, "p", array("style"=>"margin-bottom:5px;" . $style), $closed);
+    element($td, "p", array("style"=>"margin-bottom:5px;"), $closed);
   }
 }
 
 // Menus {{{1
-function menu($conn, $query, $category, $description, $col, $allowHeader=true) { // {{{2
+function menu($conn, $query, $category, $col, $allowHeader=true) { // {{{2
   $results = $conn->query($query);
   if ($results->num_rows > 0) {
-    // element($col, "h2", array(), $category);
+    element($col, "h2", array(), $category);
+    $table = element($col, "table", array("class"=>"table table-hover text-center"));
+    $tbody = element($table, "tbody");
 
-    $row = element($col, 'div', array('class'=>'row'));
-    element($row, 'div', array('class'=>'col-1'));
-    $col = element($row, 'div', array('class'=>'col-11'));
-    $pricingTable = element($col, "div", array("class"=>"pricingTable"));
-    element($pricingTable, "h2", array('id'=>$category, "class"=>"pricingTable-title"), $category);
-    element($pricingTable, "h3", array("class"=>"pricingTable-subtitle"), $description);
-    $row = element($pricingTable, "div", array("class"=>"row"));
+    // Header
+    if ($allowHeader)
+      menuTR($tbody, 'th', "Name", "Description", "Toppings", "Price");
 
     // Body
-    $i = 0;
     while($result = $results->fetch_assoc()) {
       $query = "SELECT * FROM menu_items_toppings JOIN menu_toppings ON menu_toppings.id = menu_items_toppings.menu_topping_id WHERE menu_item_id = " . $result["id"];
       $results_toppings = $conn->query($query);
       $toppings = array();
       while($topping = $results_toppings->fetch_assoc())
         $toppings[] = $topping["name"];
-      if ($i % 2 == 0) {
-        $row = element($pricingTable, "div", array("class"=>"row"));
-        element($row, "div", array("class"=>"col-1"));
-      }
-      menuItem($pricingTable, $row, $result['name'], number_format($result['price'], 2), $toppings);
-      $i++;
+      menuTR($tbody, 'td', $result['name'], $result['description'], implode(", ", $toppings), "$" . number_format($result['price'], 2));
     }
   }
 }
@@ -239,74 +235,42 @@ function menuTR($tbody, $type, $name, $description, $toppings, $price) { // {{{2
   $p = element($td, "p", array("style"=>"margin-bottom:5px;"), $price);
 }
 
-function menus($conn, $panel, $menu) { // {{{2
-  // $query = "SELECT * FROM menu_categories";
-  $query = 'SELECT * FROM `menu_categories` WHERE name = "' . $menu . '"';
+function menus($conn, $panel) { // {{{2
+  $query = "SELECT * FROM menu_categories";
   $categories = $conn->query($query);
 
   if ($categories->num_rows > 0) {
     // output data of each row
     $row = element($panel, "div", array("class"=>"row"));
-    $colFresh = element($row, "div", array("class"=>"col-12 text-center"));
+    $colFresh = element($row, "div", array("class"=>"offset-1 col-10 text-center"));
 
     while($category = $categories->fetch_assoc()) {
       // Fresh
       $query = "SELECT * FROM menu_items WHERE category_id=" . $category["id"];
       $results = $conn->query($query);
-      menu($conn, $query, $category["name"], $category["description"], $colFresh);
+      menu($conn, $query, $category["name"], $colFresh);
     }
   }
-}
-
-function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
-  $rowCol = element($element, "div", array("class"=>"col-md-5 text-center"));
-  $row = element($rowCol, "div", array("class"=>"row pricingTable-firstTable"));
-
-  // $content = element($row, "div", array("class"=>"col-2", "style"=>"padding:25px"));
-  $content = element($row, "div", array("class"=>"col-12 pricingTable-firstTable_table", "style"=>"padding:25px"));
-  $row = element($content, "div", array("class"=>"row"));
-
-  $col = element($row, "div", array("class"=>"col-md-12"));
-  element($col, "h1", array("class"=>"pricingTable-firstTable_table__header", "style"=>"font-weight:bold;width:100%;text-align:center"), $name);
-  
-  $row = element($content, "div", array("class"=>"row"));
-  $col = element($row, "div", array("class"=>"col-md-3 text-center"));
-  $p = element($col, "p", array("class"=>"pricingTable-firstTable_table__pricing", "style"=>"font-weight:bold;"));
-  element($p, 'span', array(), "$");
-  element($p, 'span', array(), $price);
-  element($p, 'span', array(), "");
-  $col = element($row, "div", array("class"=>"col-md-9"));
-  $toppingsList = element($col, "div", array("class"=>"pricingTable-firstTable_table__options"));
-  $p = element($toppingsList, "p", array("style"=>"font-weight:bold;"), implode(', ', $toppings));
 }
 
 // Navbar {{{1
 function navLink($parent, $id, $inner, $href) { // {{{2
   // Insert navbar link into $parent DOM element
-  $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item", "style"=>"background-color:#232323"));
-  return element($li, "a", array("class"=>"nav-link", "style"=>"color:#ffffff", "href"=>$href), $inner);
-}
-
-function navLink2($element, $type, $link, $name) {
-  $row = element($element, 'div', array("class"=>"row"));
-  $col = element($row, 'div', array("class"=>"col-12", "style"=>"text-align:center"));
-  $typeCol = element($col, $type, array("style"=>"padding-bottom:15px; text-allign:center;"));
-  return element($typeCol, "a", array("href"=>$link), $name);
+  $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item"));
+  $a = element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
 }
 
 // Head {{{1
 // Default HTML template {{{2
 $assets = "assets";
 $css = $assets . "/css";
-$fonts = $assets . "/fonts";
 $img = $assets . "/img";
 $js = $assets . "/js";
 $php = $assets . "/php";
+$doc = $assets . "/doc/";
 
 $companyName = "De Minico's";
 $favicon = $img . "/favicon.png";
-$background = $img . "/background.jpg";
-$background = $img . "/chalkboard.jpg";
 
 // Brand {{{2
 $imgStore = $img . "/store.jpg";
@@ -314,6 +278,7 @@ $imgHome = $img  . "/home.png";
 $imgBrand = $img . "/logonostamp.jpg";
 
 // Service {{{2
+// $imgBrand = $img . "/banner.png";
 $hrefBrand = "/";
 $imgDoordash = $img . "/doordash.png";
 $hrefDoordash = "https://www.doordash.com/store/de-minico-s-calgary-99506/";
@@ -323,10 +288,7 @@ $hrefSkipDish = "https://www.skipthedishes.com/de-minicos";
 // Base structure {{{2
 $html = element($dom, "html");
 $head = element($html, "head");
-
-$styleBody = 'width:100%;';
-$classBody = 'fa';
-$body = element($html, "body", array("class"=>$classBody, "style"=>$styleBody));
+$body = element($html, "body", array("class"=>"fa"));
 
 // Header {{{1
 // Tab title {{{2
@@ -336,6 +298,7 @@ element($head, "link", array("rel"=>"icon", "href"=>$favicon));
 // Metadata {{{2
 addMeta($head, array("charset"=>"UTF-8"));
 addMeta($head, array("name"=>"viewport", "content"=>"width=device-width", "initial-scale"=>"1", "shrink-to-fit"=>"no"));
+// addMeta($head, array("expires"=>"Tue, 01 Jan 2000 00:00:00 GMT"));
 
 // Scripts {{{2
 addScript($head, $js . "/jquery.min.js");
@@ -346,71 +309,13 @@ addScript($head, $js . "/script.js");
 addStyle($head, 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 addStyle($head, $css . "/bootstrap.min.css");
 addStyle($head, $css . "/style.css?rnd=" . rand());
-addStyle($head, $css . "/table.css?rnd=" . rand());
-// addStyle($head, $css . "/print.css", array("media"=>"print"));
+// addStyle($head, $css . "/table.css?rnd=" . rand());
+addStyle($head, $css . "/print.css", array("media"=>"print"));
 
 // Nav {{{2
 require_once "assets/php/navbar.php";
 
-// Variables {{{2
-// Information {{{3
-$phoneNumber = "403-454-6789";
-$mapsLink = "https://www.google.com/maps/place/De+Minico's/@51.0946308,-114.0457049,14.25z/data=!4m12!1m6!3m5!1s0x53716500c531255d:0xf2d24169e7a44e1b!2sDe+Minico's!8m2!3d51.093125!4d-114.032371!3m4!1s0x53716500c531255d:0xf2d24169e7a44e1b!8m2!3d51.093125!4d-114.032371?hl=en-US";
-$mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
-$mapsIfram = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.831072976366!2d-114.032371!3d51.093125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716500c531255d%3A0xf2d24169e7a44e1b!2sDe+Minico&#39;s!5e0!3m2!1sen!2sca!4v1509148157628";
-
-// Styles {{{3
-// Common
-$stylePaddingBottom = "padding-bottom:25px;";
-$stylePaddingTop = "padding-top:25px;";
-$styleFontWeight = "font-weight:bold;";
-$styleFontP = $styleFontWeight;
-$styleFontP .= "font-size:20px;";
-
-// Address
-// $styleAddress = $stylePaddingTop;
-$styleAddress = $stylePaddingBottom;
-$classAddress = "text-center";
-
-// Background
-$styleBackground = "position:fixed;";
-$styleBackground .= "left:-100px;";
-$styleBackground .= "top:0;";
-$styleBackground .= "height:110%;";
-// $styleBackground .= "width:100%;";
-$styleBackground .= "width:2500px;";
-$styleBackground .= "background-image:url('" . $background . "');";
-$styleBackground .= "background-size: cover;";
-
-// Phone
-$stylePhone = $stylePaddingTop;
-$stylePhone .= $stylePaddingBottom;
-$classPhone = "text-center";
-
-// Maps
-// $styleMaps = $stylePaddingTop;
-$styleMaps = $stylePaddingBottom;
-$styleMaps .= 'width:75%;';
-$classMaps = "";
-
-// Menu
-$styleNavMenu = "position:fixed;";
-$styleNavMenu .= "top:100px;";
-$styleNavMenu .= "left:0;";
-$styleNavMenu .= "width:50px;";
-$styleNavMenu .= "height:200px;";
-$classNavMenu = "";
-
-// Order Form
-$styleOrderForm = "width:95%;";
-$styleOrderForm .= "border-radius:2%;";
-$styleOrderForm .= $stylePaddingBottom;
-
 // Panel {{{2
-$stylePanel = "width:100%;";
-$classPanel = "container-fluid ";
-$panel = element($body, "div", array("class"=>$classPanel, "style"=>$stylePanel));
-
-// Common Background {{{2
-$background = element($panel, "div", array("style"=>$styleBackground));
+// All content will be on panel
+$panel = element($body, "div", array("class"=>"container-fluid"));
 ?>
