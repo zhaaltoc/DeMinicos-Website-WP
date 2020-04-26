@@ -21,11 +21,16 @@ element($navBrand, "img", array("class"=>"navbar", "src"=>$imgBrand, "alt"=>"", 
 $navBar = element($nav, "div", array("id"=>"navbarSupportedContent", "class"=>"collapse navbar-collapse"));
 $navLinks = element($navBar, "ul", array("class"=>"navbar-nav ml-auto"));
 navLink($navLinks, "home", "", "/"); // Extra space still a link
-navLink($navLinks, "home", "Home", "/");
-navLink($navLinks, "instoremenu", "In Store Menu", "menu.php");
-navLink($navLinks, "freezermenu", "Heat and Eat", "freezer.php");
-navLink($navLinks, "catering", "Catering", "catering.php");
-navLink($navLinks, "photogallery", "Photo Gallery", "photogallery.php");
-navLink($navLinks, "orderform", "Order Form", "orderform.php");
+if(!$ORDERFORM) {
+  navLink($navLinks, "home", "Home", "/");
+  navLink($navLinks, "instoremenu", "In Store Menu", "menu.php");
+  navLink($navLinks, "freezermenu", "Heat and Eat", "freezer.php");
+  navLink($navLinks, "catering", "Catering", "catering.php");
+  navLink($navLinks, "photogallery", "Photo Gallery", "photogallery.php");
+  navLink($navLinks, "orderform", "Order Form", "orderform.php");
+}
+else {
+  navLink($navLinks, "orderform", "Order Form", "/");
+}
 navLink($navLinks, "location", "Location", "#");
 ?>

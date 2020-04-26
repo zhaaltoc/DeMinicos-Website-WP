@@ -151,6 +151,17 @@ function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
   return element($a, 'a', array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
 }
 
+function linkfile($element, $type, $infilepath, $infile, $intext) { // {{{2
+   
+  $div = element($element, "div", array("class"=>"text-center"));
+  $elem = element($div, $type, array(), " ");
+  br($elem, 1);
+  $a = element($elem, "a", array("href"=>"".$infilepath.$infile), ' ' .$intext);
+
+// <a href="link/to/your/download/file" download="filename">Download link</a>
+}
+
+
 function address($element, $type, $mapsLink, $mapsAddress, $class, $style) { // {{{2
   $iconMapPointer = 'fas fa-map-marker';
 
@@ -329,6 +340,9 @@ $classBody = 'fa';
 $body = element($html, "body", array("class"=>$classBody, "style"=>$styleBody));
 
 // Header {{{1
+// Development Flags {{{2
+// Set `index.php` link to display order form and only display order form on nav
+$ORDERFORM = true; // Set `index.php` link to display order form
 // Tab title {{{2
 element($head, "title", array(), $companyName);
 element($head, "link", array("rel"=>"icon", "href"=>$favicon));
