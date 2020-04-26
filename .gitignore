@@ -6,5 +6,4 @@ docker-compose.yaml
 docker/*
 log/*
 
-http/assets/img/*
 http/assets/unzip/*
