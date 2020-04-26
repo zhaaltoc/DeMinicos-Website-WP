@@ -5,7 +5,7 @@
 
 require_once "assets/php/header.php";
 
-$imgLogo = "assets/img/logo.png";
+$imgLogo = $img . "/logo.png";
 $imgLogoNoStamp = $img . "/logonostamp.jpg";
 // $imgLogoNoStamp = $img . "/logostampcolor_reverse.jpg";
 
@@ -20,8 +20,8 @@ $col = element($row, "div", array("class"=>"col-md-12", "style"=>"padding-bottom
 // Description {{{2
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top: 15px;"));
-element($col, "p", array("class"=>"text-center", "style"=>$fontP), "De Minico’s offers delicious pizza and paninis. Delight in authentic Italian flavours and try the Margherita or Artista pizza. Add a little kick to your day and spice things up with the Volta panini.");
-element($col, "p", array("class"=>"text-center", "style"=>$fontP), "Order De Minico’s");
+element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "De Minico’s offers delicious pizza and paninis. Delight in authentic Italian flavours and try the Margherita or Artista pizza. Add a little kick to your day and spice things up with the Volta panini.");
+element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "Order De Minico’s");
 
 // Phone {{{2
 $stylePhone = "";
@@ -30,7 +30,7 @@ phone($col, "p", $phoneNumber, $classPhone, $stylePhone);
 // phone($col, "h2", $phoneNumber, $styleFontP);
 
 // Social Media {{{2
-element($col, "p", array("class"=>"text-center", "style"=>$fontP), "Learn more about us by following us on social media.");
+element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "Learn more about us by following us on social media.");
 socialLinks($col);
 
 // Navigation {{{2
@@ -51,13 +51,13 @@ $col = element($row, "div", array("class"=>"col-2"));
 $col = element($row, "div", array("class"=>"col-10"));
 $table = element($col, "table", array("class"=>"text-center"));
 $tbody = element($table, "tbody");
-hourRow($tbody, "Monday", "11 A.M.", "2 P.M.");
-hourRow($tbody, "Tuesday", "11 A.M.", "6 P.M.");
-hourRow($tbody, "Wednsday", "11 A.M.", "6 P.M.");
-hourRow($tbody, "Thursday", "11 A.M.", "6 P.M.");
-hourRow($tbody, "Friday", "11 A.M.", "8 P.M.");
-hourRow($tbody, "Saturday", "Closed", "");
-hourRow($tbody, "Sunday", "Closed", "");
+hourRow($tbody, "Monday", "11 A.M.", "2 P.M.", $styleFontP);
+hourRow($tbody, "Tuesday", "11 A.M.", "6 P.M.", $styleFontP);
+hourRow($tbody, "Wednsday", "11 A.M.", "6 P.M.", $styleFontP);
+hourRow($tbody, "Thursday", "11 A.M.", "6 P.M.", $styleFontP);
+hourRow($tbody, "Friday", "11 A.M.", "8 P.M.", $styleFontP);
+hourRow($tbody, "Saturday", "Closed", "", $styleFontP);
+hourRow($tbody, "Sunday", "Closed", "", $styleFontP);
 
 // Footer {{{1
 require_once "assets/php/footer.php";
