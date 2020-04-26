@@ -1,1 +1,9 @@
 *.swp
+
+# Docker
+.env
+docker-compose.yaml
+docker/*
+log/*
+
+http/assets/unzip/*
