@@ -1,10 +1,16 @@
 /* Section: HTML {{{1 */
+@font-face {
+  font-family: "MenuFont";
+  src: url("../fonts/BRADHITC.TTF") format("truetype");
+}
+
 html, body { /* {{{2 */
   height: 110%;
-  /* background-color: transparent; */
-  background-color: rgb(25,25,25);
+  background-color: transparent;
+  /* background-color: rgb(25,25,25); */
   /* background-color: rgb(200,200,200); */
-  color: rgb(201,201,201);
+  /* color: rgb(201,201,201); */
+  color: #ffffff;
 }
 
 html { /* {{{2 */
@@ -18,14 +24,26 @@ html { /* {{{2 */
 
 body { /* {{{2 */
   position: relative;
-  font-family: "Raleway",Helvetica,Arial,Lucida,sans-serif;
+  /* font-family: "Raleway",Helvetica,Arial,Lucida,sans-serif; */
   padding-top: 5rem;
   padding-bottom: 5rem;
+  
+  @media screen and (max-width: 960px){
+    font-size: 80%;
+  }
+  @media screen and (max-width: 776px){
+    font-size: 70%;
+  }
+  @media screen and (max-width: 496px){
+    font-size: 50%;
+  }
+  @media screen and (max-width: 320px){
+    font-size: 40%;
+  }
 }
-
-div {
-  /* background-color: rgb(200,200,200); */
-  /* color: rgb(201,201,201); */
+  
+div { /* {{{2 */
+  font-family: "MenuFont";
 }
 
 th { /* {{{2 */
@@ -83,6 +101,14 @@ th { /* {{{2 */
   max-height: 75px;
    */
 }
+
+/* .navbar-toggler-icon { */
+  /* background-color: rgb(205,205,205); */
+/* } */
+
+/* .navbar-light .navbar-toggler-icon { */
+  /* background-image: url("data:image/svg+xml;.."); */
+/* } */
 
 .navbar-favicon { /* {{{2 */
   height: 30px;
