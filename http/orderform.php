@@ -33,7 +33,8 @@ $col = element($row, "div", array("class"=>"col-12 text-center", "style"=>$style
 linkfile($col , "h2" , $doc , $docOrderForm, $stringLinkFile, '', $styleLinkFile);
 
 $row = element($panel, "div", array("class"=>"row"));
-$col = element($row, "div", array("class"=>"col-12 text-center"));
+$col = element($row, "div", array("class"=>"col-md-2 text-center"));
+$col = element($row, "div", array("class"=>"col-md-8 text-center"));
 $div = element($col, "div", array("style"=>$styleOrderFormDiv));
 element($div, "img", array("src"=>$imgOrderForm, "style"=>$styleOrderFormImg));
 
