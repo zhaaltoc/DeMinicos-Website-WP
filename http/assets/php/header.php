@@ -145,10 +145,14 @@ function socialLinks($element) { // {{{2
 }
 
 function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
-  $iconPhone = 'fas fa-mobile';
+  $classPhone = 'fa fas fa-mobile';
 
-  $a = element($element, $type, array("class"=>$class, "style"=>$style));
-  return element($a, 'a', array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
+  $div = element($element, "div", array("class"=>"text-center"));
+  $type = element($div, $type, array("class"=>$class, "style"=>$style));
+  $a = element($type, 'a', array("href"=>"tel:".$phoneNumber));
+  element($a, 'span', array("class"=>$classPhone));
+  element($a, 'span', array("class"=>$class), ' ' . $phoneNumber);
+  return $div;
 }
 
 function linkfile($element, $type, $infilepath, $infile, $intext) { // {{{2
@@ -161,12 +165,15 @@ function linkfile($element, $type, $infilepath, $infile, $intext) { // {{{2
 // <a href="link/to/your/download/file" download="filename">Download link</a>
 }
 
-
 function address($element, $type, $mapsLink, $mapsAddress, $class, $style) { // {{{2
-  $iconMapPointer = 'fas fa-map-marker';
+  $classAddress = 'fa fas fa-map-marker';
 
-  $a = element($element, $type, array("class"=>$class, "style"=>$style));
-  return element($a, 'a', array("class"=>$iconMapPointer, "href"=>$mapsLink), ' ' . $mapsAddress);
+  $div = element($element, "div", array("class"=>"text-center"));
+  $type = element($div, $type, array("class"=>$class, "style"=>$style));
+  $a = element($type, 'a', array("href"=>$mapsLink));
+  element($a, 'span', array("class"=>$classAddress));
+  element($a, 'span', array("class"=>$class), ' ' . $mapsAddress);
+  return $div;
 }
 
 function googleMaps($element, $src, $class, $style) { // {{{2
