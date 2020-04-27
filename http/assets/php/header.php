@@ -155,12 +155,20 @@ function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
   return $div;
 }
 
-function linkfile($element, $type, $infilepath, $infile, $intext) { // {{{2
+function linkfile($element, $type, $infilepath, $infile, $intext, $class, $style) { // {{{2
    
+  // $div = element($element, "div", array("class"=>"text-center"));
+  // $elem = element($div, $type, array(), " ");
+  // $a = element($elem, "a", array("href"=>"".$infilepath.$infile), ' ' .$intext);
+  
   $div = element($element, "div", array("class"=>"text-center"));
-  $elem = element($div, $type, array(), " ");
-  br($elem, 1);
-  $a = element($elem, "a", array("href"=>"".$infilepath.$infile), ' ' .$intext);
+  $type = element($div, $type, array("class"=>$class, "style"=>$style));
+  $a = element($type, "a", array("href"=>''.$infilepath.$infile));
+  // $a = element($type, 'a', array("href"=>"tel:".$phoneNumber));
+  element($a, 'span', array("class"=>$class));
+  element($a, 'span', array("class"=>$class), $intext);
+
+  return $div;
 
 // <a href="link/to/your/download/file" download="filename">Download link</a>
 }
@@ -430,9 +438,9 @@ $classNavMenu = "";
 // Order Form
 $styleOrderForm = "width:95%;";
 $styleOrderForm .= "border-radius:2%;";
-$styleOrderForm .= $stylePaddingBottom;
+// $styleOrderForm .= $stylePaddingBottom;
 
-// Panel {{{2
+// Panel {{{1
 $stylePanel = "width:100%;";
 $classPanel = "container-fluid ";
 $panel = element($body, "div", array("class"=>$classPanel, "style"=>$stylePanel));
