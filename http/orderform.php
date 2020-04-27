@@ -8,7 +8,7 @@ require_once "assets/php/header.php";
 
 // Variables {{{1
 $imgOrderForm = $img . "/De Minico’s order list.PNG";
-$docOrderForm = "De Minico’s order list.pdf";
+$docOrderForm = "/De Minico’s order list.pdf";
 $styleLinkFile .= 'color:#cccc33;';
 
 // Style {{{2

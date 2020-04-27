@@ -181,15 +181,15 @@ function email($element, $type, $email, $class, $style) { // {{{2
 
 function linkfile($element, $type, $infilepath, $infile, $intext, $class, $style) { // {{{2
    
-  // $div = element($element, "div", array("class"=>"text-center"));
-  // $elem = element($div, $type, array(), " ");
-  // $a = element($elem, "a", array("href"=>"".$infilepath.$infile), ' ' .$intext);
-
   $div = element($element, "div", array("class"=>"text-center"));
-  $type = element($div, $type, array("class"=>$class, "style"=>$style));
-  $a = element($type, "a", array("href"=>''.$infilepath.$infile, "style"=>$style));
-  element($a, 'span', array("class"=>$class));
-  element($a, 'span', array("class"=>$class), $intext);
+  $elem = element($div, $type, array(), " ");
+  $a = element($elem, "a", array("href"=>"".$infilepath.$infile), ' ' .$intext);
+
+  // $div = element($element, "div", array("class"=>"text-center"));
+  // $type = element($div, $type, array("class"=>$class, "style"=>$style));
+  // $a = element($type, "a", array("href"=>''.$infilepath.$infile, "style"=>$style));
+  // element($a, 'span', array("class"=>$class));
+  // element($a, 'span', array("class"=>$class), $intext);
 
   return $div;
 }
@@ -349,6 +349,7 @@ function navLink2($element, $type, $link, $name) {
 // Default HTML template {{{2
 $assets = "assets";
 $css = $assets . "/css";
+$doc = $assets . "/doc";
 $fonts = $assets . "/fonts";
 $img = $assets . "/img";
 $js = $assets . "/js";
