@@ -155,6 +155,17 @@ function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
   return $div;
 }
 
+function email($element, $type, $email, $class, $style) { // {{{2
+  $classEmail = 'fa fas fa-envelope-open';
+
+  $div = element($element, "div", array("class"=>"text-center"));
+  $type = element($div, $type, array("class"=>$class, "style"=>$style));
+  $a = element($type, "a", array("href"=>"mailto:".$email, 'style'=>$style));
+  element($a, 'span', array("class"=>$classEmail));
+  element($a, 'span', array("class"=>$class), ' ' . $email);
+  return $div;
+}
+
 function linkfile($element, $type, $infilepath, $infile, $intext, $class, $style) { // {{{2
    
   // $div = element($element, "div", array("class"=>"text-center"));
