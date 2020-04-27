@@ -118,61 +118,108 @@ function br($element, $lines) { // {{{2
 
 // Social {{{1
 function socialLinks($element) { // {{{2
-  $hrefFacebook = "https://www.facebook.com/DeMinicos/";
-  $iconFacebook = 'fab fa-facebook';
-  $hrefInstagram = "https://www.instagram.com/deminicos/";
-  $iconInstagram = 'fab fa-instagram';
-  $hrefTwitter = "https://twitter.com/DeMinicos";
-  $iconTwitter = 'fab fa-twitter';
+  $style .= 'max-width:50px;';
+  $style .= 'width:10%;';
 
-  $row = element($element, "div", array("class"=>"text-center"));
+  $hrefFacebook = "https://www.facebook.com/DeMinicos/";
+  // $iconFacebook = 'fab fa-facebook';
+  $iconFacebook = '/assets/img/social/icon-facebook.png';
+  
+  $hrefInstagram = "https://www.instagram.com/deminicos/";
+  // $iconInstagram = 'fab fa-instagram';
+  $iconInstagram = '/assets/img/social/icon-instagram.png';
+  
+  $hrefTwitter = "https://twitter.com/DeMinicos";
+  // $iconTwitter = 'fab fa-twitter';
+  $iconTwitter = '/assets/img/social/icon-twitter.png';
+
+  $row = element($element, "div", array("class"=>"row text-center"));
   $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-12 text-center"));
 
   // Facebook
   $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#3b5998", "href"=>$hrefFacebook));
   $span = element($a, "span", array("class"=>"socialIcon"));
-  element($span, "span", array("class"=>$iconFacebook));
+  element($span, "img", array("src"=>$iconFacebook, 'style'=>$style));
 
   // Instagram
+  // $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-4 text-center"));
   $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefInstagram));
-  $span = element($a, "span", array("class"=>"instagram"));
-  element($span, "span", array("class"=>$iconInstagram));
+  // $span = element($a, "span", array("class"=>"instagram"));
+  $span = element($a, "span", array());
+  // element($span, "span", array("class"=>$iconInstagram));
+  element($span, "img", array("src"=>$iconInstagram, 'style'=>$style));
 
   // Twitter
+  // $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-4 text-center"));
   $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#00acee", "href"=>$hrefTwitter));
   $span = element($a, "span", array("class"=>"socialIcon"));
-  element($span, "span", array("class"=>$iconTwitter));
+  // element($span, "span", array("class"=>$iconTwitter));
+  element($span, "img", array("src"=>$iconTwitter, 'style'=>$style));
 }
 
-function phone($element, $type) { // {{{2
-  $phoneNumber = "403-454-6789";
-  $iconPhone = 'fas fa-mobile';
+function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
+  $classPhone = 'fa fas fa-mobile';
 
   $div = element($element, "div", array("class"=>"text-center"));
-  $elem = element($div, $type, array(), "Pick Up and Delivery! ");
-  br($elem, 1);
-  $a = element($elem, "a", array("class"=>$iconPhone, "href"=>"tel:".$phoneNumber), ' ' . $phoneNumber);
+  $type = element($div, $type, array("class"=>$class, "style"=>$style));
+  $a = element($type, 'a', array("href"=>"tel:".$phoneNumber, 'style'=>$style));
+  element($a, 'span', array("class"=>$classPhone));
+  element($a, 'span', array("class"=>$class), ' ' . $phoneNumber);
+  return $div;
 }
 
-function linkfile($element, $type, $infilepath, $infile, $intext) { // {{{2
+function email($element, $type, $email, $class, $style) { // {{{2
+  $classEmail = 'fa fas fa-envelope-open';
+
+  $div = element($element, "div", array("class"=>"text-center"));
+  $type = element($div, $type, array("class"=>$class, "style"=>$style));
+  $a = element($type, "a", array("href"=>"mailto:".$email, 'style'=>$style));
+  element($a, 'span', array("class"=>$classEmail));
+  element($a, 'span', array("class"=>$class), ' ' . $email);
+  return $div;
+}
+
+function linkfile($element, $type, $infilepath, $infile, $intext, $class, $style) { // {{{2
    
   $div = element($element, "div", array("class"=>"text-center"));
   $elem = element($div, $type, array(), " ");
-  br($elem, 1);
   $a = element($elem, "a", array("href"=>"".$infilepath.$infile), ' ' .$intext);
 
-// <a href="link/to/your/download/file" download="filename">Download link</a>
+  // $div = element($element, "div", array("class"=>"text-center"));
+  // $type = element($div, $type, array("class"=>$class, "style"=>$style));
+  // $a = element($type, "a", array("href"=>''.$infilepath.$infile, "style"=>$style));
+  // element($a, 'span', array("class"=>$class));
+  // element($a, 'span', array("class"=>$class), $intext);
+
+  return $div;
 }
 
-function emailaddress($element, $type) { // {{{2
-  $emailaddress = "orders@deminicos.ca";
-  
+function address($element, $type, $mapsLink, $mapsAddress, $class, $style) { // {{{2
+  $classAddress = 'fa fas fa-map-marker';
+
   $div = element($element, "div", array("class"=>"text-center"));
-  $elem = element($div, $type, array(), " ");
-  br($elem, 1);
-  $a = element($elem, "a", array("href"=>"mailto:".$emailaddress), ' ' . $emailaddress);
+  $type = element($div, $type, array("class"=>$class, "style"=>$style));
+  $a = element($type, 'a', array("href"=>$mapsLink));
+  element($a, 'span', array("class"=>$classAddress));
+  element($a, 'span', array("class"=>$class), ' ' . $mapsAddress);
+  return $div;
 }
 
+function googleMaps($element, $src, $id, $class, $style) { // {{{2
+  $div = element($element, "div");
+  $row = element($div,'div',array('class'=>'row'));
+  element($row,'div',array('id'=>$id, 'class'=>'col-12', 'style'=>$style));
+  $col = element($row,'div',array('class'=>'col-12'));
+  return element($col, "iframe", array(
+    "id"=>"googleMap",
+    "class"=>$class,
+    "style"=>$style,
+    "frameborder"=>"0",
+    "src"=>$src
+  ));
+}
+
+/*
 function address($element, $type) { // {{{2
   $mapsLink = "https://www.google.com/maps/place/De+Minico's/@51.0946308,-114.0457049,14.25z/data=!4m12!1m6!3m5!1s0x53716500c531255d:0xf2d24169e7a44e1b!2sDe+Minico's!8m2!3d51.093125!4d-114.032371!3m4!1s0x53716500c531255d:0xf2d24169e7a44e1b!8m2!3d51.093125!4d-114.032371?hl=en-US";
   $mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
@@ -181,7 +228,7 @@ function address($element, $type) { // {{{2
   $div = element($element, "div", array("class"=>"text-center"));
   $elem = element($div, $type, array());
   $a = element($elem, 'a', array("class"=>$iconMapPointer, "href"=>$mapsLink), ' ' . $mapsAddress);
-}
+}*/
 
 // Hours {{{1
 function hourRow($tbody, $day, $open, $closed) { // {{{2
@@ -254,16 +301,25 @@ function menus($conn, $panel) { // {{{2
 }
 
 // Navbar {{{1
-function navLink($parent, $id, $inner, $href) { // {{{2
+function navLink($parent, $id, $inner, $href, $style) { // {{{2
   // Insert navbar link into $parent DOM element
   $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item"));
-  $a = element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
+  return element($li, "a", array("class"=>"nav-link", 'style'=>$style, "href"=>$href), $inner);
+}
+
+function navLink2($element, $type, $link, $name) {
+  $row = element($element, 'div', array("class"=>"row"));
+  $col = element($row, 'div', array("class"=>"col-12", "style"=>"text-align:center"));
+  $typeCol = element($col, $type, array("style"=>"padding-bottom:15px; text-allign:center;"));
+  return element($typeCol, "a", array("href"=>$link), $name);
 }
 
 // Head {{{1
 // Default HTML template {{{2
 $assets = "assets";
 $css = $assets . "/css";
+$doc = $assets . "/doc";
+$fonts = $assets . "/fonts";
 $img = $assets . "/img";
 $js = $assets . "/js";
 $php = $assets . "/php";
@@ -275,7 +331,8 @@ $favicon = $img . "/favicon.png";
 // Brand {{{2
 $imgStore = $img . "/store.jpg";
 $imgHome = $img  . "/home.png";
-$imgBrand = $img . "/logonostamp.jpg";
+// $imgBrand = $img . "/logonostamp.jpg";
+$imgBrand = $img . "/logo.png";
 
 // Service {{{2
 // $imgBrand = $img . "/banner.png";
@@ -288,9 +345,13 @@ $hrefSkipDish = "https://www.skipthedishes.com/de-minicos";
 // Base structure {{{2
 $html = element($dom, "html");
 $head = element($html, "head");
-$body = element($html, "body", array("class"=>"fa"));
+$body = element($html, "body", array("class"=>"fa", 'style'=>'width:100%;'));
 
 // Header {{{1
+// Development Flags {{{2
+// Set `index.php` link to display order form and only display order form on nav
+$ORDERFORM = true;
+
 // Tab title {{{2
 element($head, "title", array(), $companyName);
 element($head, "link", array("rel"=>"icon", "href"=>$favicon));
@@ -315,7 +376,66 @@ addStyle($head, $css . "/print.css", array("media"=>"print"));
 // Nav {{{2
 require_once "assets/php/navbar.php";
 
-// Panel {{{2
-// All content will be on panel
-$panel = element($body, "div", array("class"=>"container-fluid"));
+// Variables {{{2
+// Information {{{3
+$phoneNumber = "403-454-6789";
+$mapsLink = "https://www.google.com/maps/place/De+Minico's/@51.0946308,-114.0457049,14.25z/data=!4m12!1m6!3m5!1s0x53716500c531255d:0xf2d24169e7a44e1b!2sDe+Minico's!8m2!3d51.093125!4d-114.032371!3m4!1s0x53716500c531255d:0xf2d24169e7a44e1b!8m2!3d51.093125!4d-114.032371?hl=en-US";
+$mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
+$mapsIfram = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.831072976366!2d-114.032371!3d51.093125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716500c531255d%3A0xf2d24169e7a44e1b!2sDe+Minico&#39;s!5e0!3m2!1sen!2sca!4v1509148157628";
+
+// Styles {{{3
+// Common
+$stylePaddingBottom = "padding-bottom:25px;";
+$stylePaddingTop = "padding-top:25px;";
+$styleFontWeight = "font-weight:bold;";
+$styleFontP = $styleFontWeight;
+$styleFontP .= "font-size:20px;";
+
+// Address
+// $styleAddress = $stylePaddingTop;
+$styleAddress = $stylePaddingBottom;
+$classAddress = "text-center";
+
+// Background
+$background = $img . "/chalkboard.jpg";
+$styleBackground = "position:fixed;";
+$styleBackground .= "left:-100px;";
+$styleBackground .= "top:0;";
+$styleBackground .= "height:110%;";
+$styleBackground .= "width:100%;";
+$styleBackground .= "width:2500px;";
+$styleBackground .= "background-image:url('" . $background . "');";
+$styleBackground .= "background-size: cover;";
+
+// Phone
+$stylePhone = $stylePaddingTop;
+$stylePhone .= $stylePaddingBottom;
+$classPhone = "text-center";
+
+// Maps
+// $styleMaps = $stylePaddingTop;
+$styleMaps = $stylePaddingBottom;
+$styleMaps .= 'width:75%;';
+$classMaps = "";
+
+// Menu
+$styleNavMenu = "position:fixed;";
+$styleNavMenu .= "top:100px;";
+$styleNavMenu .= "left:0;";
+$styleNavMenu .= "width:50px;";
+$styleNavMenu .= "height:200px;";
+$classNavMenu = "";
+
+// Order Form
+$styleOrderForm = "width:95%;";
+$styleOrderForm .= "border-radius:2%;";
+// $styleOrderForm .= $stylePaddingBottom;
+
+// Panel {{{1
+$stylePanel = "width:100%;";
+$classPanel = "container-fluid ";
+$panel = element($body, "div", array("class"=>$classPanel, "style"=>$stylePanel));
+
+// Common Background {{{2
+$background = element($panel, "div", array("style"=>$styleBackground));
 ?>

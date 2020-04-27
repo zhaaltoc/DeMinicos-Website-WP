@@ -7,27 +7,40 @@
 require_once "assets/php/header.php";
 
 // Variables {{{1
-$imgLogoNoStamp = $img . "/orderform/orderform.png";
+$imgOrderForm = $img . "/De Minico’s order list.PNG";
+$docOrderForm = "/De Minico’s order list.pdf";
+$styleLinkFile .= 'color:#cccc33;';
 
-// Layout {{{1
-// About Us {{{2
+// Style {{{2
+$styleOrderFormTop = "7%";
 
 $styleOrderFormDiv .= "display: inline-block;";
 $styleOrderFormDiv .= "width: 100%;";
-// $styleOrderFormDiv .= "height: 80%;";
 $styleOrderFormDiv .= "border 2px solid red;";
 $styleOrderFormDiv .= "overflow: hidden;";
 
-$styleOrderFormImgTop = "7%";
 $styleOrderFormImg .= "width: 90%;";
 $styleOrderFormImg .= "position: relative;";
-$styleOrderFormImg .= 'top: ' . $styleOrderFormImgTop . ';';
-$styleOrderFormImg .= "transform: translateY(-" . $styleOrderFormImgTop . ");";
+$styleOrderFormImg .= 'top: ' . $styleOrderFormTop . ';';
+$styleOrderFormImg .= "transform: translateY(-" . $styleOrderFormTop . ");";
+
+$stringLinkFile = 'Download the Order Form';
+
+// Layout {{{1
+// OrderForm {{{2
+$row = element($panel, "div", array("class"=>"row", 'style'=>'padding-bottom:0px;'));
+$col = element($row, "div", array("class"=>"col-12 text-center", "style"=>$styleOrderForm));
+linkfile($col , "h2" , $doc , $docOrderForm, $stringLinkFile, '', $styleLinkFile);
 
 $row = element($panel, "div", array("class"=>"row"));
-$col = element($row, "div", array("class"=>"col-12 text-center", "style"=>$styleOrderForm));
+$col = element($row, "div", array("class"=>"col-md-2 text-center"));
+$col = element($row, "div", array("class"=>"col-md-8 text-center"));
 $div = element($col, "div", array("style"=>$styleOrderFormDiv));
-element($div, "img", array("src"=>$imgLogoNoStamp, "style"=>$styleOrderFormImg));
+element($div, "img", array("src"=>$imgOrderForm, "style"=>$styleOrderFormImg));
+
+$row = element($panel, "div", array("class"=>"row", 'style'=>'padding-bottom:0px;'));
+$col = element($row, "div", array("class"=>"col-12 text-center", "style"=>$styleOrderForm));
+linkfile($col , "h2" , $doc , $docOrderForm, $stringLinkFile, '', $styleLinkFile);
 
 // Footer {{{1
 require_once "assets/php/footer.php";

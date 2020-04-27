@@ -50,6 +50,9 @@ th { /* {{{2 */
   text-align: center;
 }
 
+a { /* {{{2 */
+  color: #cccc33;
+}
 /* Section: Bootstrap {{{1 */
 .vh { /* {{{2 */
   overflow-y: auto;
