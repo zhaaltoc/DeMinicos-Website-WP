@@ -176,8 +176,12 @@ function address($element, $type, $mapsLink, $mapsAddress, $class, $style) { // 
   return $div;
 }
 
-function googleMaps($element, $src, $class, $style) { // {{{2
-  return element($element, "iframe", array(
+function googleMaps($element, $src, $id, $class, $style) { // {{{2
+  $div = element($element, "div");
+  $row = element($div,'div',array('class'=>'row'));
+  element($row,'div',array('id'=>$id, 'class'=>'col-12', 'style'=>$style));
+  $col = element($row,'div',array('class'=>'col-12'));
+  return element($col, "iframe", array(
     "id"=>"googleMap",
     "class"=>$class,
     "style"=>$style,
@@ -299,10 +303,10 @@ function menuItem($menu, $element, $name, $price, $toppings) { // {{{2
 }
 
 // Navbar {{{1
-function navLink($parent, $id, $inner, $href) { // {{{2
+function navLink($parent, $id, $inner, $href, $style) { // {{{2
   // Insert navbar link into $parent DOM element
-  $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item", "style"=>"background-color:#232323"));
-  return element($li, "a", array("class"=>"nav-link", "style"=>"color:#ffffff", "href"=>$href), $inner);
+  $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item"));
+  return element($li, "a", array("class"=>"nav-link", 'style'=>$style, "href"=>$href), $inner);
 }
 
 function navLink2($element, $type, $link, $name) {
@@ -349,7 +353,8 @@ $body = element($html, "body", array("class"=>$classBody, "style"=>$styleBody));
 // Header {{{1
 // Development Flags {{{2
 // Set `index.php` link to display order form and only display order form on nav
-$ORDERFORM = true; // Set `index.php` link to display order form
+$ORDERFORM = true;
+
 // Tab title {{{2
 element($head, "title", array(), $companyName);
 element($head, "link", array("rel"=>"icon", "href"=>$favicon));

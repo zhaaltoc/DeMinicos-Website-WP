@@ -16,7 +16,7 @@ address($col, "h3", $mapsLink, $mapsAddress, $classAddress, $styleAddress);
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12 text-center"));
 
-googleMaps($col, $mapsIfram, $classMaps,  $styleMaps);
+googleMaps($col, $mapsIfram, 'section-location', $classMaps,  $styleMaps);
 
 // Social Media {{{2
 $row = element($panel, "div", array("class"=>"row"));
