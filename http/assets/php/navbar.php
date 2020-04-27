@@ -3,7 +3,8 @@
 // Description: Site navigation
 
 $styleNavTop = "1%";
-$styleNav .= 'background-color:#aaaa33;';
+// $styleNav .= 'background-color:#aaaa33;';
+$styleNav .= 'background-color:#ffffff;';
 $styleNav .= 'opacity:0.66;';
 $styleNav .= "border-radius:10%;";
 $styleNav .= 'top: -' . $styleNavTop . ';';
@@ -30,7 +31,7 @@ $navBar = element($nav, "div", array("id"=>"navbarSupportedContent", "class"=>"c
 $styleNavLinks .= 'background-color: transparent;';
 $styleNavLinks .= 'font-size:1.5em;';
 $styleNavLinks .= 'font-weight:bold;';
-$styleNavLinks .= 'color: #ffffff;';
+$styleNavLinks .= 'color: #000000;';
 $classNavLinks .= 'navbar-nav ';
 $classNavLinks .= 'ml-auto ';
 

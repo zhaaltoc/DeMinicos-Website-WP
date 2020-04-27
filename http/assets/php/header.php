@@ -149,7 +149,7 @@ function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
 
   $div = element($element, "div", array("class"=>"text-center"));
   $type = element($div, $type, array("class"=>$class, "style"=>$style));
-  $a = element($type, 'a', array("href"=>"tel:".$phoneNumber));
+  $a = element($type, 'a', array("href"=>"tel:".$phoneNumber, 'style'=>$style));
   element($a, 'span', array("class"=>$classPhone));
   element($a, 'span', array("class"=>$class), ' ' . $phoneNumber);
   return $div;
@@ -160,17 +160,14 @@ function linkfile($element, $type, $infilepath, $infile, $intext, $class, $style
   // $div = element($element, "div", array("class"=>"text-center"));
   // $elem = element($div, $type, array(), " ");
   // $a = element($elem, "a", array("href"=>"".$infilepath.$infile), ' ' .$intext);
-  
+
   $div = element($element, "div", array("class"=>"text-center"));
   $type = element($div, $type, array("class"=>$class, "style"=>$style));
-  $a = element($type, "a", array("href"=>''.$infilepath.$infile));
-  // $a = element($type, 'a', array("href"=>"tel:".$phoneNumber));
+  $a = element($type, "a", array("href"=>''.$infilepath.$infile, "style"=>$style));
   element($a, 'span', array("class"=>$class));
   element($a, 'span', array("class"=>$class), $intext);
 
   return $div;
-
-// <a href="link/to/your/download/file" download="filename">Download link</a>
 }
 
 function address($element, $type, $mapsLink, $mapsAddress, $class, $style) { // {{{2
@@ -341,7 +338,8 @@ $background = $img . "/chalkboard.jpg";
 // Brand {{{2
 $imgStore = $img . "/store.jpg";
 $imgHome = $img  . "/home.png";
-$imgBrand = $img . "/logonostamp.jpg";
+// $imgBrand = $img . "/logonostamp.jpg";
+$imgBrand = $img . "/logo.png";
 
 // Service {{{2
 $hrefBrand = "/";
