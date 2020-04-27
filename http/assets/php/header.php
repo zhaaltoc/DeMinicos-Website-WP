@@ -118,30 +118,41 @@ function br($element, $lines) { // {{{2
 
 // Social {{{1
 function socialLinks($element) { // {{{2
-  $hrefFacebook = "https://www.facebook.com/DeMinicos/";
-  $iconFacebook = 'fab fa-facebook';
-  $hrefInstagram = "https://www.instagram.com/deminicos/";
-  $iconInstagram = 'fab fa-instagram';
-  $hrefTwitter = "https://twitter.com/DeMinicos";
-  $iconTwitter = 'fab fa-twitter';
+  $style .= 'width:100%;';
 
-  $row = element($element, "div", array("class"=>"text-center"));
-  $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-12 text-center"));
+  $hrefFacebook = "https://www.facebook.com/DeMinicos/";
+  // $iconFacebook = 'fab fa-facebook';
+  $iconFacebook = '/assets/img/social/facebook.jpg';
+  
+  $hrefInstagram = "https://www.instagram.com/deminicos/";
+  // $iconInstagram = 'fab fa-instagram';
+  $iconInstagram = '/assets/img/social/instagram.jpg';
+  
+  $hrefTwitter = "https://twitter.com/DeMinicos";
+  // $iconTwitter = 'fab fa-twitter';
+  $iconTwitter = '/assets/img/social/twitter.jpg';
+
+  $row = element($element, "div", array("class"=>"row text-center"));
 
   // Facebook
+  $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-4 text-center"));
   $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#3b5998", "href"=>$hrefFacebook));
   $span = element($a, "span", array("class"=>"socialIcon"));
-  element($span, "span", array("class"=>$iconFacebook));
+  element($span, "img", array("src"=>$iconFacebook, 'style'=>$style));
 
   // Instagram
+  $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-4 text-center"));
   $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefInstagram));
   $span = element($a, "span", array("class"=>"instagram"));
-  element($span, "span", array("class"=>$iconInstagram));
+  // element($span, "span", array("class"=>$iconInstagram));
+  element($span, "img", array("src"=>$iconInstagram, 'style'=>$style));
 
   // Twitter
+  $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-4 text-center"));
   $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#00acee", "href"=>$hrefTwitter));
   $span = element($a, "span", array("class"=>"socialIcon"));
-  element($span, "span", array("class"=>$iconTwitter));
+  // element($span, "span", array("class"=>$iconTwitter));
+  element($span, "img", array("src"=>$iconTwitter, 'style'=>$style));
 }
 
 function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
