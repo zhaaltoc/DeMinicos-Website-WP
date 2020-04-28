@@ -30,6 +30,7 @@ $stringLinkFile = 'Download the Order Form';
 // OrderForm {{{2
 $row = element($panel, "div", array("class"=>"row", 'style'=>'padding-bottom:0px;'));
 $col = element($row, "div", array("class"=>"col-12 text-center", "style"=>$styleOrderForm));
+// Download
 linkfile($col , "h2" , $doc , $docOrderForm, $stringLinkFile, '', $styleLinkFile);
 
 // Email
@@ -43,6 +44,10 @@ element($div, "img", array("src"=>$imgOrderForm, "style"=>$styleOrderFormImg));
 
 $row = element($panel, "div", array("class"=>"row", 'style'=>'padding-bottom:0px;'));
 $col = element($row, "div", array("class"=>"col-12 text-center", "style"=>$styleOrderForm));
+// Email
+email($col, "h3", $email, $emailSubject, false, '"' . $emailStr . '"', $classPhone, $stylePhone);
+
+// Download
 linkfile($col , "h2" , $doc , $docOrderForm, $stringLinkFile, '', $styleLinkFile);
 
 // Footer {{{1
