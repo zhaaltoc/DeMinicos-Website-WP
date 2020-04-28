@@ -168,14 +168,15 @@ function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
   return $div;
 }
 
-function email($element, $type, $email, $class, $style) { // {{{2
+function email($element, $type, $email, $emailSubject, $icon, $str, $class, $style) { // {{{2
   $classEmail = 'fa fas fa-envelope-open';
 
   $div = element($element, "div", array("class"=>"text-center"));
   $type = element($div, $type, array("class"=>$class, "style"=>$style));
-  $a = element($type, "a", array("href"=>"mailto:".$email, 'style'=>$style));
-  element($a, 'span', array("class"=>$classEmail));
-  element($a, 'span', array("class"=>$class), ' ' . $email);
+  $a = element($type, "a", array("href"=>"mailto:".$email . "?subject=" . $emailSubject, 'style'=>$style));
+  if ($icon)
+    element($a, 'span', array("class"=>$classEmail));
+  element($a, 'span', array("class"=>$class), ' ' . $str);
   return $div;
 }
 
@@ -378,6 +379,9 @@ require_once "assets/php/navbar.php";
 
 // Variables {{{2
 // Information {{{3
+$email = 'orders@deminicos.ca';
+$emailSubject = 'I would like to place an order!';
+$emailStr = 'Click here to order';
 $phoneNumber = "403-454-6789";
 $mapsLink = "https://www.google.com/maps/place/De+Minico's/@51.0946308,-114.0457049,14.25z/data=!4m12!1m6!3m5!1s0x53716500c531255d:0xf2d24169e7a44e1b!2sDe+Minico's!8m2!3d51.093125!4d-114.032371!3m4!1s0x53716500c531255d:0xf2d24169e7a44e1b!8m2!3d51.093125!4d-114.032371?hl=en-US";
 $mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
