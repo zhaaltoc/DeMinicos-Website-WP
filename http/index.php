@@ -4,6 +4,7 @@
 // Description: Main index
 
 require_once "assets/php/header.php";
+require_once "assets/php/style.php";
 
 $imgLogo = $img . "/logo.png";
 $imgLogoNoStamp = $img . "/logonostamp.jpg";
@@ -11,7 +12,7 @@ $imgLogoNoStamp = $img . "/logonostamp.jpg";
 //
 
 if($ORDERFORM) {
-require "orderform.php";
+  require "orderform.php";
 }
 else {
   // About Us {{{1
@@ -29,10 +30,7 @@ else {
   element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "Order De Minico’s");
 
   // Phone {{{2
-  $stylePhone = "";
-  $classPhone = "text-center";
-  phone($col, "p", $phoneNumber, $classPhone, $stylePhone);
-  // phone($col, "h2", $phoneNumber, $styleFontP);
+  phone($col, "p", $phoneNumber, $classPhone, $stylePhoneP);
 
   // Social Media {{{2
   element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "Learn more about us by following us on social media.");
@@ -40,10 +38,10 @@ else {
 
   // Navigation {{{2
   $col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top:30px; text-align:center;"));
-  navLink2($col, 'h5', 'menu.php', 'In Store Menu');
-  navLink2($col, 'h5', 'freezer.php', 'Heat and Eat');
-  navLink2($col, 'h5', 'catering.php', 'Catering');
-  navLink2($col, 'h5', 'photogallery.php', 'Photo Gallery');
+  navLink2($col, 'h3', 'menu.php', 'In Store Menu');
+  navLink2($col, 'h3', 'freezer.php', 'Heat and Eat');
+  navLink2($col, 'h3', 'catering.php', 'Catering');
+  navLink2($col, 'h3', 'photogallery.php', 'Photo Gallery');
 
   // Hours {{{2
   $col = element($row, "div", array("class"=>"col-md-4"));
@@ -56,13 +54,13 @@ else {
   $col = element($row, "div", array("class"=>"col-10"));
   $table = element($col, "table", array("class"=>"text-center"));
   $tbody = element($table, "tbody");
-  hourRow($tbody, "Monday", "11 A.M.", "2 P.M.", $styleFontP);
-  hourRow($tbody, "Tuesday", "11 A.M.", "6 P.M.", $styleFontP);
-  hourRow($tbody, "Wednsday", "11 A.M.", "6 P.M.", $styleFontP);
-  hourRow($tbody, "Thursday", "11 A.M.", "6 P.M.", $styleFontP);
-  hourRow($tbody, "Friday", "11 A.M.", "8 P.M.", $styleFontP);
-  hourRow($tbody, "Saturday", "Closed", "", $styleFontP);
-  hourRow($tbody, "Sunday", "Closed", "", $styleFontP);
+  hourRow($tbody, "Monday", "11 A.M.", "2 P.M.", $styleDays, $styleHours);
+  hourRow($tbody, "Tuesday", "11 A.M.", "6 P.M.", $styleDays, $styleHours);
+  hourRow($tbody, "Wednsday", "11 A.M.", "6 P.M.", $styleDays, $styleHours);
+  hourRow($tbody, "Thursday", "11 A.M.", "6 P.M.", $styleDays, $styleHours);
+  hourRow($tbody, "Friday", "11 A.M.", "8 P.M.", $styleDays, $styleHours);
+  hourRow($tbody, "Saturday", "Closed", "", $styleDays, $styleHours);
+  hourRow($tbody, "Sunday", "Closed", "", $styleDays, $styleHours);
 }
 
 // Footer {{{1
