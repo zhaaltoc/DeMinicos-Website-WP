@@ -9,7 +9,7 @@ $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12"));
 
 phone($col, "h2", $phoneNumber, $classPhone, $stylePhone);
-email($col, "h3", $email, true, $email, $classPhone, $stylePhone);
+email($col, "h3", $email, $emailSubject, true, $email, $classPhone, $stylePhone);
 address($col, "h3", $mapsLink, $mapsAddress, $classAddress, $styleAddress);
 
 // Google Maps {{{2

@@ -33,7 +33,7 @@ $col = element($row, "div", array("class"=>"col-12 text-center", "style"=>$style
 linkfile($col , "h2" , $doc , $docOrderForm, $stringLinkFile, '', $styleLinkFile);
 
 // Email
-email($col, "h3", $email, false, $emailStr, $classPhone, $stylePhone);
+email($col, "h3", $email, $emailSubject, false, '"' . $emailStr . '"', $classPhone, $stylePhone);
 
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-md-2 text-center"));
