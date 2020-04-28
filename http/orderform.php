@@ -32,6 +32,9 @@ $row = element($panel, "div", array("class"=>"row", 'style'=>'padding-bottom:0px
 $col = element($row, "div", array("class"=>"col-12 text-center", "style"=>$styleOrderForm));
 linkfile($col , "h2" , $doc , $docOrderForm, $stringLinkFile, '', $styleLinkFile);
 
+// Email
+email($col, "h3", $email, false, $emailStr, $classPhone, $stylePhone);
+
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-md-2 text-center"));
 $col = element($row, "div", array("class"=>"col-md-8 text-center"));
