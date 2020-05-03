@@ -168,12 +168,14 @@ function phone($element, $type, $phoneNumber, $class, $style) { // {{{2
   return $div;
 }
 
-function email($element, $type, $email, $emailSubject, $icon, $str, $class, $style) { // {{{2
+function email($element, $type, $email, $emailcc, $emailSubject, $icon, $str, $class, $style) { // {{{2
   $classEmail = 'fa fas fa-envelope-open';
 
   $div = element($element, "div", array("class"=>"text-center"));
   $type = element($div, $type, array("class"=>$class, "style"=>$style));
   $a = element($type, "a", array("href"=>"mailto:".$email . "?subject=" . $emailSubject, 'style'=>$style));
+  // I attempted to add the cc of office@deminicos.ca.. Instead this didn't seem to work properly. I am missing something.
+  //$a = element($type, "a", array("href"=>"'mailto:{$email}?cc={$emailcc}&&subject={$emailSubject}'", 'style'=>$style));
   if ($icon)
     element($a, 'span', array("class"=>$classEmail));
   element($a, 'span', array("class"=>$class), ' ' . $str);
@@ -379,7 +381,8 @@ require_once "assets/php/navbar.php";
 
 // Variables {{{2
 // Information {{{3
-$email = 'orders@deminicos.ca';
+$email = 'office@deminicos.ca';
+$emailcc = 'office@deminicos.ca';
 $emailSubject = 'I would like to place an order!';
 $emailStr = 'Click here to order';
 $phoneNumber = "403-454-6789";
