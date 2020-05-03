@@ -353,7 +353,7 @@ $body = element($html, "body", array("class"=>"fa", 'style'=>'width:100%;'));
 // Header {{{1
 // Development Flags {{{2
 // Set `index.php` link to display order form and only display order form on nav
-$ORDERFORM = false;
+$ORDERFORM = true;
 
 // Tab title {{{2
 element($head, "title", array(), $companyName);
