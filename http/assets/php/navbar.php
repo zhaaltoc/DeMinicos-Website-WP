@@ -1,6 +1,6 @@
 <?php
 // Name: php/navbar.php
-// Description:
+// Description: Site navigation
 
 $styleNavTop = "1%";
 // $styleNav .= 'background-color:#aaaa33;';

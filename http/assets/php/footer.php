@@ -4,7 +4,8 @@
 // Description: Page standard footer
 
 // Footer {{{1
-// Address {{{2
+// Contact and Location {{{2
+
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12"));
 
@@ -13,12 +14,16 @@ email($col, "h3", $email, $emailcc, $emailSubject, true, $email, $classPhone, $s
 address($col, "h3", $mapsLink, $mapsAddress, $classAddress, $styleAddress);
 
 // Google Maps {{{2
-$row = element($panel, "div", array("id"=>"section-location", "class"=>"row"));
+$row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12 text-center"));
 googleMaps($col, $mapsIfram, 'section-location', $classMaps,  $styleMaps);
 
+// googleMaps($col, $mapsIfram, $classMaps,  $styleMaps);
+
 // Social Media {{{2
-socialLinks($panel);
+$row = element($panel, "div", array("class"=>"row"));
+$col = element($row, "div", array("class"=>"col-12 text-center"));
+socialLinks($col);
 
 // Build {{{1
 header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
