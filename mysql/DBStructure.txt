@@ -1,0 +1,107 @@
+** Create a Database User - instead of Root use webuser  (Read Only to DeMinicos Database)
+** Password for webuser
+
+database rules:
+
+1) A package can not contain packages.
+2) An 
+
+
+database structure:
+
+items
+ - id (Index - Integer)
+ - name
+ - shortdesc
+ - description
+ - imagename (name of the picture in the http/assets/img folder)
+ - notes
+ - price_id - active price for this item.
+ - package_id
+ - addon_id
+ - combo_id
+ - instock (Boolean true/false) - toggle an out of stock comment on the item page.
+ - active (Boolean true/false) - toggle this item active / inactive - only show on the menu if active.
+
+package
+ - id
+ - items_id
+ - type 0,1,2 - toggle if item is a package of other items - if 0 - No, if 1 - yes(Use this item price), if 2 - Sum price of linked items.
+ 
+addon
+ - id
+ - items_id
+ - type 0,1,2 - toggle if an item has addons (IE Ingredients) - if 0 - No, if 1 - yes(Use this item price), if 2 - Sum price of linked items.
+ 
+combo
+ - id
+ - items_id
+ - type 0,1,2... - toggle if item is a combo item - price is a base price, number indicates # of free addons, when exceeding the # of free addon, add price of addon to total.
+ 
+categories
+ - id
+ - name
+ - description
+ - imagename (name of the picture in the http/assets/img folder)
+ - active (Boolean true/false) - toggle this item active / inactive - only show entire category of items on the menu if active.
+
+legend
+ - id
+ - name
+ - shortdesc
+ - description
+ - legendimagename (name of the picture in the http/assets/img folder)
+ - tagimagename (name of the picture in the http/assets/img folder)
+
+pages
+ - id
+ - name
+ - shortdesc
+ - description
+ - notes
+
+price
+ - id
+ - price
+
+categories_items  (an item can be listed in more than 1 category)
+ - id
+ - categories_id (one)
+ - item_id (Many)
+ - weight (integer) default=100 - weight will show the order the items are displayed. 0 being highest priority.
+
+package_items (Link table)
+ - id
+ - package_id (One) - this is an Item Number that has been flagged as a package of items.
+ - items_id (Many) - these are the items contained in the package.  (If it is a case of sauce, then you would have 12 sauce listed, with different weight specified)
+ - weight (integer) default=100 - weight will show the order the items are displayed. 0 being highest priority.
+
+items_addon (Link table) - ignore inactive items when linked into this table. (may be ingredients)
+ - id
+ - item_id(One)
+ - addon_id (Many)
+ - weight (integer) default=100 - weight will show the order the items are displayed. 0 being highest priority.
+
+items_legend (Link table)
+ - id
+ - items_id (One)
+ - legend_id (Many)
+ - weight (integer) default=100 - weight will show the order the items are displayed. 0 being highest priority.
+
+pages_categories (Link table)
+ - id
+ - pages_id (One)
+ - categories_id (Many)
+ - weight (integer) default=100 - weight will show the order the items are displayed. 0 being highest priority.
+
+items_price
+ - id
+ - items_id (One)
+ - price_id (Many)
+ - active (Boolean true/false) - toggle this if this price is the active price for this item.
+
+combo_items
+ - id
+ - combo_id (One)
+ - items_id (Many)
+ - weight (integer) default=100 - weight will show the order the items are displayed. 0 being highest priority.

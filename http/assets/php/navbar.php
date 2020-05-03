@@ -1,25 +1,17 @@
 <?php
-
 // Name: php/navbar.php
 // Description:
 
-$imgHome = $img  . "/home.png";
-// $imgBrand = $img . "/banner.png";
-$imgBrand = $img . "/logonostamp.jpg";
+$styleNavTop = "1%";
+// $styleNav .= 'background-color:#aaaa33;';
+$styleNav .= 'background-color:#ffffff;';
+$styleNav .= 'opacity:0.66;';
+$styleNav .= "border-radius:10%;";
+$styleNav .= 'top: -' . $styleNavTop . ';';
+$styleNav .= "transform: translateY(" . $styleNavTop . ");";
 
-$hrefBrand = "/";
-$imgDoordash = $img . "/doordash.png";
-$hrefDoordash = "https://www.doordash.com/store/de-minico-s-calgary-99506/";
-$imgDoordash = $img . "/skipdish.png";
-$hrefSkipDish = "https://www.skipthedishes.com/de-minicos";
-
-// Insert navbar link into $parent DOM element
-function navLink($parent, $id, $inner, $href) {
-    $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item"));
-    $a = element($li, "a", array("class"=>"nav-link", "href"=>$href), $inner);
-}
-
-$nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse"));
+$nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top navbar-light bg-light", "style"=>$styleNav));// navbar-inverse bg-inverse"));
+// $nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top navbar-light bg-light", "style"=>"background-color:transparent"));// navbar-inverse bg-inverse"));
 $navToggler = element($nav, "button", array(
     "class"=>"navbar-toggler navbar-toggler-right",
     "type"=>"button",
@@ -32,24 +24,27 @@ $navToggler = element($nav, "button", array(
 element($navToggler, "span", array("class"=>"navbar-toggler-icon"));
 
 $navBrand = element($nav, "a", array("class"=>"navbar-brand", "href"=>$hrefBrand));
-//$navBrand = element($nav, "div", array("class"=>"navbar-brand", "href"=>"#"));
-element($navBrand, "img", array("class"=>"navbar", "src"=>$imgBrand, "alt"=>"", "style"=>"padding:0; height: 32px; border-radius:50%"));
+element($navBrand, "img", array("class"=>"navbar", "src"=>$imgBrand, "alt"=>"", "style"=>"padding:0; height: 32px; border-radius:10%"));
 $navBar = element($nav, "div", array("id"=>"navbarSupportedContent", "class"=>"collapse navbar-collapse"));
-$navLinks = element($navBar, "ul", array("class"=>"navbar-nav ml-auto"));
-navLink($navLinks, "home", "Home", "/");
+$styleNavLinks .= 'background-color: transparent;';
+$styleNavLinks .= 'font-size:1.5em;';
+$styleNavLinks .= 'font-weight:bold;';
+$styleNavLinks .= 'color: #000000;';
+$classNavLinks .= 'navbar-nav ';
+$classNavLinks .= 'ml-auto ';
 
-navLink($navLinks, "instoremenu", "In Store Menu", "menu.php");
-navLink($navLinks, "freezermenu", "Freezer Menu", "freezer.php");
-navLink($navLinks, "catering", "Catering", "catering.php");
-navLink($navLinks, "photogallery", "Photo Gallery", "photogallery.php");
-
-// Delivery dropdown
-//$li = element($navLinks, "li", array("class"=>"nav-item dropdown"));
-//$a = element($li, "a", array("class"=>"nav-link dropdown-toggle", "data-toggle"=>"dropdown"), "Delivery");
-//$div = element($li, "div", array("class"=>"dropdown-menu"));
-//$a = element($div, "a", array("class"=>"dropdown-item", "href"=>$hrefDoordash), "DoorDash");
-//$a = element($div, "a", array("class"=>"dropdown-item", "href"=>$hrefSkipDish), "Skip the Dishes");
-//$li = element($navBar, "li", array("class"=>"nav-item"));
-//element($li, "img", array("class"=>"navbar", "src"=>$imgDoordash, "alt"=>"", "style"=>"height: 50px; margin-top: -5px;"));
-navLink($navLinks, "location", "Location", "#");
+$navLinks = element($navBar, "ul", array('class'=>$classNavLinks));
+navLink($navLinks, "home", "", "/", $styleNavLinks); // Extra space still a link
+if(!$ORDERFORM) {
+  navLink($navLinks, "home", "Home", "/", $styleNavLinks);
+  navLink($navLinks, "instoremenu", "In Store Menu", "menu.php", $styleNavLinks);
+  navLink($navLinks, "freezermenu", "Heat and Eat", "freezer.php", $styleNavLinks);
+  navLink($navLinks, "catering", "Catering", "catering.php", $styleNavLinks);
+  navLink($navLinks, "photogallery", "Photo Gallery", "photogallery.php", $styleNavLinks);
+  navLink($navLinks, "orderform", "Order Form", "orderform.php", $styleNavLinks);
+}
+else {
+  navLink($navLinks, "orderform", "Order Form", "/", $styleNavLinks);
+}
+navLink($navLinks, "location", "Location", "#", $styleNavLinks);
 ?>
