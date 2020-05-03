@@ -234,18 +234,18 @@ function address($element, $type) { // {{{2
 }*/
 
 // Hours {{{1
-function hourRow($tbody, $day, $open, $closed) { // {{{2
+function hourRow($tbody, $day, $open, $closed, $styleDays, $styleHours) { // {{{2
   $tr = element($tbody, "tr");
   $td = element($tr, "td");
-  $p = element($td, "p", array("style"=>"margin-bottom:5px;"));
+  $p = element($td, "p", array("style"=>$styleDays));
   element($p, "b", array(), $day);
   $td = element($tr, "td");
-  element($td, "p", array("style"=>"margin-bottom:5px;"), $open);
+  element($td, "p", array("style"=>$styleHours), $open);
   if ($open != "Closed") {
     $td = element($tr, "td");
-    element($td, "p", array("style"=>"margin-bottom:5px;"), "-");
+    element($td, "p", array("style"=>$styleHours), "-");
     $td = element($tr, "td");
-    element($td, "p", array("style"=>"margin-bottom:5px;"), $closed);
+    element($td, "p", array("style"=>$styleHours), $closed);
   }
 }
 
