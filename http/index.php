@@ -9,7 +9,6 @@ require_once "assets/php/style.php";
 $imgLogo = $img . "/logo.png";
 $imgLogoNoStamp = $img . "/logonostamp.jpg";
 // $imgLogoNoStamp = $img . "/logostampcolor_reverse.jpg";
-//
 
 if($ORDERFORM) {
   require "orderform.php";
