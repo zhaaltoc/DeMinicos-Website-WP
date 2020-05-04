@@ -2,6 +2,8 @@
 // Name: php/navbar.php
 // Description: Site navigation
 
+require_once "../mysql/mysqler.php";
+
 $styleNavTop = "1%";
 // $styleNav .= 'background-color:#aaaa33;';
 $styleNav .= 'background-color:#ffffff;';
@@ -33,7 +35,23 @@ $styleNavLinks .= 'color: #000000;';
 $classNavLinks .= 'navbar-nav ';
 $classNavLinks .= 'ml-auto ';
 
+$queryNav = 'SELECT name FROM pages';
+$results = $conn->query($queryNav);
 $navLinks = element($navBar, "ul", array('class'=>$classNavLinks));
+
+navLink($navLinks, "home", "", "/", $styleNavLinks); // Extra space still a link
+if(!$ORDERFORM) {
+  navLink($navLinks, "home", "Home", "/", $styleNavLinks);
+  while($result = $results->fetch_assoc()) {
+    $name = $result['name'];
+    navLink($navLinks, "home", $name, str_replace(' ', '', strtolower($name)) . '.php', $styleNavLinks); // Extra space still a link
+  }
+} else {
+  navLink($navLinks, "orderform", "Order Form", "/", $styleNavLinks);
+}
+navLink($navLinks, "location", "Location", "#", $styleNavLinks);
+
+/*
 navLink($navLinks, "home", "", "/", $styleNavLinks); // Extra space still a link
 if(!$ORDERFORM) {
   navLink($navLinks, "home", "Home", "/", $styleNavLinks);
@@ -46,5 +64,6 @@ if(!$ORDERFORM) {
 else {
   navLink($navLinks, "orderform", "Order Form", "/", $styleNavLinks);
 }
-navLink($navLinks, "location", "Location", "#", $styleNavLinks);
+*/
+// navLink($navLinks, "location", "Location", "#", $styleNavLinks);
 ?>

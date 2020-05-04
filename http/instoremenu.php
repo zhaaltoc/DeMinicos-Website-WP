@@ -5,7 +5,6 @@
 // Description: Main menu
 
 require_once "assets/php/header.php";
-require_once "../mysql/mysqler.php";
 
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12 text-center"));
