@@ -117,17 +117,20 @@ $doc = $assets . "/doc";
 $fonts = $assets . "/fonts";
 $img = $assets . "/img";
 $js = $assets . "/js";
+$mysql = "../mysql";
 $php = $assets . "/php";
+
+$companyName = "De Minico's";
 
 // Build {{{1
 $ORDERFORM = false;
 
-require_once $php . '/variables.php';
-require_once "../mysql/mysqler.php";
+require_once $mysql . '/mysqler.php';
 
 require_once $php . '/menu.php';
 require_once $php . '/social.php';
 
+require_once $php . '/images.php';
 require_once $php . '/style.php';
 
 require_once $php . '/body.php';

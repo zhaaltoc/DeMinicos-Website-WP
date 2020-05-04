@@ -1,5 +1,21 @@
 <?php
-// Social {{{1
+// Variables {{{1
+$hrefBrand = "/";
+$imgDoordash = $img . "/doordash.png";
+$hrefDoordash = "https://www.doordash.com/store/de-minico-s-calgary-99506/";
+$imgDoordash = $img . "/skipdish.png";
+$hrefSkipDish = "https://www.skipthedishes.com/de-minicos";
+
+$email = 'office@deminicos.ca';
+$emailcc = 'office@deminicos.ca';
+$emailSubject = 'I would like to place an order!';
+$emailStr = 'Click here to order';
+$phoneNumber = "403-454-6789";
+$mapsLink = "https://www.google.com/maps/place/De+Minico's/@51.0946308,-114.0457049,14.25z/data=!4m12!1m6!3m5!1s0x53716500c531255d:0xf2d24169e7a44e1b!2sDe+Minico's!8m2!3d51.093125!4d-114.032371!3m4!1s0x53716500c531255d:0xf2d24169e7a44e1b!8m2!3d51.093125!4d-114.032371?hl=en-US";
+$mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
+$mapsIfram = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.831072976366!2d-114.032371!3d51.093125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716500c531255d%3A0xf2d24169e7a44e1b!2sDe+Minico&#39;s!5e0!3m2!1sen!2sca!4v1509148157628";
+
+// Functions {{{1
 function socialLinks($element) { // {{{2
   $style .= 'max-width:50px;';
   $style .= 'width:10%;';
@@ -25,18 +41,13 @@ function socialLinks($element) { // {{{2
   element($span, "img", array("src"=>$iconFacebook, 'style'=>$style));
 
   // Instagram
-  // $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-4 text-center"));
   $a = element ($div, "a", array("class"=>"socialIcon", "href"=>$hrefInstagram));
-  // $span = element($a, "span", array("class"=>"instagram"));
   $span = element($a, "span", array());
-  // element($span, "span", array("class"=>$iconInstagram));
   element($span, "img", array("src"=>$iconInstagram, 'style'=>$style));
 
   // Twitter
-  // $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-4 text-center"));
   $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#00acee", "href"=>$hrefTwitter));
   $span = element($a, "span", array("class"=>"socialIcon"));
-  // element($span, "span", array("class"=>$iconTwitter));
   element($span, "img", array("src"=>$iconTwitter, 'style'=>$style));
 }
 
@@ -66,17 +77,9 @@ function email($element, $type, $email, $emailcc, $emailSubject, $icon, $str, $c
 }
 
 function linkfile($element, $type, $infilepath, $infile, $intext, $class, $style) { // {{{2
-   
   $div = element($element, "div", array("class"=>"text-center"));
   $elem = element($div, $type, array(), " ");
   $a = element($elem, "a", array("href"=>"".$infilepath.$infile), ' ' .$intext);
-
-  // $div = element($element, "div", array("class"=>"text-center"));
-  // $type = element($div, $type, array("class"=>$class, "style"=>$style));
-  // $a = element($type, "a", array("href"=>''.$infilepath.$infile, "style"=>$style));
-  // element($a, 'span', array("class"=>$class));
-  // element($a, 'span', array("class"=>$class), $intext);
-
   return $div;
 }
 
