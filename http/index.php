@@ -1,67 +1,26 @@
 <?php
 // Name: index.php
 // Authors: Travis Gall
-// Description: Main index
+// Description: Root page
 
-require_once "assets/php/header.php";
-require_once "assets/php/style.php";
-
-$imgLogo = $img . "/logo.png";
-$imgLogoNoStamp = $img . "/logonostamp.jpg";
-// $imgLogoNoStamp = $img . "/logostampcolor_reverse.jpg";
+require_once 'assets/php/header.php';
+require_once $php . '/style.php';
 
 if($ORDERFORM) {
-  require "orderform.php";
+  require $php . '/orderform.php';
 }
 else {
-  // About Us {{{1
   $row = element($panel, "div", array("class"=>"row"));
-  $col = element($row, "div", array("class"=>"col-12 text-center"));
-  element($col, "img", array("src"=>$imgLogoNoStamp, "style"=>"width: 50%; border-radius: 5%"));
+  $col = element($row, "div", array('id'=>'page', "class"=>"col-12 text-center"));
+  $app = element($col, "h1", array(), '{{ title }}');
+  // $div = element($col, "div", array('v-on:click'=>'sub'));
+  $app = element($col, "h1", array('v-on:click'=>'sub', 'id'=>'page'), '{{ subtitle }}');
 
-  $row = element($panel, "div", array("class"=>"row"));
-  $col = element($row, "div", array("class"=>"col-md-12", "style"=>"padding-bottom: 50px;"));
+  // element($col, "h1", array(), "In Store Menu");
 
-  // Description {{{2
-  $row = element($panel, "div", array("class"=>"row"));
-  $col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top: 15px;"));
-  element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "De Minico’s offers delicious pizza and paninis. Delight in authentic Italian flavours and try the Margherita or Artista pizza. Add a little kick to your day and spice things up with the Volta panini.");
-  element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "Order De Minico’s");
-
-  // Phone {{{2
-  phone($col, "p", $phoneNumber, $classPhone, $stylePhoneP);
-
-  // Social Media {{{2
-  element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "Learn more about us by following us on social media.");
-  socialLinks($col);
-
-  // Navigation {{{2
-  $col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top:30px; text-align:center;"));
-  navLink2($col, 'h3', 'menu.php', 'In Store Menu');
-  navLink2($col, 'h3', 'freezer.php', 'Heat and Eat');
-  navLink2($col, 'h3', 'catering.php', 'Catering');
-  navLink2($col, 'h3', 'photogallery.php', 'Photo Gallery');
-
-  // Hours {{{2
-  $col = element($row, "div", array("class"=>"col-md-4"));
-  $row = element($col, "div", array("class"=>"row"));
-
-  $col = element($row, "div", array("class"=>"col-12"));
-  element($col, "h2", array("class"=>"text-center", "style"=>"padding-top:15px;"), "Hours");
-
-  $col = element($row, "div", array("class"=>"col-2"));
-  $col = element($row, "div", array("class"=>"col-10"));
-  $table = element($col, "table", array("class"=>"text-center"));
-  $tbody = element($table, "tbody");
-  hourRow($tbody, "Monday", "11 A.M.", "2 P.M.", $styleDays, $styleHours);
-  hourRow($tbody, "Tuesday", "11 A.M.", "6 P.M.", $styleDays, $styleHours);
-  hourRow($tbody, "Wednsday", "11 A.M.", "6 P.M.", $styleDays, $styleHours);
-  hourRow($tbody, "Thursday", "11 A.M.", "6 P.M.", $styleDays, $styleHours);
-  hourRow($tbody, "Friday", "11 A.M.", "8 P.M.", $styleDays, $styleHours);
-  hourRow($tbody, "Saturday", "Closed", "", $styleDays, $styleHours);
-  hourRow($tbody, "Sunday", "Closed", "", $styleDays, $styleHours);
+  require $php . '/overview.php';
 }
 
 // Footer {{{1
-require_once "assets/php/footer.php";
+require_once $php . '/footer.php';
 ?>

@@ -5,7 +5,8 @@
 // Functions {{{1
 function navLink($parent, $id, $inner, $href, $style) { // {{{2
   // Insert navbar link into $parent DOM element
-  $li = element($parent, "li", array("id"=>$id, "class"=>"nav-item"));
+  $div = element($parent, 'div', array('id'=>$id));
+  $li = element($div, "li", array("class"=>"nav-item"));
   return element($li, "a", array("class"=>"nav-link", 'style'=>$style, "href"=>$href), $inner);
 }
 
@@ -38,13 +39,14 @@ $navLinks = element($navBar, "ul", array('class'=>$classNavLinks));
 
 $queryNav = 'SELECT name FROM pages';
 $results = $conn->query($queryNav);
-navLink($navLinks, "home", "", "/", $styleNavLinks); // Extra space still a link
+// navLink($navLinks, "homepage", "", "#", $styleNavLinks); // Extra space still a link
 if(!$ORDERFORM) {
-  navLink($navLinks, "home", "Home", "/", $styleNavLinks);
+  navLink($navLinks, "homepage", "Home", "#", $styleNavLinks);
+
   while($result = $results->fetch_assoc()) {
     $name = $result['name'];
-    $navLink = str_replace(' ', '', strtolower($name)) . '.php';
-    navLink($navLinks, "home", $name, $navLink, $styleNavLinks);
+    $navLink = str_replace(' ', '', strtolower($name));// . '.php';
+    navLink($navLinks, $navLink, $name, '#'/*$navLink*/, $styleNavLinks);
   }
 } else {
   navLink($navLinks, "orderform", "Order Form", "/", $styleNavLinks);
