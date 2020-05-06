@@ -18,6 +18,6 @@ addStyle($head, $css . "/bootstrap.min.css");
 addStyle($head, $css . "/style.css?rnd=" . rand());
 addStyle($head, $css . "/table.css?rnd=" . rand());
 
-$panel = element($body, "div", array("class"=>$classPanel, "style"=>$stylePanel));
+$panel = element($body, "div", array('id'=>'panel', "class"=>$classPanel, "style"=>$stylePanel));
 $background = element($panel, "div", array("style"=>$styleBackground));
 ?>

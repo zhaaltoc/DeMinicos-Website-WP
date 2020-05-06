@@ -32,10 +32,10 @@ $jsJQuery = $js . "/jquery.min.js";
 $jsScript = $js . "/script.js";
 $jsVue = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js";
 
-addScript($head, $jsBootstrap);
 addScript($head, $jsJQuery);
-addScript($head, $jsScript);
+addScript($head, $jsBootstrap);
 addScript($head, $jsVue);
+addScript($body, $jsScript);
 
 // Header {{{2
 header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");

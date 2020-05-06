@@ -4,10 +4,9 @@
 
 // Functions {{{1
 function navLink($parent, $id, $inner, $href, $style) { // {{{2
-  // Insert navbar link into $parent DOM element
-  $div = element($parent, 'div', array('id'=>$id));
+  $div = element($parent, 'div', array('id'=>'nav'));
   $li = element($div, "li", array("class"=>"nav-item"));
-  return element($li, "a", array("class"=>"nav-link", 'style'=>$style, "href"=>$href), $inner);
+  return element($li, "a", array('id'=>'nav', 'v-on:click'=>'nav("' . $inner . '")', "class"=>"nav-link", 'style'=>$style, "href"=>$href), $inner);
 }
 
 function navLink2($element, $type, $link, $name) { // {{{2
@@ -35,11 +34,14 @@ $navBrand = element($nav, "a", array("class"=>"navbar-brand", "href"=>$hrefBrand
 element($navBrand, "img", array("class"=>"navbar", "src"=>$imgBrand, "alt"=>"", "style"=>"padding:0; height: 32px; border-radius:10%"));
 $navBar = element($nav, "div", array("id"=>"navbarSupportedContent", "class"=>"collapse navbar-collapse"));
 
-$navLinks = element($navBar, "ul", array('class'=>$classNavLinks));
+$navLinks = element($navBar, "ul", array('id'=>'nav', 'class'=>$classNavLinks));
 
+// Query pages
 $queryNav = 'SELECT name FROM pages';
 $results = $conn->query($queryNav);
-// navLink($navLinks, "homepage", "", "#", $styleNavLinks); // Extra space still a link
+
+// Create nav from results
+navLink($navLinks, "homepage", "", "#", $styleNavLinks); // Extra space still a link
 if(!$ORDERFORM) {
   navLink($navLinks, "homepage", "Home", "#", $styleNavLinks);
 
