@@ -6,7 +6,8 @@
 function navLink($parent, $id, $inner, $href, $style) { // {{{2
   $div = element($parent, 'div', array('id'=>'nav'));
   $li = element($div, "li", array("class"=>"nav-item"));
-  return element($li, "a", array('id'=>'nav', 'v-on:click'=>'nav("' . $inner . '")', "class"=>"nav-link", 'style'=>$style, "href"=>$href), $inner);
+  // return element($li, "a", array('id'=>'nav', 'v-on:click'=>'nav("' . $inner . '")', "class"=>"nav-link", 'style'=>$style, "href"=>$href), $inner);
+  return element($li, "a", array("class"=>"nav-link", 'style'=>$style, "href"=>$href), $inner);
 }
 
 function navLink2($element, $type, $link, $name) { // {{{2
@@ -41,14 +42,15 @@ $queryNav = 'SELECT name FROM pages';
 $results = $conn->query($queryNav);
 
 // Create nav from results
-navLink($navLinks, "homepage", "", "#", $styleNavLinks); // Extra space still a link
+navLink($navLinks, "homepage", "", "/", $styleNavLinks); // Extra space still a link
 if(!$ORDERFORM) {
-  navLink($navLinks, "homepage", "Home", "#", $styleNavLinks);
+  navLink($navLinks, "homepage", "Home", "/", $styleNavLinks);
 
   while($result = $results->fetch_assoc()) {
     $name = $result['name'];
     $navLink = str_replace(' ', '', strtolower($name));// . '.php';
-    navLink($navLinks, $navLink, $name, '#'/*$navLink*/, $styleNavLinks);
+    // navLink($navLinks, $navLink, $name, '#'[>$navLink<], $styleNavLinks);
+    navLink($navLinks, $navLink, $name, $navLink . '.php', $styleNavLinks);
   }
 } else {
   navLink($navLinks, "orderform", "Order Form", "/", $styleNavLinks);

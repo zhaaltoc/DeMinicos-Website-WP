@@ -9,11 +9,12 @@ else {
 }
 $mysql_user="root";
 $mysql_pass="13Rootpass13!";
-$mysql_db="deminicos";
+$mysql_db="deminicos_test";
 
 // Create connection
 $conn = mysqli_connect($mysql_serv, $mysql_user, $mysql_pass, $mysql_db, $mysql_port);
-if (!$conn) {
+if (!$conn)
   die("Connection failed: " . mysqli_connect_error());
-}
+// else
+  // $_GLOBAL['conn'] = $conn;
 ?>

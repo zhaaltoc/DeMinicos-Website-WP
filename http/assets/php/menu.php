@@ -1,5 +1,43 @@
 <?php
 // Menu {{{1
+
+function myquery($conn, $query) { // {{{2
+  // return $_GLOBAL['conn']->query($query);
+  // return $results;
+  // $results = $conn->query($query);
+  return $conn->query($query);
+}
+
+function pages($conn) { // {{{2
+  $query = 'SELECT * FROM pages';
+  return myquery($query);
+}
+
+function categories($conn, $page) {
+  $page_query = myquery($conn, '
+SELECT * FROM pages WHERE name = "' . $page . '"');
+
+  $pages[] = array();
+  while($page = mysqli_fetch_assoc($page_query)) {
+    $pages[] = $page;
+  }
+
+  $categories[] = array();
+  foreach($pages as $page) {
+
+    $queryStr = '
+SELECT * FROM categories, pages_categories
+WHERE pages_categories.categories_id = categories.id
+AND pages_categories.pages_id = "' . $page['id'] . '"';
+
+    $results = $conn->query($queryStr) or die($conn->error);
+    while($category = $results->fetch_assoc()) {
+      $categories[] = $category;
+    }
+  }
+  return $categories;
+}
+
 function menu($conn, $query, $category, $description, $col, $allowHeader=true) { // {{{2
   $results = $conn->query($query);
   if ($results->num_rows > 0) {
@@ -16,7 +54,7 @@ function menu($conn, $query, $category, $description, $col, $allowHeader=true) {
     // Body
     $i = 0;
     while($result = $results->fetch_assoc()) {
-      $query = "SELECT * FROM menu_items_toppings JOIN menu_toppings ON menu_toppings.id = menu_items_toppings.menu_topping_id WHERE menu_item_id = " . $result["id"];
+      $query = "SELECT * FROM menu_items_toppings JOIN menu_toppings ON menu_items_toppings.menu_topping_id WHERE menu_item_id = " . $result["id"];
       $results_toppings = $conn->query($query);
       $toppings = array();
       while($topping = $results_toppings->fetch_assoc())
