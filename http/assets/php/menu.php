@@ -13,7 +13,15 @@ function pages($conn) { // {{{2
   return myquery($query);
 }
 
-function categories($conn, $page) {
+function category_items($conn, $category) { // {{{2
+    $queryStr = '
+SELECT * FROM items, categories_items
+WHERE categories_items.items_id = items.id
+AND categories_items.id = "' . $category['id'] . '"';
+  return $items;
+}
+
+function categories($conn, $page) { // {{{2
   $page_query = myquery($conn, '
 SELECT * FROM pages WHERE name = "' . $page . '"');
 
@@ -36,6 +44,20 @@ AND pages_categories.pages_id = "' . $page['id'] . '"';
     }
   }
   return $categories;
+}
+
+function items($conn, $categories_id) { // {{{2
+  $items[] = array();
+  $queryStr = '
+SELECT * FROM items, categories_items
+WHERE categories_items.categories_id = "' . $categories_id . '"
+AND categories_items.items_id = items.id';
+
+  $results = $conn->query($queryStr) or die($conn->error);
+  while($item = $results->fetch_assoc()) {
+    $items[] = $item;
+  }
+  return $items;
 }
 
 function menu($conn, $query, $category, $description, $col, $allowHeader=true) { // {{{2
@@ -128,7 +150,7 @@ function navMenu($element, $navs, $class, $style) { // {{{2
     $row = element($box, 'div', array('class'=>'row'));
     $col = element($row, 'div', array('class'=>'col-12', 'style'=>'padding-bottom:25px;'));
     $p = element($col, 'h5');
-    element($p, 'a', array('href'=>'#' . $nav), $nav);
+    element($p, 'a', array('href'=>'#' . $nav['name']), $nav['name']);
   }
   return $box;
 }

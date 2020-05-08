@@ -20,8 +20,23 @@ else {
   $name = array();
   $results = categories($conn, 'In Store Menu');
   foreach($results as $result)
-    $name[] = $result['name'];
-  navMenu($panel, $name, $classNavMenu,  $styleNavMenu);
+    $categories[] = $result;
+
+  foreach($categories as $category) {
+    element($col, 'h1', array(), $category['name']);
+    $items = items($conn, $category['categories_id']);
+    foreach($items as $item) {
+      element($col, 'p', array(), $item['name']);
+      element($col, 'p', array(), $item['shortdesc']);
+      element($col, 'p', array(), $item['description']);
+      element($col, 'p', array(), $item['imagename']);
+      element($col, 'p', array(), $item['notes']);
+      element($col, 'p', array(), $item['instock']); // Bool
+      element($col, 'p', array(), $item['acrive']); // Bool
+    }
+  }
+
+  navMenu($panel, $categories, $classNavMenu,  $styleNavMenu);
 
 }
 
