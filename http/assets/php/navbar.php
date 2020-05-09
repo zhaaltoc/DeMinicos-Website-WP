@@ -7,7 +7,10 @@ function navLink($parent, $id, $inner, $href, $style) { // {{{2
   $div = element($parent, 'div', array('id'=>'nav'));
   $li = element($div, "li", array("class"=>"nav-item"));
   // return element($li, "a", array('id'=>'nav', 'v-on:click'=>'nav("' . $inner . '")', "class"=>"nav-link", 'style'=>$style, "href"=>$href), $inner);
-  return element($li, "a", array("class"=>"nav-link", 'style'=>$style, "href"=>$href), $inner);
+  // return element($li, "a", array("class"=>"nav-link", 'style'=>$style, "href"=>$href . '?page="' . urlencode($inner) . '"'), $inner);
+  if ($id != 'location')
+    return element($li, "a", array("class"=>"nav-link", 'style'=>$style, "href"=>'index.php?page=' . urlencode($inner)), $inner);
+  return element($li, "a", array("class"=>"nav-link", 'style'=>$style, "href"=>"#" . $id), $inner);
 }
 
 function navLink2($element, $type, $link, $name) { // {{{2

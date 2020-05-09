@@ -3,16 +3,20 @@
 // Authors: Travis Gall
 // Description: Root page
 
+$_SESSION['page'] = $_GET['page'];
+
 require_once 'assets/php/header.php';
 require_once $php . '/style.php';
 
-if($ORDERFORM) {
+if($ORDERFORM || $_SESSION['page'] == 'Order Form') {
   require $php . '/orderform.php';
 }
 else {
-  require $php . '/overview.php';
+  if ($_SESSION['page'] == '' || $_SESSION['page'] == 'Home')
+    require $php . '/overview.php';
+  else
+    menu($panel, $conn, $classNavMenu, $styleNavMenu);
 }
 
-// Footer {{{1
 require_once $php . '/footer.php';
 ?>
