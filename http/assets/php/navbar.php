@@ -41,8 +41,7 @@ $navBar = element($nav, "div", array("id"=>"navbarSupportedContent", "class"=>"c
 $navLinks = element($navBar, "ul", array('id'=>'nav', 'class'=>$classNavLinks));
 
 // Query pages
-$queryNav = 'SELECT name FROM pages';
-$results = $conn->query($queryNav);
+$results = pages($conn);
 
 // Create nav from results
 navLink($navLinks, "homepage", "", "/", $styleNavLinks); // Extra space still a link

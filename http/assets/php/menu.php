@@ -7,14 +7,14 @@ function myquery($conn, $query) { // {{{2
 
 function pages($conn) { // {{{2
   $query = 'SELECT * FROM pages';
-  return myquery($query);
+  return $conn->query($query);
 }
 
 function categories($conn, $page) { // {{{2
   $page_query = myquery($conn, '
 SELECT * FROM pages WHERE name = "' . $page . '"');
 
-  $pages[] = array();
+  $pages = array();
   while($page = mysqli_fetch_assoc($page_query)) {
     $pages[] = $page;
   }
@@ -36,7 +36,7 @@ AND pages_categories.pages_id = "' . $page['id'] . '"';
 }
 
 function categories_items($conn, $categories_id) { // {{{2
-  $items[] = array();
+  $items = array();
   $queryStr = '
 SELECT * FROM items, categories_items
 WHERE categories_items.categories_id = "' . $categories_id . '"
