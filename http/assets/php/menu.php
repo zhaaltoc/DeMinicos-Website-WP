@@ -6,7 +6,7 @@ function myquery($conn, $query) { // {{{2
 }
 
 function pages($conn) { // {{{2
-  $query = 'SELECT * FROM pages';
+  $query = 'SELECT * FROM pages WHERE active = 1';
   return $conn->query($query);
 }
 
