@@ -6,7 +6,7 @@ function myquery($conn, $query) { // {{{2
 }
 
 function pages($conn) { // {{{2
-  $query = 'SELECT * FROM pages WHERE active = 1';
+  $query = 'SELECT * FROM pages WHERE active = 1 ORDER BY weight';
   return $conn->query($query);
 }
 
@@ -25,7 +25,8 @@ SELECT * FROM pages WHERE name = "' . $page . '"');
     $queryStr = '
 SELECT * FROM categories, pages_categories
 WHERE pages_categories.categories_id = categories.id
-AND pages_categories.pages_id = "' . $page['id'] . '"';
+AND pages_categories.pages_id = "' . $page['id'] . '"
+ORDER BY weight';
 
     $results = $conn->query($queryStr) or die($conn->error);
     while($category = $results->fetch_assoc()) {
@@ -40,7 +41,8 @@ function categories_items($conn, $categories_id) { // {{{2
   $queryStr = '
 SELECT * FROM items, categories_items
 WHERE categories_items.categories_id = "' . $categories_id . '"
-AND categories_items.items_id = items.id';
+AND categories_items.items_id = items.id
+ORDER BY weight';
 
   $results = $conn->query($queryStr) or die($conn->error);
   while($item = $results->fetch_assoc()) {
@@ -55,7 +57,8 @@ function items_addon($conn, $items_id) {
 SELECT * FROM items, addon, items_addon
 WHERE items_addon.items_id = "' . $items_id . '"
 AND items_addon.addon_id = addon.id
-AND addon.items_id = items.id';
+AND addon.items_id = items.id
+ORDER BY weight';
 
   $results = $conn->query($queryStr) or die($conn->error);
   while($addon = $results->fetch_assoc()) {
