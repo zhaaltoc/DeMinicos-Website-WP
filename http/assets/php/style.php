@@ -1,4 +1,10 @@
 <?
+// colors 
+$colorwhite = "#ffffff";
+$colorblack = "#000000";
+$colorwhite = "#ffffff";
+$coloryellow = "#cccc33";
+
 // Body {{{1
 $styleBody = 'width:100%;';
 $classBody = 'fa';
@@ -28,9 +34,9 @@ $styleBackground .= "background-size: cover;";
 
 // Nav
 $styleNavTop = "1%";
-// $styleNav .= 'background-color:#aaaa33;';
-$styleNav .= 'background-color:#ffffff;';
-$styleNav .= 'opacity:0.66;';
+$styleNav .= 'background-color:'.$colorblack.';';
+//$styleNav .= 'background-color:#ffffff;';
+$styleNav .= 'opacity:0.88;';
 $styleNav .= "border-radius:10%;";
 $styleNav .= 'top: -' . $styleNavTop . ';';
 $styleNav .= "transform: translateY(" . $styleNavTop . ");";
@@ -38,7 +44,8 @@ $styleNav .= "transform: translateY(" . $styleNavTop . ");";
 $styleNavLinks .= 'background-color: transparent;';
 $styleNavLinks .= 'font-size:1.5em;';
 $styleNavLinks .= 'font-weight:bold;';
-$styleNavLinks .= 'color: #000000;';
+//$styleNavLinks .= 'color: #000000;';
+$styleNavLinks .= 'color: '.$coloryellow.';';
 $classNavLinks .= 'navbar-nav ';
 $classNavLinks .= 'ml-auto ';
 

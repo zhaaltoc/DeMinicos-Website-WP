@@ -26,6 +26,7 @@ SELECT * FROM pages WHERE name = "' . $page . '"');
 SELECT * FROM categories, pages_categories
 WHERE pages_categories.categories_id = categories.id
 AND pages_categories.pages_id = "' . $page['id'] . '"
+AND active = 1
 ORDER BY weight';
 
     $results = $conn->query($queryStr) or die($conn->error);
@@ -39,9 +40,10 @@ ORDER BY weight';
 function categories_items($conn, $categories_id) { // {{{2
   $items = array();
   $queryStr = '
-SELECT * FROM items, categories_items
+SELECT items.id, items.name, items.price_id, items.description, items.shortdesc FROM items, categories_items
 WHERE categories_items.categories_id = "' . $categories_id . '"
 AND categories_items.items_id = items.id
+AND items.active = 1
 ORDER BY weight';
 
   $results = $conn->query($queryStr) or die($conn->error);
@@ -58,6 +60,7 @@ SELECT * FROM items, addon, items_addon
 WHERE items_addon.items_id = "' . $items_id . '"
 AND items_addon.addon_id = addon.id
 AND addon.items_id = items.id
+
 ORDER BY weight';
 
   $results = $conn->query($queryStr) or die($conn->error);
@@ -78,6 +81,21 @@ AND items_price.price_id = price.id';
   while($price = $results->fetch_assoc()) {
     if ($price['active'] != 0)
       $prices[] = $price['price'];
+  }
+
+  // Only return the first valid price
+  return $prices[0];
+}
+
+function price($conn, $price_id) {
+  $prices = array();
+  $queryStr = '
+SELECT price FROM price
+WHERE id = "' . $price_id . '"';
+
+  $results = $conn->query($queryStr) or die($conn->error);
+  while($price = $results->fetch_assoc()) {
+    $prices[] = $price['price'];
   }
 
   // Only return the first valid price
@@ -127,8 +145,10 @@ function menu($element, $conn, $classNavMenu, $styleNavMenu) {
     $categories[] = $result;
 
   foreach($categories as $category) {
+	
     element($col, 'h1', array(), $category['name']);
     $items = categories_items($conn, $category['categories_id']);
+	$i=0; // Force a new line, when we switch categories.
     foreach($items as $item) {
       if ($item['name'] != ''){
         if ($i % 2 == 0) {
@@ -139,7 +159,14 @@ function menu($element, $conn, $classNavMenu, $styleNavMenu) {
 
         // element($col, 'h1', array(), items_addon($conn, $item['id'], $col));
         // element($col, 'h1', array(), $item['id']);
-        menuItem($row, $item['name'], items_price($conn,$item['id']), items_addon($conn, $item['id']));
+        //menuItem($row, $item['name'], items_price($conn,$item['id']), items_addon($conn, $item['id']));
+		//menuItem($row, $item['name'], items_price($conn,$item['id']), items_addon($conn, $item['id']));
+		$addons = items_addon($conn, $item['id']);
+		if ($addons[0]=='')
+		{
+			$addons[0]=$item['description'];
+		}
+		menuItem($row, $item['name'], price($conn,$item['price_id']), $addons);		
         $i++;
       }
     }

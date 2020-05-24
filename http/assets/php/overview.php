@@ -39,10 +39,10 @@ socialLinks($col);
 
 // Navigation {{{2
 $col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top:30px; text-align:center;"));
-navLink2($col, 'h3', 'menu.php', 'In Store Menu');
-navLink2($col, 'h3', 'freezer.php', 'Heat and Eat');
-navLink2($col, 'h3', 'catering.php', 'Catering');
-navLink2($col, 'h3', 'photogallery.php', 'Photo Gallery');
+navLink2($col, 'h3', 'index.php?page=In+Store+Menu', 'In Store Menu');
+navLink2($col, 'h3', 'index.php?page=Order+Form', 'Order Form');
+//navLink2($col, 'h3', 'catering.php', 'Catering');
+//navLink2($col, 'h3', 'photogallery.php', 'Photo Gallery');
 
 // Hours {{{2
 $col = element($row, "div", array("class"=>"col-md-4"));
