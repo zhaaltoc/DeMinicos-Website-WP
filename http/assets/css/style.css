@@ -26,7 +26,7 @@ html { /* {{{2 */
 body { /* {{{2 */
   position: relative;
   /* font-family: "Raleway",Helvetica,Arial,Lucida,sans-serif; */
-  padding-top: 5rem;
+  /* padding-top: 5rem; */
   padding-bottom: 5rem;
   
   @media screen and (max-width: 960px){
