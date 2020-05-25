@@ -109,7 +109,7 @@ function navMenu($element, $navs, $class, $style) { // {{{2
     $col = element($row, 'div', array('class'=>'col-12', 'style'=>'padding-bottom:25px;'));
     $p = element($col, 'h5');
     // element($p, 'a', array('href'=>'#' . $nav['name']), $nav['name']);
-    element($p, 'a', array('href'=>'#', 'class'=>'nav-item', 'id'=>$nav['name'], 'style'=>'cursor:pointer;'), $nav['name']);
+    element($p, 'a', array('href'=>'#', 'class'=>'menu nav-item', 'id'=>$nav['name'], 'style'=>'font-size:0.8em;cursor:pointer;'), $nav['name']);
   }
   return $box;
 }
@@ -119,21 +119,23 @@ function menuItem($element, $name, $price, $toppings) { // {{{2
   $row = element($rowCol, "div", array("class"=>"row pricingTable-firstTable"));
 
   // $content = element($row, "div", array("class"=>"col-2", "style"=>"padding:25px"));
-  $content = element($row, "div", array("class"=>"col-12 pricingTable-firstTable_table", "style"=>"padding:25px"));
+  $content = element($row, "div", array("class"=>"col-12 pricingTable-firstTable_table", "style"=>"padding:10px"));
+  
   $row = element($content, "div", array("class"=>"row"));
-
-  $col = element($row, "div", array("class"=>"col-md-12"));
+  $col = element($row, "div", array("class"=>"col-10"));
   element($col, "h1", array("class"=>"menu pricingTable-firstTable_table__header", "style"=>"font-weight:bold;width:100%;text-align:center"), $name);
 
-  $row = element($content, "div", array("class"=>"row"));
-  $col = element($row, "div", array("class"=>"col-md-3 text-center"));
-  $p = element($col, "p", array("class"=>"pricingTable-firstTable_table__pricing", "style"=>"font-weight:bold;"));
+  // $row = element($content, "div", array("class"=>"row"));
+  $col = element($row, "div", array("class"=>"col-2"));
+  $p = element($col, "p", array("class"=>"pricingTable-firstTable_table__pricing", "style"=>"width:100%;font-weight:bold;"));
   element($p, 'span', array(), "$");
   element($p, 'span', array(), $price);
   element($p, 'span', array(), "");
-  $col = element($row, "div", array("class"=>"col-md-9"));
+
+  $row = element($content, "div", array("class"=>"row"));
+  $col = element($row, "div", array("class"=>"col-12"));
   $toppingsList = element($col, "div", array("class"=>"pricingTable-firstTable_table__options"));
-  $p = element($toppingsList, "p", array("style"=>"font-weight:bold;"), implode(", ", $toppings));
+  $p = element($toppingsList, "p", array("style"=>"font-weight:bold;text-align:left;"), implode(", ", $toppings));
 }
 
 function menu($element, $conn, $classNavMenu, $styleNavMenu) {
@@ -156,12 +158,6 @@ function menu($element, $conn, $classNavMenu, $styleNavMenu) {
             $row = element($col, "div", array("class"=>"row"));
             element($row, "div", array("class"=>"col-1"));
           }
-          // menuItem($row, $item['name'], $item['id'], array($item['description']));
-
-          // element($col, 'h1', array(), items_addon($conn, $item['id'], $col));
-          // element($col, 'h1', array(), $item['id']);
-          //menuItem($row, $item['name'], items_price($conn,$item['id']), items_addon($conn, $item['id']));
-          //menuItem($row, $item['name'], items_price($conn,$item['id']), items_addon($conn, $item['id']));
           $addons = items_addon($conn, $item['id']);
           
           if ($addons[0]=='')
