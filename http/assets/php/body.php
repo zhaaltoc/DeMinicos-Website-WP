@@ -20,4 +20,5 @@ addStyle($head, $css . "/table.css?rnd=" . rand());
 
 $panel = element($body, "div", array('id'=>'panel', "class"=>$classPanel, "style"=>$stylePanel));
 $background = element($panel, "div", array("style"=>$styleBackground));
+$panel = element($panel, "div", array('style'=>'padding-top:70px;'));
 ?>

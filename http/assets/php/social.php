@@ -97,7 +97,7 @@ function address($element, $type, $mapsLink, $mapsAddress, $class, $style) { // 
 function googleMaps($element, $src, $id, $class, $style) { // {{{2
   $div = element($element, "div");
   $row = element($div,'div',array('class'=>'row'));
-  element($row,'div',array('id'=>$id, 'class'=>'col-12', 'style'=>$style));
+  element($row,'div',array('id'=>'section-' . $id, 'class'=>'col-12', 'style'=>$style));
   $col = element($row,'div',array('class'=>'col-12'));
   return element($col, "iframe", array(
     "id"=>"googleMap",

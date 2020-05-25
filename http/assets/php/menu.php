@@ -108,7 +108,8 @@ function navMenu($element, $navs, $class, $style) { // {{{2
     $row = element($box, 'div', array('class'=>'row'));
     $col = element($row, 'div', array('class'=>'col-12', 'style'=>'padding-bottom:25px;'));
     $p = element($col, 'h5');
-    element($p, 'a', array('href'=>'#' . $nav['name']), $nav['name']);
+    // element($p, 'a', array('href'=>'#' . $nav['name']), $nav['name']);
+    element($p, 'a', array('href'=>'#', 'class'=>'nav-item', 'id'=>$nav['name'], 'style'=>'cursor:pointer;'), $nav['name']);
   }
   return $box;
 }
@@ -146,7 +147,7 @@ function menu($element, $conn, $classNavMenu, $styleNavMenu) {
 
   foreach($categories as $category) {
     if ($category['name'] != '') {
-      element($col, 'h1', array('style'=>'padding-top:65px;', 'id'=>$category['name']), $category['name']);
+      element($col, 'h1', array('id'=>'section-' . $category['name']), $category['name']);
       $items = categories_items($conn, $category['categories_id']);
       $i=0; // Force a new line, when we switch categories.
       foreach($items as $item) {
