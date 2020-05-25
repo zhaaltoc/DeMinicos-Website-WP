@@ -19,24 +19,32 @@ $(document).ready(function() {
     // document.getElementsByClassName('menu-width').classList.add('col-5');
   // }
 
-  var menuItems = document.getElementsByClassName('menu-width');
-  var result = "document.getElementsByClassName('menu-width')";
-  for (var i=0, len=menuItems.length|0; i<len; i=i+1|0) {
-    if($(window).width() < 1080) {
-      menuItems[i].classList.add('col-11');
-    }
-    else {
-      menuItems[i].classList.add('col-5');
+  function menuColumns() {
+    var menuItems = document.getElementsByClassName('menu-width');
+    var result = "document.getElementsByClassName('menu-width')";
+    for (var i=0, len=menuItems.length|0; i<len; i=i+1|0) {
+      if($(window).width() >= 900) {
+        menuItems[i].classList.remove('col-11');
+        menuItems[i].classList.add('col-5');
+      }
+      else {
+        menuItems[i].classList.remove('col-5');
+        menuItems[i].classList.add('col-11');
+      }
     }
   }
-  
   var menuItems = document.getElementsByClassName('menu-offset');
   var result = "document.getElementsByClassName('menu-offset')";
   for (var i=0, len=menuItems.length|0; i<len; i=i+1|0) {
-    if($(window).width() < 960) {
-      menuItems[i].classList.add('col-1');
-    }
+    menuItems[i].classList.add('offset-1');
   }
+  
+  menuColumns();
+  window.onresize = function(){
+    setTimeout(function(){
+    }, 500);
+    menuColumns();
+  };
   
   var company = 'De Minico\'s';
   var title = company;

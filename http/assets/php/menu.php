@@ -108,14 +108,14 @@ function navMenu($element, $navs, $class, $style) { // {{{2
     $row = element($box, 'div', array('class'=>'row'));
     $col = element($row, 'div', array('class'=>'col-12', 'style'=>'padding-bottom:25px;'));
     $p = element($col, 'h5');
-    element($p, 'a', array('href'=>'#', 'class'=>'menu nav-item', 'id'=>$nav['name'], 'style'=>'font-size:0.8em;cursor:pointer;'), $nav['name']);
+    element($p, 'a', array('href'=>'#', 'class'=>'menu nav-item', 'id'=>$nav['name'], 'style'=>'font-size:1.0em;cursor:pointer;'), $nav['name']);
   }
   return $box;
 }
 
 function menuItem($element, $name, $price, $toppings) { // {{{2
   $rowCol = element($element, "div", array("class"=>"menu-time menu-width"));
-  $row = element($rowCol, "div", array("class"=>"row pricingTable-firstTable"));
+  $row = element($rowCol, "div", array("class"=>"row pricingTable-firstTable", 'style'=>'padding:0;'));
 
   $content = element($row, "div", array("class"=>"col-12 pricingTable-firstTable_table", "style"=>"padding:10px"));
   
@@ -154,7 +154,7 @@ function menu($element, $conn, $classNavMenu, $styleNavMenu) {
           element($row, "div", array('class'=>'menu-offset'));
           if ($i % 2 == 0) {
             $row = element($col, "div", array("class"=>"row"));
-            element($row, "div", array('class'=>'offset-1'));
+            element($row, "div", array('class'=>'menu-offset'));
           }
           $addons = items_addon($conn, $item['id']);
           
