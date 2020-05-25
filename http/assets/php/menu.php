@@ -127,12 +127,12 @@ function menuItem($element, $name, $price, $toppings) { // {{{2
 
   $row = element($content, "div", array("class"=>"row"));
   $col = element($row, "div", array("class"=>"col-md-3 text-center"));
-  $p = element($col, "p", array("class"=>"menu pricingTable-firstTable_table__pricing", "style"=>"font-weight:bold;"));
+  $p = element($col, "p", array("class"=>"pricingTable-firstTable_table__pricing", "style"=>"font-weight:bold;"));
   element($p, 'span', array(), "$");
   element($p, 'span', array(), $price);
   element($p, 'span', array(), "");
   $col = element($row, "div", array("class"=>"col-md-9"));
-  $toppingsList = element($col, "div", array("class"=>"menu pricingTable-firstTable_table__options"));
+  $toppingsList = element($col, "div", array("class"=>"pricingTable-firstTable_table__options"));
   $p = element($toppingsList, "p", array("style"=>"font-weight:bold;"), implode(", ", $toppings));
 }
 
@@ -147,7 +147,7 @@ function menu($element, $conn, $classNavMenu, $styleNavMenu) {
 
   foreach($categories as $category) {
     if ($category['name'] != '') {
-      element($col, 'h1', array('id'=>'section-' . $category['name'], 'class'=>'menu', 'style'=>'color:rgb(204,204,51);'), $category['name']);
+      element($col, 'h1', array('id'=>'section-' . $category['name'], 'class'=>'menu', 'style'=>'font-size:4.5em;color:rgb(204,204,51);'), $category['name']);
       $items = categories_items($conn, $category['categories_id']);
       $i=0; // Force a new line, when we switch categories.
       foreach($items as $item) {

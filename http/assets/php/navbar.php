@@ -10,10 +10,10 @@ function navLink($parent, $id, $inner, $href, $style) { // {{{2
   // return element($li, "a", array('id'=>'nav', 'v-on:click'=>'nav("' . $inner . '")', "class"=>"nav-link", 'style'=>$style, "href"=>$href), $inner);
   // return element($li, "a", array("class"=>"nav-link", 'style'=>$style, "href"=>$href . '?page="' . urlencode($inner) . '"'), $inner);
   if ($id != 'location')
-    return element($li, "a", array("class"=>"nav-link", 'style'=>$style, "href"=>'index.php?page=' . urlencode($inner)), $inner);
+    return element($li, "a", array("class"=>"nav-link menu", 'style'=>$style, "href"=>'index.php?page=' . urlencode($inner)), $inner);
   // return element($li, 'a', array('class'=>'nav-link', 'id'=>$id, 'style'=>$style . 'cursor:pointer;'), $inner);
   // return element($li, "a", array('id'=>$inner, "class"=>"nav-item nav-link", 'style'=>$style, "href"=>"#"), $inner);
-  return element($li, "a", array('id'=>$inner, "class"=>"nav-link", 'onclick'=>'window.scrollTo(0,document.body.scrollHeight);', 'style'=>$style), $inner);
+  return element($li, "a", array('id'=>$inner, "class"=>"nav-link menu", 'onclick'=>'window.scrollTo(0,document.body.scrollHeight);', 'style'=>$style . ' cursor: pointer;'), $inner);
 }
 
 function navLink2($element, $type, $link, $name) { // {{{2
