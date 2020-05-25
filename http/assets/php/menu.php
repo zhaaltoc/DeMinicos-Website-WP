@@ -147,7 +147,7 @@ function menu($element, $conn, $classNavMenu, $styleNavMenu) {
 
   foreach($categories as $category) {
     if ($category['name'] != '') {
-      element($col, 'h1', array('id'=>'section-' . $category['name'], 'class'=>'menu'), $category['name']);
+      element($col, 'h1', array('id'=>'section-' . $category['name'], 'class'=>'menu', 'style'=>'color:rgb(204,204,51);'), $category['name']);
       $items = categories_items($conn, $category['categories_id']);
       $i=0; // Force a new line, when we switch categories.
       foreach($items as $item) {
