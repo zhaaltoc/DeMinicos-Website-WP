@@ -24,7 +24,7 @@ function navLink2($element, $type, $link, $name) { // {{{2
 }
 
 // Navbar {{{1
-$nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top navbar-light bg-light", "style"=>$styleNav));// navbar-inverse bg-inverse"));
+$nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top navbar-dark bg-dark", "style"=>$styleNav));// navbar-inverse bg-inverse"));
 // $nav = element($body, "nav", array("class"=>"navbar navbar-toggleable-md fixed-top navbar-light bg-light", "style"=>"background-color:transparent"));// navbar-inverse bg-inverse"));
 $navToggler = element($nav, "button", array(
     "class"=>"navbar-toggler navbar-toggler-right",
@@ -35,7 +35,7 @@ $navToggler = element($nav, "button", array(
     "aria-expanded"=>"false",
     "aria-label"=>"Toggle navigation"
 ));
-element($navToggler, "span", array("class"=>"navbar-toggler-icon"));
+element($navToggler, "span", array('style'=>$styleNavButton, "class"=>"navbar-toggler-icon"));
 
 $navBrand = element($nav, "a", array("class"=>"navbar-brand", "href"=>$hrefBrand));
 element($navBrand, "img", array("class"=>"navbar", "src"=>$imgBrand, "alt"=>"", "style"=>"padding:0; height: 32px; border-radius:10%"));

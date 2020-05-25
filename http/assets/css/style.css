@@ -94,7 +94,7 @@ a { /* {{{2 */
   margin: 0;
 }
 
-.col, .col-12 { /* {{{2 */
+.col .col-12 { /* {{{2 */
   padding: 0;
   line-height: 0;
 }
@@ -110,9 +110,9 @@ a { /* {{{2 */
   /* background-color: rgb(205,205,205); */
 /* } */
 
-/* .navbar-light .navbar-toggler-icon { */
-  /* background-image: url("data:image/svg+xml;.."); */
-/* } */
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;..");
+}
 
 .navbar-favicon { /* {{{2 */
   height: 30px;
