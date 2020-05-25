@@ -1,8 +1,8 @@
 /* Section: HTML {{{1 */
 @font-face {
   font-family: "MenuFont";
-  src: url("../fonts/BRADHITC.TTF") format("truetype");
-  /*src: url("../fonts/cour.ttf") format("truetype");*/
+  /* src: url("../fonts/BRADHITC.TTF") format("truetype"); */
+  src: url("../fonts/cour.ttf") format("truetype");
 }
 
 html, body { /* {{{2 */
