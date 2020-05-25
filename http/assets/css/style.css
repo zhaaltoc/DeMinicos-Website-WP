@@ -1,6 +1,6 @@
 /* Section: HTML {{{1 */
 @font-face {
-  font-family: "MenuFont";
+  font-family: "DivFont";
   /* src: url("../fonts/BRADHITC.TTF") format("truetype"); */
   src: url("../fonts/cour.ttf") format("truetype");
 }
@@ -44,7 +44,7 @@ body { /* {{{2 */
 }
   
 div { /* {{{2 */
-  font-family: "MenuFont";
+  font-family: "DivFont";
 }
 
 th { /* {{{2 */
@@ -187,4 +187,14 @@ a { /* {{{2 */
     height: relative;
     width: 70%;
   }
+}
+  
+@font-face {
+  font-family: "MenuFont";
+  src: url("../fonts/BRADHITC.TTF") format("truetype");
+  /* src: url("../fonts/cour.ttf") format("truetype"); */
+}
+
+.menu { /* {{{2 */
+  font-family: "MenuFont";
 }
