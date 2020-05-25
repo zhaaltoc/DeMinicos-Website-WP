@@ -108,7 +108,6 @@ function navMenu($element, $navs, $class, $style) { // {{{2
     $row = element($box, 'div', array('class'=>'row'));
     $col = element($row, 'div', array('class'=>'col-12', 'style'=>'padding-bottom:25px;'));
     $p = element($col, 'h5');
-    // element($p, 'a', array('href'=>'#' . $nav['name']), $nav['name']);
     element($p, 'a', array('href'=>'#', 'class'=>'menu nav-item', 'id'=>$nav['name'], 'style'=>'font-size:0.8em;cursor:pointer;'), $nav['name']);
   }
   return $box;
@@ -118,17 +117,15 @@ function menuItem($element, $name, $price, $toppings) { // {{{2
   $rowCol = element($element, "div", array("class"=>"col-md-5 text-center"));
   $row = element($rowCol, "div", array("class"=>"row pricingTable-firstTable"));
 
-  // $content = element($row, "div", array("class"=>"col-2", "style"=>"padding:25px"));
   $content = element($row, "div", array("class"=>"col-12 pricingTable-firstTable_table", "style"=>"padding:10px"));
   
   $row = element($content, "div", array("class"=>"row"));
   $col = element($row, "div", array("class"=>"col-10"));
   element($col, "h1", array("class"=>"menu pricingTable-firstTable_table__header", "style"=>"font-weight:bold;width:100%;text-align:center"), $name);
 
-  // $row = element($content, "div", array("class"=>"row"));
-  $col = element($row, "div", array("class"=>"col-2"));
-  $p = element($col, "p", array("class"=>"pricingTable-firstTable_table__pricing", "style"=>"width:100%;font-weight:bold;"));
-  element($p, 'span', array(), "$");
+  $col = element($row, "div", array("class"=>"col-1", 'style'=>'white-space:nowrap'));
+  $p = element($col, "p", array("class"=>"", "style"=>"margin-left:-20px;padding-top:15px;color:black;width:100%;font-weight:bold;"));
+  element($p, 'span', array('style'=>'vertical-align:text-top;font-size:0.7em;'), "$");
   element($p, 'span', array(), $price);
   element($p, 'span', array(), "");
 
