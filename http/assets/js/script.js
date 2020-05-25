@@ -4,8 +4,8 @@ $(document).ready(function() {
   $(".nav-item").on("click", function() {
     var element = $(this)
     $('html, body').animate({
-      scrollTop: $("#section-" + element.attr('id')).offset().top
-    }, 500);
+      scrollTop: $("#section-" + element.attr('id')).offset().top - 65
+    }, 'slow');
   });
 
   var company = 'De Minico\'s';

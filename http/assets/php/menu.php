@@ -108,7 +108,8 @@ function navMenu($element, $navs, $class, $style) { // {{{2
     $row = element($box, 'div', array('class'=>'row'));
     $col = element($row, 'div', array('class'=>'col-12', 'style'=>'padding-bottom:25px;'));
     $p = element($col, 'h5');
-    element($p, 'a', array('href'=>'#' . $nav['name']), $nav['name']);
+    // element($p, 'a', array('href'=>'#' . $nav['name']), $nav['name']);
+    element($p, 'a', array('href'=>'#', 'class'=>'nav-item', 'id'=>$nav['name'], 'style'=>'cursor:pointer;'), $nav['name']);
   }
   return $box;
 }
@@ -122,16 +123,16 @@ function menuItem($element, $name, $price, $toppings) { // {{{2
   $row = element($content, "div", array("class"=>"row"));
 
   $col = element($row, "div", array("class"=>"col-md-12"));
-  element($col, "h1", array("class"=>"pricingTable-firstTable_table__header", "style"=>"font-weight:bold;width:100%;text-align:center"), $name);
+  element($col, "h1", array("class"=>"menu pricingTable-firstTable_table__header", "style"=>"font-weight:bold;width:100%;text-align:center"), $name);
 
   $row = element($content, "div", array("class"=>"row"));
   $col = element($row, "div", array("class"=>"col-md-3 text-center"));
-  $p = element($col, "p", array("class"=>"pricingTable-firstTable_table__pricing", "style"=>"font-weight:bold;"));
+  $p = element($col, "p", array("class"=>"menu pricingTable-firstTable_table__pricing", "style"=>"font-weight:bold;"));
   element($p, 'span', array(), "$");
   element($p, 'span', array(), $price);
   element($p, 'span', array(), "");
   $col = element($row, "div", array("class"=>"col-md-9"));
-  $toppingsList = element($col, "div", array("class"=>"pricingTable-firstTable_table__options"));
+  $toppingsList = element($col, "div", array("class"=>"menu pricingTable-firstTable_table__options"));
   $p = element($toppingsList, "p", array("style"=>"font-weight:bold;"), implode(", ", $toppings));
 }
 
@@ -145,29 +146,30 @@ function menu($element, $conn, $classNavMenu, $styleNavMenu) {
     $categories[] = $result;
 
   foreach($categories as $category) {
-	
-    element($col, 'h1', array(), $category['name']);
-    $items = categories_items($conn, $category['categories_id']);
-	$i=0; // Force a new line, when we switch categories.
-    foreach($items as $item) {
-      if ($item['name'] != ''){
-        if ($i % 2 == 0) {
-          $row = element($col, "div", array("class"=>"row"));
-          element($row, "div", array("class"=>"col-1"));
-        }
-        // menuItem($row, $item['name'], $item['id'], array($item['description']));
+    if ($category['name'] != '') {
+      element($col, 'h1', array('id'=>'section-' . $category['name'], 'class'=>'menu', 'style'=>'color:rgb(204,204,51);'), $category['name']);
+      $items = categories_items($conn, $category['categories_id']);
+      $i=0; // Force a new line, when we switch categories.
+      foreach($items as $item) {
+        if ($item['name'] != ''){
+          if ($i % 2 == 0) {
+            $row = element($col, "div", array("class"=>"row"));
+            element($row, "div", array("class"=>"col-1"));
+          }
+          // menuItem($row, $item['name'], $item['id'], array($item['description']));
 
-        // element($col, 'h1', array(), items_addon($conn, $item['id'], $col));
-        // element($col, 'h1', array(), $item['id']);
-        //menuItem($row, $item['name'], items_price($conn,$item['id']), items_addon($conn, $item['id']));
-		//menuItem($row, $item['name'], items_price($conn,$item['id']), items_addon($conn, $item['id']));
-		$addons = items_addon($conn, $item['id']);
-		if ($addons[0]=='')
-		{
-			$addons[0]=$item['description'];
-		}
-		menuItem($row, $item['name'], price($conn,$item['price_id']), $addons);		
-        $i++;
+          // element($col, 'h1', array(), items_addon($conn, $item['id'], $col));
+          // element($col, 'h1', array(), $item['id']);
+          //menuItem($row, $item['name'], items_price($conn,$item['id']), items_addon($conn, $item['id']));
+          //menuItem($row, $item['name'], items_price($conn,$item['id']), items_addon($conn, $item['id']));
+          $addons = items_addon($conn, $item['id']);
+          
+          if ($addons[0]=='')
+            $addons[0]=$item['description'];
+          
+          menuItem($row, $item['name'], price($conn,$item['price_id']), $addons);		
+          $i++;
+        }
       }
     }
   }

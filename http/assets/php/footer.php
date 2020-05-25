@@ -16,7 +16,7 @@ address($col, "h3", $mapsLink, $mapsAddress, $classAddress, $styleAddress);
 // Google Maps {{{2
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12 text-center"));
-googleMaps($col, $mapsIfram, 'section-location', $classMaps,  $styleMaps);
+googleMaps($col, $mapsIfram, 'Location', $classMaps,  $styleMaps);
 
 // googleMaps($col, $mapsIfram, $classMaps,  $styleMaps);
 
@@ -35,7 +35,7 @@ $jsVue = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js";
 addScript($head, $jsJQuery);
 addScript($head, $jsBootstrap);
 addScript($head, $jsVue);
-addScript($body, $jsScript);
+addScript($panel, $jsScript);
 
 // Header {{{2
 header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
