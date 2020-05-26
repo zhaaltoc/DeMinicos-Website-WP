@@ -8,31 +8,37 @@ $(document).ready(function() {
     }, 'slow');
   });
 
-  function menuColumns() { // {{{2
-    var menuItems = document.getElementsByClassName('menu-width');
+  function menuColumns(name) { // {{{2
+    var menuItems = document.getElementsByClassName('menu-' + name);
     for (var i=0, len=menuItems.length|0; i<len; i=i+1|0) {
+      menuItems[i].style.width = '115%';
       if($(window).width() >= 900) {
         menuItems[i].classList.remove('col-12');
         menuItems[i].classList.add('col-6');
+        if (menuItems[i].getBoundingClientRect().left > 180 ){
+          paddingLeft = '20px';
+          paddingRight = '60px';
+        }
+        else {
+          paddingLeft = '80px';
+          paddingRight = '0px';
+        }
       }
       else {
         menuItems[i].classList.remove('col-6');
         menuItems[i].classList.add('col-12');
+        paddingLeft = '80px';
+        paddingRight = '0px';
       }
-      menuItems[i].style.paddingLeft = '75px';
+      menuItems[i].style.paddingRight = paddingRight;
+      menuItems[i].style.paddingLeft = paddingLeft;
     }
   }
-  var menuItems = document.getElementsByClassName('menu-offset');
-  var result = "document.getElementsByClassName('menu-offset')";
-  for (var i=0, len=menuItems.length|0; i<len; i=i+1|0) {
-    // menuItems[i].classList.add('offset-1');
-  }
-  
-  menuColumns();
+  menuColumns('width');
   window.onresize = function(){
     setTimeout(function(){
     }, 500);
-    menuColumns();
+    menuColumns('width');
   };
   
   // Vue {{{2
