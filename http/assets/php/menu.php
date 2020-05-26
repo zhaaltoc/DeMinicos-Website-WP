@@ -146,7 +146,8 @@ function menu($element, $conn, $classNavMenu, $styleNavMenu) {
 
   foreach($categories as $category) {
     if ($category['name'] != '') {
-      element($col, 'h1', array('id'=>'section-' . $category['name'], 'class'=>'menu', 'style'=>'font-size:4.5em;color:rgb(204,204,51);'), $category['name']);
+      // TODO: DMNC-33 [200525] - 75px is shared in script.js
+      element($col, 'h1', array('id'=>'section-' . $category['name'], 'class'=>'menu', 'style'=>'padding-left:75px;font-size:4.5em;color:rgb(204,204,51);'), $category['name']);
       $items = categories_items($conn, $category['categories_id']);
       $i=0; // Force a new line, when we switch categories.
       foreach($items as $item) {
