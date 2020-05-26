@@ -105,9 +105,16 @@ $stylePhoneP .= $stylePAFontSize;
 
 // Hours {{{2
 $styleHourRowMargin = 'margin-bottom:10px;';
+
 $styleDays .= $styleHourRowMargin;
-$styleDays .= $stylePAFontSize;
 $styleDays .= $styleBold;
+$styleDays .= 'font-size:1.2em;';
+// $styleDays .= 'margin-left:-30px;';
+// $styleDays .= 'margin-left:-80px;';
+// $styleDays .= 'vertical-align:left;';
+
 $styleHours .= $styleHourRowMargin;
-$styleHours .= $stylePFontSize;
+$styleHours .= 'font-size:1.3em;';
+$styleHours .= 'white-space:nowrap;';
+// $styleHours .= 'vertical-align:left;';
 ?>

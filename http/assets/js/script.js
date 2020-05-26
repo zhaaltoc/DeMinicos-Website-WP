@@ -8,6 +8,34 @@ $(document).ready(function() {
     }, 'slow');
   });
 
+  function menuColumns() { // {{{2
+    var menuItems = document.getElementsByClassName('menu-width');
+    for (var i=0, len=menuItems.length|0; i<len; i=i+1|0) {
+      if($(window).width() >= 900) {
+        menuItems[i].classList.remove('col-12');
+        menuItems[i].classList.add('col-6');
+      }
+      else {
+        menuItems[i].classList.remove('col-6');
+        menuItems[i].classList.add('col-12');
+      }
+      menuItems[i].style.paddingLeft = '75px';
+    }
+  }
+  var menuItems = document.getElementsByClassName('menu-offset');
+  var result = "document.getElementsByClassName('menu-offset')";
+  for (var i=0, len=menuItems.length|0; i<len; i=i+1|0) {
+    // menuItems[i].classList.add('offset-1');
+  }
+  
+  menuColumns();
+  window.onresize = function(){
+    setTimeout(function(){
+    }, 500);
+    menuColumns();
+  };
+  
+  // Vue {{{2
   var company = 'De Minico\'s';
   var title = company;
   var subtitle = company;

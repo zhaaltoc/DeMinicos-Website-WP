@@ -108,18 +108,21 @@ function googleMaps($element, $src, $id, $class, $style) { // {{{2
   ));
 }
 
-function hourRow($tbody, $day, $open, $closed, $style) { // {{{2
+function hourRow($tbody, $day, $open, $closed, $styleDays, $styleHours) { // {{{2
   $tr = element($tbody, "tr");
+  $td = element($tr, "td", array('style'=>$style));
+  $p = element($td, "p", array("style"=>"margin-bottom:5px;" . $styleDays));
   $td = element($tr, "td");
-  $p = element($td, "p", array("style"=>"margin-bottom:5px;" . $style));
-  element($p, "b", array(), $day);
+  element($p, "b", array('style'=>$styleDays), $day);
+  $td = element($tr, "td", array('style'=>''));
+  element($td, "p", array('style'=>'padding-right:10px;'),'');
   $td = element($tr, "td");
-  element($td, "p", array("style"=>"margin-bottom:5px;" . $style), $open);
+  element($td, "p", array("style"=>"text-align:right;margin-bottom:5px;" . $styleHours), $open);
   if ($open != "Closed") {
     $td = element($tr, "td");
-    element($td, "p", array("style"=>"margin-bottom:5px;" . $style), "-");
+    element($td, "p", array("style"=>"text-align:center;margin-bottom:5px;".$styleHours), "-");
     $td = element($tr, "td");
-    element($td, "p", array("style"=>"margin-bottom:5px;" . $style), $closed);
+    element($td, "p", array("style"=>"width:100%;text-align:left;margin-bottom:5px;" . $styleHours), $closed);
   }
 }
 ?>
