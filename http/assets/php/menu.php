@@ -113,8 +113,8 @@ function navMenu($element, $navs, $class, $style) { // {{{2
   return $box;
 }
 
-function menuItem($element, $name, $price, $toppings) { // {{{2
-  $rowCol = element($element, "div", array("class"=>"menu-time menu-width"));
+function menuItem($element, $name, $price, $toppings, $id) { // {{{2
+  $rowCol = element($element, "div", array("class"=>"menu-time menu-width menu-" . $id));
   $row = element($rowCol, "div", array("class"=>"row pricingTable-firstTable", 'style'=>'padding:0;'));
 
   $content = element($row, "div", array("class"=>"col-12 pricingTable-firstTable_table", "style"=>"padding:10px"));
@@ -152,17 +152,15 @@ function menu($element, $conn, $classNavMenu, $styleNavMenu) {
       $i=0; // Force a new line, when we switch categories.
       foreach($items as $item) {
         if ($item['name'] != ''){
-          element($row, "div", array('class'=>'menu-offset'));
           if ($i % 2 == 0) {
             $row = element($col, "div", array("class"=>"row"));
-            element($row, "div", array('class'=>'menu-offset'));
           }
           $addons = items_addon($conn, $item['id']);
           
           if ($addons[0]=='')
             $addons[0]=$item['description'];
           
-          menuItem($row, $item['name'], price($conn,$item['price_id']), $addons);		
+          menuItem($row, $item['name'], price($conn,$item['price_id']), $addons, $category['name']);		
           $i++;
         }
       }
