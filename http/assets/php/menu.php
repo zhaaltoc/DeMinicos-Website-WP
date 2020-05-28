@@ -103,7 +103,7 @@ WHERE id = "' . $price_id . '"';
 }
 
 function navMenu($element, $navs, $class, $style) { // {{{2
-  $box = element($element, "div", array('class'=>$class, 'style'=>$style));
+  $box = element($element, "div", array('class'=>$class, 'style'=>$style . 'z-index:100;'));
   foreach($navs as $nav) {
     $row = element($box, 'div', array('class'=>'row'));
     $col = element($row, 'div', array('class'=>'col-12', 'style'=>'padding-bottom:25px;'));
