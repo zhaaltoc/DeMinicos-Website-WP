@@ -13,7 +13,7 @@ function navLink($parent, $id, $inner, $href, $style) { // {{{2
     return element($li, "a", array("class"=>"nav-link menu", 'style'=>$style, "href"=>'index.php?page=' . urlencode($inner)), $inner);
   // return element($li, 'a', array('class'=>'nav-link', 'id'=>$id, 'style'=>$style . 'cursor:pointer;'), $inner);
   // return element($li, "a", array('id'=>$inner, "class"=>"nav-item nav-link", 'style'=>$style, "href"=>"#"), $inner);
-  return element($li, "a", array('id'=>$inner, "class"=>"nav-link menu", 'onclick'=>'window.scrollTo(0,document.body.scrollHeight);', 'style'=>$style . ' cursor: pointer;'), $inner);
+  return element($li, "a", array('id'=>$inner, "class"=>"nav-link menu", 'onclick'=>"document.getElementsByClassName('navbar-toggle')[0].classList.remove('show');window.scrollTo(0,document.body.scrollHeight);", 'style'=>$style . ' cursor: pointer;'), $inner);
 }
 
 function navLink2($element, $type, $link, $name) { // {{{2
@@ -39,7 +39,7 @@ element($navToggler, "span", array('style'=>$styleNavButton, "class"=>"navbar-to
 
 $navBrand = element($nav, "a", array("class"=>"navbar-brand", "href"=>$hrefBrand));
 element($navBrand, "img", array("class"=>"navbar", "src"=>$imgBrand, "alt"=>"", "style"=>"padding:0; height: 32px; border-radius:10%"));
-$navBar = element($nav, "div", array("id"=>"navbarSupportedContent", "class"=>"collapse navbar-collapse"));
+$navBar = element($nav, "div", array("id"=>"navbarSupportedContent", "class"=>"navbar-toggle collapse navbar-collapse"));
 
 $navLinks = element($navBar, "ul", array('id'=>'nav', 'class'=>$classNavLinks));
 

@@ -8,6 +8,10 @@ $(document).ready(function() {
     }, 'slow');
   });
 
+  $('#Location').on("click", function() {
+    $('.navbar-toggle').classList.remove('show')
+  });
+
   function menuColumns(name) { // {{{2
     var menuItems = document.getElementsByClassName('menu-' + name);
     for (var i=0, len=menuItems.length|0; i<len; i=i+1|0) {
