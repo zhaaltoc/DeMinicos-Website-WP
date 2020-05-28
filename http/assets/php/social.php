@@ -18,7 +18,6 @@ $mapsIfram = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.8310729
 // Functions {{{1
 function serviceLinks($element) { // {{{2
   $style .= 'max-width:50px;';
-  // $style .= 'margin-left:-15px';
 
   $hrefBestCalgary = "https://www.thebestcalgary.com/best-catering-calgary/#6_De_Minicos";
   $iconBestCalgary = '/assets/img/thebestcalgary.png';
@@ -37,7 +36,7 @@ function serviceLinks($element) { // {{{2
   // The Best Calgary
   $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#3b5998", "href"=>$hrefTripAdvisor));
   $span = element($a, "span", array("class"=>"socialIcon"));
-  element($span, "img", array("src"=>$iconTripAdvisor, 'style'=>$style . 'max-width:50px;'));
+  element($span, "img", array("src"=>$iconTripAdvisor, 'style'=>$style));
 }
 
 function socialLinks($element) { // {{{2
