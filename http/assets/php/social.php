@@ -16,6 +16,29 @@ $mapsAddress = "1319 45 Ave NE #5, Calgary, Alberta";
 $mapsIfram = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.831072976366!2d-114.032371!3d51.093125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716500c531255d%3A0xf2d24169e7a44e1b!2sDe+Minico&#39;s!5e0!3m2!1sen!2sca!4v1509148157628";
 
 // Functions {{{1
+function serviceLinks($element) { // {{{2
+  $style .= 'max-width:85px;';
+
+  $hrefBestCalgary = "https://www.thebestcalgary.com/best-catering-calgary/#6_De_Minicos";
+  $iconBestCalgary = '/assets/img/thebestcalgary.png';
+  
+  $hrefTripAdvisor = "https://www.tripadvisor.ca/Restaurant_Review-g154913-d10744753-Reviews-De_Minico_s-Calgary_Alberta.html";
+  $iconTripAdvisor = '/assets/img/tripadvisor.png';
+  
+  $row = element($element, "div", array("class"=>"row text-center"));
+  $div = element($row, "div", array("id"=>"socialCol", "class"=>"col-12 text-center", 'style'=>'padding-top:0;'));
+
+  // The Best Calgary
+  $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#3b5998", "href"=>$hrefBestCalgary));
+  $span = element($a, "span", array("class"=>"socialIcon"));
+  element($span, "img", array("src"=>$iconBestCalgary, 'style'=>$style));
+  
+  // The Best Calgary
+  $a = element ($div, "a", array("class"=>"socialIcon", "style"=>"color:#3b5998", "href"=>$hrefTripAdvisor));
+  $span = element($a, "span", array("class"=>"socialIcon"));
+  element($span, "img", array("src"=>$iconTripAdvisor, 'style'=>$style . 'max-width:50px;'));
+}
+
 function socialLinks($element) { // {{{2
   $style .= 'max-width:50px;';
   $style .= 'width:10%;';

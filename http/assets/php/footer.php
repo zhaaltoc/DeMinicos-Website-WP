@@ -25,6 +25,10 @@ $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12 text-center"));
 socialLinks($col);
 
+$row = element($panel, "div", array("class"=>"row"));
+$col = element($row, "div", array("class"=>"col-12",'style'=>'padding-top:0;'));
+serviceLinks($col);
+
 // Build {{{1
 // Script {{{2
 $jsBootstrap = $js . "/bootstrap.min.js";
