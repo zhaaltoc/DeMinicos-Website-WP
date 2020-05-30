@@ -152,6 +152,13 @@ a { /* {{{2 */
   background-size: 3rem;
 }
 
+.logodot {
+  height: 250px;
+  width: 250px;  
+  background-color: #FFFAFA;
+  border-radius: 50%;
+  display: inline-block;
+}
 .instagram { /* {{{2 */
   border-radius: 10px;
   /* display: inline-block; */

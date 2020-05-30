@@ -3,7 +3,8 @@
 // Authors: Travis Gall
 // Description: Main index
 
-$imgLogo = $img . "/logo.png";
+//$imgLogo = $img . "/logo.png";
+$imgLogo = $img . "/DeMinicos_logo_color_reverse_spot-2.png";
 $imgLogoNoStamp = $img . "/logonostamp.jpg";
 // $imgLogoNoStamp = $img . "/logostampcolor_reverse.jpg";
 
@@ -11,7 +12,14 @@ $imgLogoNoStamp = $img . "/logonostamp.jpg";
 $row = element($panel, "div", array("class"=>"row"));
 $col = element($row, "div", array("class"=>"col-12 text-center"));
 // $div = element($col, "div", array("style"=>"padding-top:65px;"));
-element($col, "img", array("src"=>$imgLogoNoStamp, "style"=>"width: 50%; border-radius: 5%;"));
+
+// Logo
+ $style .= 'max-width:100%;';
+ $hrefDeminicos = "https://test.deminicos.ca";
+  $a = element ($col, "a", array("class"=>"socialIcon", "style"=>"color:#3b5998", "href"=>$hrefDeminicos));
+  $span = element($a, "span", array("class"=>"logodot"));
+  //element($span, "img", array("src"=>$iconBestCalgary, 'style'=>$style));
+element($span, "img", array("src"=>$imgLogo, 'style'=>$style));
 
 $row = element($panel, "div", array("class"=>"text-center row"));
 $col = element($row, "div", array("class"=>"col-md-12", "style"=>"padding-bottom: 50px;"));
