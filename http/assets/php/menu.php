@@ -60,7 +60,6 @@ SELECT * FROM items, addon, items_addon
 WHERE items_addon.items_id = "' . $items_id . '"
 AND items_addon.addon_id = addon.id
 AND addon.items_id = items.id
-
 ORDER BY weight';
 
   $results = $conn->query($queryStr) or die($conn->error);
