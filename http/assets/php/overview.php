@@ -47,12 +47,17 @@ element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "Learn m
 socialLinks($col);
 
 // Navigation {{{2
-// $col = element($row, "div", array("class"=>"text-center col-md-1"));
 $col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top:30px; text-align:center;"));
-navLink2($col, 'h3', 'index.php?page=In+Store+Menu', 'In Store Menu');
-navLink2($col, 'h3', 'index.php?page=Order+Form', 'Order Form');
-//navLink2($col, 'h3', 'catering.php', 'Catering');
-//navLink2($col, 'h3', 'photogallery.php', 'Photo Gallery');
+if(!$ORDERFORM) {
+  $results = pages($conn);
+  while($result = $results->fetch_assoc()) {
+    $name = $result['name'];
+    $navLink = str_replace(' ', '', strtolower($name));// . '.php';
+    navLink2($col, 'h3', 'index.php?page='.urlencode($name), $name);
+  }
+} else {
+  navLink2($navLinks, "orderform", "Order Form", "/", $styleNavLinks);
+}
 
 // Hours {{{2
 $col = element($row, "div", array("class"=>"text-center col-md-4"));

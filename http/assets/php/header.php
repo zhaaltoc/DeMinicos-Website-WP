@@ -135,4 +135,6 @@ require_once $php . '/style.php';
 
 require_once $php . '/body.php';
 require_once $php . '/navbar.php';
+
+require_once $php . '/style.php';
 ?>
