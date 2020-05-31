@@ -155,7 +155,7 @@ a { /* {{{2 */
 .logodot {
   height: 250px;
   width: 250px;  
-  background-color: #FFFAFA;
+  /* background-color: #FFFAFA; */
   border-radius: 50%;
   display: inline-block;
 }
