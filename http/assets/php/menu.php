@@ -107,7 +107,7 @@ function navMenu($element, $navs, $class, $style) { // {{{2
     $row = element($box, 'div', array('class'=>'row'));
     $col = element($row, 'div', array('class'=>'col-12', 'style'=>'padding-bottom:25px;'));
     $p = element($col, 'h5');
-    element($p, 'a', array('href'=>'#', 'class'=>'menu nav-item', 'id'=>$nav['name'], 'style'=>'font-size:1.0em;cursor:pointer;'), $nav['name']);
+    element($p, 'a', array('href'=>'#', 'class'=>'menu nav-item', 'id'=>str_replace(' ', '_', $nav['name']), 'style'=>'font-size:1.0em;cursor:pointer;'), $nav['name']);
   }
   return $box;
 }
@@ -146,7 +146,7 @@ function menu($element, $conn, $classNavMenu, $styleNavMenu) {
   foreach($categories as $category) {
     if ($category['name'] != '') {
       // TODO: DMNC-33 [200525] - 75px is shared in script.js
-      element($col, 'h1', array('id'=>'section-' . $category['name'], 'class'=>'menu', 'style'=>'padding-left:75px;font-size:4.5em;color:rgb(204,204,51);'), $category['name']);
+      element($col, 'h1', array('id'=>'section-' . str_replace(' ','_',$category['name']), 'class'=>'menu', 'style'=>'padding-left:75px;font-size:4.5em;color:rgb(204,204,51);'), $category['name']);
       $items = categories_items($conn, $category['categories_id']);
       $i=0; // Force a new line, when we switch categories.
       foreach($items as $item) {
