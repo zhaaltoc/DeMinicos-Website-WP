@@ -7,3 +7,4 @@ docker/*
 log/*
 
 http/assets/unzip/*
+http/assets/img/Thumbs.db
