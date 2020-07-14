@@ -1,7 +1,8 @@
 /* Section: HTML {{{1 */
 @font-face {
-  font-family: "MenuFont";
-  src: url("../fonts/BRADHITC.TTF") format("truetype");
+  font-family: "DivFont";
+  /* src: url("../fonts/BRADHITC.TTF") format("truetype"); */
+  src: url("../fonts/cour.ttf") format("truetype");
 }
 
 html, body { /* {{{2 */
@@ -25,7 +26,7 @@ html { /* {{{2 */
 body { /* {{{2 */
   position: relative;
   /* font-family: "Raleway",Helvetica,Arial,Lucida,sans-serif; */
-  padding-top: 5rem;
+  /* padding-top: 5rem; */
   padding-bottom: 5rem;
   
   @media screen and (max-width: 960px){
@@ -43,7 +44,7 @@ body { /* {{{2 */
 }
   
 div { /* {{{2 */
-  font-family: "MenuFont";
+  font-family: "DivFont";
 }
 
 th { /* {{{2 */
@@ -93,7 +94,7 @@ a { /* {{{2 */
   margin: 0;
 }
 
-.col, .col-12 { /* {{{2 */
+.col .col-12 { /* {{{2 */
   padding: 0;
   line-height: 0;
 }
@@ -109,9 +110,9 @@ a { /* {{{2 */
   /* background-color: rgb(205,205,205); */
 /* } */
 
-/* .navbar-light .navbar-toggler-icon { */
-  /* background-image: url("data:image/svg+xml;.."); */
-/* } */
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;..");
+}
 
 .navbar-favicon { /* {{{2 */
   height: 30px;
@@ -151,6 +152,13 @@ a { /* {{{2 */
   background-size: 3rem;
 }
 
+.logodot {
+  height: 250px;
+  width: 250px;  
+  /* background-color: #FFFAFA; */
+  border-radius: 50%;
+  display: inline-block;
+}
 .instagram { /* {{{2 */
   border-radius: 10px;
   /* display: inline-block; */
@@ -186,4 +194,14 @@ a { /* {{{2 */
     height: relative;
     width: 70%;
   }
+}
+  
+@font-face {
+  font-family: "MenuFont";
+  src: url("../fonts/BRADHITC.TTF") format("truetype");
+  /* src: url("../fonts/cour.ttf") format("truetype"); */
+}
+
+.menu { /* {{{2 */
+  font-family: "MenuFont";
 }
