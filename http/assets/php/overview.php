@@ -28,7 +28,6 @@ $col = element($row, "div", array("class"=>"col-md-4", "style"=>"padding-top: 15
 
 element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "Come in, welcome to De Minico's where we are about family first and foremost.");
 element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "We welcome everyone into our store, to try our delectables, and share a story or two.");
-element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "We want you to feel welcomed.  ");
 element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "Our mission is to help you bring your family back to the table by providing high quality food all members of your family will enjoy.");
 element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), " ");
 element($col, "p", array("class"=>"text-center", "style"=>$styleFontP), "De Minico's guarantees to deliver our family's values through nutritionally wholesome fresh ingredients with no additives or preservatives - food you can trust.");
