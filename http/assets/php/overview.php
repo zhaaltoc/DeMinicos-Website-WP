@@ -61,7 +61,9 @@ $col = element($row, "div", array("class"=>"text-center col-md-4"));
 $row = element($col, "div", array("class"=>"row"));
 
 $col = element($row, "div", array("class"=>"col-12"));
-element($col, "h2", array("style"=>"padding-top:15px;"), "Hours");
+element($col, "h2", array("style"=>"padding-top:15px;"), "Our New Patio is OPEN");
+element($col, "h2", array("style"=>"padding-top:15px;"), "**NEW** Hours");
+
 
 $col = element($row, "div", array("class"=>"col-12", 'style'=>'text-align:right;'));
 $table = element($col, "table", array('style'=>'margin-left:-10px;width:100%;'));
@@ -71,7 +73,7 @@ hourRow($tbody, "Tuesday", "11 A.M.", "6 P.M.", $styleDays, $styleHours);
 hourRow($tbody, "Wednsday", "11 A.M.", "6 P.M.", $styleDays, $styleHours);
 hourRow($tbody, "Thursday", "11 A.M.", "6 P.M.", $styleDays, $styleHours);
 hourRow($tbody, "Friday", "11 A.M.", "8 P.M.", $styleDays, $styleHours);
-hourRow($tbody, "Saturday", "Closed", "", $styleDays, $styleHours);
+hourRow($tbody, "Saturday", "12 P.M.", "8 P.M.", $styleDays, $styleHours);
 hourRow($tbody, "Sunday", "Closed", "", $styleDays, $styleHours);
 
 // TEST VUE {{{2
